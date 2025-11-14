@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Torna o site responsivo em dispositivos móveis -->
+
+  <title>Simplify - Contato</title> <!-- Título da aba do navegador -->
+
+  <!-- Ícone que aparece na aba do navegador -->
+  <link rel="shortcut icon" href="imagens/favicon.png" type="image/x-icon">
+
+  <!-- Metadados para SEO -->
+  <meta name="description" content="Entre em contato com a equipe Simplify para dúvidas, sugestões ou orçamentos.">
+  <meta name="keywords" content="contato, orçamento, front-end, email, telefone">
+
+  <!-- Estilos globais -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Estilos da página (contato.html) -->
+  <link rel="stylesheet" href="css/contato.css">
+</head>
+<body>
+
+  <!-- Cabeçalho do site com logotipo e menu -->
+  <header>
+    <div class="limitador">
+      <!-- Logotipo com link para a página inicial -->
+      <h1><a href="index.html" title="Página inicial Simplify">Simplify</a></h1>
+
+      <!-- Menu de navegação -->
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html" title="página inicial">Home</a></li>
+          <li><a href="produtos.html" title="conheça nossos produtos">Produtos</a></li>
+          <li><a href="servicos.html" title="conheça nossos serviços">Serviços</a></li>
+          <li><a href="contato.html" title="fale com a equipe Simplify">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <!-- Seção de formulário de contato -->
+    <section class="limitador conteudo">
+      <h2>Fale Conosco</h2>
+      <p>Tem alguma dúvida, sugestão ou gostaria de solicitar um orçamento? Preencha o formulário abaixo e nossa equipe entrará em contato o mais breve possível.</p>
+
+      <!-- Formulário de contato (enviado via Formspree) -->
+      <!-- Obs: Realizar cadastro gratuito em: https://formspree.io/ -->
+      <form action="https://formspree.io/f/xpwkaaoa" method="post">
+
+        <!-- Campo de nome -->
+        <div>
+          <label for="nome">Nome:</label>
+          <input type="text" name="nome" id="nome" required placeholder="Digite seu nome completo">
+        </div>
+
+        <!-- Campo de e-mail -->
+        <div>
+          <label for="email">E-mail:</label>
+          <input type="email" name="email" id="email" required placeholder="seuemail@exemplo.com">
+        </div>
+
+        <!-- Campo de telefone -->
+        <div>
+          <label for="telefone">Telefone:</label>
+          <input type="tel" name="telefone" id="telefone" placeholder="(11) 99999-9999">
+        </div>
+
+        <!-- Campo de seleção para assunto -->
+        <div>
+          <label for="assunto">Assunto:</label>
+          <select name="assunto" id="assunto" required>
+            <option value=""></option> <!-- Opção em branco para forçar escolha -->
+            <option value="Dúvidas">Dúvidas</option>
+            <option value="Orçamento">Orçamento</option>
+            <option value="Elogios">Elogios</option>
+            <option value="Reclamações">Reclamações</option>
+          </select>
+        </div>
+
+        <!-- Campo de mensagem -->
+        <div>
+          <label for="mensagem">Mensagem:</label><br>
+          <textarea name="mensagem" id="mensagem" rows="5" maxlength="500" placeholder="Deixe sua mensagem aqui..."></textarea>
+        </div>
+
+        <!-- Botão para enviar o formulário -->
+        <button type="submit">Enviar dados</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>Simplify é um site fictício desenvolvido no Senai/Sesi © - Alguns Direitos Reservados - 2025</p>
+  </footer>
+
+</body>
+</html>

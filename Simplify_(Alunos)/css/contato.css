@@ -1,0 +1,58 @@
+/* ========================================================= */
+/* ARQUIVO: contato.css */
+/* DESCRIÇÃO: Estilos exclusivos para o formulário da página de contato. */
+/* ========================================================= */
+
+/* Estilo do container do formulário */
+form {
+  max-width: 500px;
+  width: 95%;
+  margin: auto;
+  background-color: whitesmoke;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+/* Espaçamento entre os campos do formulário */
+form div {
+  margin-top: 1rem;
+}
+
+/* Estilo para campos de texto, email, select, etc. */
+/* O seletor :not() exclui os inputs do tipo radio e checkbox */
+input:not([type="radio"]):not([type="checkbox"]),
+select,
+textarea {
+  width: 100%;
+  height: 40px;
+  border: none;
+  padding: 0 10px;
+  box-shadow: rgba(82, 76, 76, 0.5) 0 0 2px inset;
+  border-radius: 5px;
+}
+
+/* Ajuste de altura para o campo de mensagem */
+textarea {
+  height: auto;
+  padding: 10px;
+}
+
+/* Botão de envio do formulário */
+button[type="submit"] {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Efeito suave na transição */
+}
+
+/* Efeito hover para o botão de envio */
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  background-color: rgb(82, 76, 76);
+}

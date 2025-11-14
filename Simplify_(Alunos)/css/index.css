@@ -1,0 +1,72 @@
+/* ================================================================== */
+/* ARQUIVO: index.css
+/* DESCRIÇÃO: Estilos exclusivos para a página inicial (index.html).
+/* ================================================================== */
+
+/* Seção de destaque principal com imagem de fundo */
+.destaque {
+  background-image: url(../imagens/fundo-destaque.jpg);
+  background-size: cover;
+  background-attachment: fixed; /* Efeito parallax */
+  height: 90vh;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.destaque h2 {
+  font-size: clamp(2rem, 8vw, 7rem); /* Fonte responsiva */
+  animation: fadeIn 1.5s;
+}
+
+.destaque p {
+  font-size: clamp(1.6rem, 2vw, 4rem); /* Fonte responsiva */
+  animation: fadeIn 1.5s 1s backwards; /* Animação com atraso */
+}
+
+/* Animação de entrada (fade-in) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Seções de conteúdo da página inicial */
+.front-end,
+.localizacao {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Seção "História" com vídeo incorporado */
+.historia {
+  background-image: url(../imagens/fundo-madeira.jpg);
+  background-size: cover;
+  background-attachment: fixed; /* Efeito parallax */
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.historia h2 {
+  color: #fff;
+  text-shadow: #000 1px 1px 2px;
+  padding-bottom: 1rem;
+}
+
+.historia iframe {
+  max-width: 800px;
+  width: 100%;
+}
+
+.localizacao iframe {
+  width: 100%;
+  border: none;
+}
+
+/* Ajuste de altura para o destaque em telas maiores */
+@media screen and (min-width: 768px) {
+  .destaque {
+    height: 85vh;
+  }
+}

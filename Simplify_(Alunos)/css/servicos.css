@@ -1,0 +1,69 @@
+/* ================================================================== */
+/* ARQUIVO: servicos.css
+/* DESCRIÇÃO: Estilos exclusivos para a página de serviços.
+/* ================================================================== */
+
+/* ------------------------------------------------------------------ */
+/* 1. GALERIA DE SERVIÇOS
+/* ------------------------------------------------------------------ */
+
+/* Estiliza o container <figure> que agrupa as imagens dos serviços */
+.galeria-servicos {
+  display: grid; /* Ativa o layout em grid */
+  grid-template-columns: 1fr; /* Por padrão, uma única coluna (para telas pequenas) */
+  gap: 1.5rem; /* Espaçamento de 24px entre os itens da galeria */
+  margin-top: 1.5rem; /* Adiciona um espaço acima da galeria */
+}
+
+/* Estiliza cada item individual da galeria (a tag <figure> dentro da galeria) */
+.galeria-servicos figure {
+  margin: 0; /* Remove a margem padrão da tag <figure> */
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  overflow: hidden; /* Garante que a imagem não ultrapasse as bordas arredondadas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação suave */
+}
+
+/* Efeito ao passar o mouse sobre um item da galeria */
+.galeria-servicos figure:hover {
+  transform: translateY(-5px); /* Move o card levemente para cima */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Aumenta a sombra para dar destaque */
+}
+
+/* Estiliza as imagens dentro da galeria */
+.galeria-servicos img {
+  width: 100%; /* Faz a imagem ocupar toda a largura do container */
+  height: auto;
+  display: block; /* Remove espaços extras abaixo da imagem */
+}
+
+/* Estiliza a legenda (título) de cada imagem */
+.galeria-servicos figcaption {
+  padding: 1rem; /* Espaçamento interno */
+  font-weight: bold;
+  color: #333;
+  background-color: #fff;
+}
+
+
+/* ------------------------------------------------------------------ */
+/* 2. RESPONSIVIDADE DA GALERIA
+/* ------------------------------------------------------------------ */
+
+/* Para telas com 600px de largura ou mais */
+@media screen and (min-width: 600px) {
+  .galeria-servicos {
+    /* Altera o grid para ter duas colunas */
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+/* Para telas com 900px de largura ou mais */
+@media screen and (min-width: 900px) {
+  .galeria-servicos {
+    /* Altera o grid para ter quatro colunas */
+    grid-template-columns: repeat(4, 1fr); 
+  }
+}

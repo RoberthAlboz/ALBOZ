@@ -1,0 +1,45 @@
+/* ================================================================== */
+/* ARQUIVO: produtos.css
+/* DESCRIÇÃO: Estilos exclusivos para a página de produtos.
+/* ================================================================== */
+
+/* Formatação da tabela de produtos */
+table {
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto;
+  border-collapse: collapse; /* Une as bordas das células */
+}
+
+/* Estilo geral para a tabela, cabeçalho e células */
+table, th, td {
+  border: 2px solid black;
+}
+
+/* Título (legenda) da tabela */
+caption {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Células do cabeçalho (th) */
+th {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Células de dados (td) */
+td {
+  background-color: #fff;
+}
+
+th, td {
+  padding: 0.7rem;
+  text-align: left;
+}
+
+/* Estilização específica para cada coluna da tabela */
+td:nth-child(1) { text-transform: uppercase; } /* Coluna 1: Produto */
+td:nth-child(2) { text-align: center; }      /* Coluna 2: Prazo */
+td:nth-child(3) { color: blue; }             /* Coluna 3: Valor */
