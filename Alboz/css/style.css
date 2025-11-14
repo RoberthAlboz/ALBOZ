@@ -84,11 +84,11 @@ h1 {
   text-transform: uppercase;
 }
 
-h1 a {
-  color: white;
-  background-color: black;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+:root{
+    --bg:#072d38;            /* Cor do fundo principal */
+    --card:#0e3f4b;          /* Cor de fundo dos cards */
+    --muted:#bfc9ce;         /* Cor de texto suave */
+    --accent:#dfe7e9;        /* Cor de destaque / texto claro */
 }
 
 /* Navegação e Menu */
@@ -183,3 +183,107 @@ figure {
     padding: 0 1rem;
   }
 }
+
+ /* Estilo do botão hamburguer */
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            width: 40px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            background-color: #000;
+            height: 5px;
+            width: 100%;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Animação do botão quando ativo */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(10px, -10px);
+        }
+
+        /* Estilo do menu */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Menu escondido à esquerda */
+            width: 300px; /* Aumentado para acomodar subitens */
+            height: 100%;
+            background-color: #0e3f4b;
+            color: #bfc9ce;
+            transition: left 0.3s ease;
+            z-index: 999;
+            padding-top: 60px;
+            overflow-y: auto; /* Permite rolagem se o menu for longo */
+        }
+
+        .menu.active {
+            left: 0; /* Menu visível */
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu > ul > li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #444; /* Separação visual */
+        }
+
+        .menu > ul > li > a,
+        .menu > ul > li > span {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            cursor: pointer;
+        }
+
+        .menu > ul > li > a:hover,
+        .menu > ul > li > span:hover {
+            color: #ddd;
+        }
+
+        /* Estilo dos subitens */
+        .submenu {
+            display: none; /* Escondido por padrão */
+            padding-left: 20px;
+            background-color: #2a2a2a;
+        }
+
+        .submenu.active {
+            display: block; /* Mostra quando ativo */
+        }
+
+        .submenu li {
+            padding: 10px 20px;
+        }
+
+        .submenu li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .submenu li a:hover {
+            color: #fff;
+        }
