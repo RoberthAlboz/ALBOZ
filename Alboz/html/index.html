@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Botão Hamburguer Fixo à Esquerda</title>
-    <style>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/index.css">
+<style>
         /* Estilo do botão hamburguer */
         .hamburger {
             position: fixed;
             top: 20px;
-            left: 20px; /* Alterado de right para left */
+            left: 20px;
             z-index: 1000;
             cursor: pointer;
             width: 40px;
@@ -20,7 +22,7 @@
         }
 
         .hamburger span {
-            background-color: #bb3737;
+            background-color: #000;
             height: 5px;
             width: 100%;
             border-radius: 2px;
@@ -44,38 +46,69 @@
         .menu {
             position: fixed;
             top: 0;
-            left: -250px; /* Alterado de right para left, menu escondido à esquerda */
-            width: 250px;
+            left: -300px; /* Menu escondido à esquerda */
+            width: 300px; /* Aumentado para acomodar subitens */
             height: 100%;
             background-color: #333;
             color: #fff;
-            transition: left 0.3s ease; /* Alterado de right para left */
+            transition: left 0.3s ease;
             z-index: 999;
             padding-top: 60px;
+            overflow-y: auto; /* Permite rolagem se o menu for longo */
         }
 
         .menu.active {
-            left: 0; /* Menu visível, desliza da esquerda */
+            left: 0; /* Menu visível */
         }
 
         .menu ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        .menu ul li {
-            padding: 15px;
-            text-align: center;
+        .menu > ul > li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #444; /* Separação visual */
         }
 
-        .menu ul li a {
+        .menu > ul > li > a,
+        .menu > ul > li > span {
             color: #fff;
             text-decoration: none;
             font-size: 18px;
+            display: block;
+            cursor: pointer;
         }
 
-        .menu ul li a:hover {
+        .menu > ul > li > a:hover,
+        .menu > ul > li > span:hover {
             color: #ddd;
+        }
+
+        /* Estilo dos subitens */
+        .submenu {
+            display: none; /* Escondido por padrão */
+            padding-left: 20px;
+            background-color: #2a2a2a;
+        }
+
+        .submenu.active {
+            display: block; /* Mostra quando ativo */
+        }
+
+        .submenu li {
+            padding: 10px 20px;
+        }
+
+        .submenu li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .submenu li a:hover {
+            color: #fff;
         }
     </style>
 </head>
@@ -91,19 +124,61 @@
     <nav class="menu">
         <ul>
             <li><a href="#">Início</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Contato</a></li>
+            <li>
+                <span onclick="toggleSubmenu(this)">Roupas</span>
+                <ul class="submenu">
+                    <li><a href="#">Camisetas</a></li>
+                    <li><a href="#">Calças Sociais</a></li>
+                    <li><a href="#">Blazers</a></li>
+                    <li><a href="#">Calçados</a></li>
+                </ul>
+            </li>
+            <li>
+                <span onclick="toggleSubmenu(this)">Acessórios Finos</span>
+                <ul class="submenu">
+                    <li><a href="#">Relógios Clássicos</a></li>
+                    <li><a href="#">Cintos</a></li>
+                    <li><a href="#">Pulseiras</a></li>
+                    <li><a href="#">Óculos de Sol</a></li>
+                    <li><a href="#">Brincos</a></li>
+                    <li><a href="#">Bolsas</a></li>
+                    <li><a href="#">Colares</a></li>
+                </ul>
+            </li>
+            <li>
+                <span onclick="toggleSubmenu(this)">Nossas Informações</span>
+                <ul class="submenu">
+                    <li><a href="#">História da Alboz</a></li>
+                    <li><a href="#">Missão da Alboz</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Localizações (próximas de você)</a></li>
+                </ul>
+            </li>
+            <li>
+                <span onclick="toggleSubmenu(this)">Você</span>
+                <ul class="submenu">
+                    <li><a href="#">Meu Carrinho</a></li>
+                    <li><a href="#">Minha Conta</a></li>
+                    <li><a href="#">Perfil</a></li>
+                    <li><a href="#">Favoritados</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 
     <script>
-        // Função para alternar o botão e o menu
+        // Função para alternar o botão e o menu principal
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
             const menu = document.querySelector('.menu');
             hamburger.classList.toggle('active');
             menu.classList.toggle('active');
+        }
+
+        // Função para alternar submenus
+        function toggleSubmenu(element) {
+            const submenu = element.nextElementSibling;
+            submenu.classList.toggle('active');
         }
     </script>
 </body>
