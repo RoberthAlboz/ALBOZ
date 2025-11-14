@@ -6,6 +6,37 @@
     <title>Botão Hamburguer Fixo à Esquerda</title>
     <link rel="stylesheet" href="../css_alboz/style.css">
     <link rel="stylesheet" href="../css_alboz/index.css">
+
+
+    <style>
+    .login-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid #e0e0e0;
+      text-decoration: none;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      border-color: #4285f4;
+    }
+
+    .login-icon {
+      width: 24px;
+      height: 24px;
+      fill: #4285f4; /* Cor do ícone (azul Google) */
+    }
+    </style>
+
 </head>
 
 <body>
@@ -80,7 +111,14 @@
 
     <h1 class="alboz_cabecario">ALBOZ</h1>
 
-    <div></div>
+        <!-- Botão de login -->
+    <div>
+        <a href="#login" class="login-btn">
+            <svg class="login-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+            </svg>
+        </a>
+    </div>
 
 </body>
 </html>
