@@ -260,14 +260,14 @@ figure {
 
         .menu > ul > li > a:hover,
         .menu > ul > li > span:hover {
-            color: #072d38;
+            color: #0f637a;
         }
 
         /* Estilo dos subitens */
         .submenu {
             display: none; /* Escondido por padrão */
             padding-left: 20px;
-            background-color: #2a2a2a;
+            background-color: #0f4b5b;
         }
 
         .submenu.active {
@@ -285,5 +285,48 @@ figure {
         }
 
         .submenu li a:hover {
-            color: #fff;
+            color: #1887a6;
         }
+
+
+      /* Login icon */
+.login-btn {
+    position: absolute;      /* fixa dentro do header */
+    top: 15px;               /* distância do topo */
+    right: 20px;             /* distância da direita */
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid #e0e0e0;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all .3s ease;
+    z-index: 1000;           /* garante que fica por cima */
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    border-color: #4285f4;
+}
+
+.login-icon {
+    width: 24px;
+    height: 24px;
+    fill: #4285f4;
+}
+
+/* Garanta que o header seja posição relativa */
+header, .header, header.topo {
+    position: relative;
+}

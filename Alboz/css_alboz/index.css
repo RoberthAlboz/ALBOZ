@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap');
+
 /* ================================
    VARIÁVEIS DE CORES
    ================================ */
@@ -151,6 +154,11 @@ footer p{
 
 .alboz_cabecario{
     text-align: center;
+    font-family: "Abhaya Libre", serif;
+    font-weight: 800; /* ExtraBold */
+    margin-top: 27px; /* Aumente ou diminua */
+    font-size: 45px;
+    letter-spacing: 10px; /* Aumente ou diminua */
 }
 
 /* ================================
