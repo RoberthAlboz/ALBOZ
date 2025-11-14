@@ -1,317 +1,279 @@
 /* ================================================================== */
-/* ARQUIVO: style.css
-/* DESCRIÇÃO: Estilos globais e componentes comuns a todo o site.
+/* IMPORTAÇÃO DE FONTES */
+/* ================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@100..900&display=swap');
+
+
+/* ================================================================== */
+/* 1. VARIÁVEIS GLOBAIS */
+/* ================================================================== */
+:root {
+    --bg: #072d38;       /* Fundo principal */
+    --card: #0e3f4b;     /* Fundo de cards */
+    --muted: #bfc9ce;    /* Texto suave */
+    --accent: #dfe7e9;   /* Texto claro / destaque */
+}
+
+
+/* ================================================================== */
+/* 2. RESET + ESTILOS GLOBAIS */
 /* ================================================================== */
 
-/* ------------------------------------------------------------------ */
-/* 1. ESTILOS GLOBAIS (Reset, Body, Tipografia)
-/* ------------------------------------------------------------------ */
-
-/* Reset básico para garantir consistência entre navegadores */
-
-/* Continuar digitação (deste ponto) */
-/* --------------------------------------------------------------
-ARQUIVO: Style.css
-DESCRIÇÃO: Estilos globais e componentes comuns a todo o site.
---------------------------------------------------------------- */
-
-/* --------------------------------------------------------------
-1. ESTILOS GLOBAIS (Reset, Body, Tipografia)
---------------------------------------------------------------- */
-
-/* Reset básico para garantir consistência entre navegadores */
+/* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Define a fonte base do documento para cálculos de 'rem' */
+/* Tamanho base */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
-/* ================================
-   ESTILO DO BODY
-   ================================ */
-body{
-    margin:0;
+/* Body */
+body {
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background:var(--bg);
-    color:var(--accent);
+    background: var(--bg);
+    color: var(--accent);
 }
 
-/* Remove o sublinhado padrão dos links */
+/* Links */
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-/* Torna as imagens responsivas por padrão */
+/* Imagens responsivas */
 img {
-  max-width: 100%;
+    max-width: 100%;
 }
 
-/* --------------------------------------------------------------
-2. LAYOUT PRINCIPAL (Header, Navegação, Limitador, Footer)
---------------------------------------------------------------- */
 
-/* Classe "limitador" para centralizar o conteúdo principal */
+/* ================================================================== */
+/* 3. LAYOUT PRINCIPAL (Header, Limitador, Footer) */
+/* ================================================================== */
+
+/* Limitador de largura */
 .limitador {
-  max-width: 1100px; /* Largura máxima do conteúdo */
-  width: 95vw; /* Ocupa 95% da largura da tela */
-  margin: auto; /* Centraliza horizontalmente */
+    max-width: 1100px;
+    width: 95vw;
+    margin: auto;
 }
 
-/* Cabeçalho */
+/* Header */
 header {
-  background-color: #fff;
-  position: sticky; /* Mantém o cabeçalho fixo no topo ao rolar */
-  top: 0;
-  z-index: 99; /* Garante que o cabeçalho fique sobre outros elementos */
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 99;
 }
 
 header .limitador {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Logotipo */
 h1 {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-weight: normal;
-  font-size: 1.5rem; /* 1.5 x 14px = 21px */
-  text-transform: uppercase;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-transform: uppercase;
 }
 
-:root{
-    --bg:#072d38;            /* Cor do fundo principal */
-    --card:#0e3f4b;          /* Cor de fundo dos cards */
-    --muted:#bfc9ce;         /* Cor de texto suave */
-    --accent:#dfe7e9;        /* Cor de destaque / texto claro */
-}
-
-/* Navegação e Menu */
-nav {
-  width: 65%;
-}
-
-ul.menu {
-  list-style: none;
-}
-
-.menu a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  color: black;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.menu a:hover,
-.menu a:active {
-  background-color: gainsboro;
-  border-radius: 20px 20px 0 0;
-}
-
-/* Rodapé */
+/* Footer */
 footer {
-  background-color: #000;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-  height: 14vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed; /* Fixo na parte inferior da tela */
-  bottom: 0;
-  width: 100%;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    height: 14vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-/* --------------------------------------------------------------
-3. ESTILOS GENÉRICOS PARA PÁGINAS INTERNAS
---------------------------------------------------------------- */
 
-.conteudo {
-  background-color: whitesmoke;
-  padding: 1.5rem;
-  border-radius: 7px;
-}
+/* ================================================================== */
+/* 4. CONTEÚDO DAS PÁGINAS */
+/* ================================================================== */
 
 main {
-  /* Espaçamento inferior para evitar que o rodapé fixo sobreponha o conteúdo */
-  margin-bottom: 15vh;
+    margin-bottom: 15vh; /* Evita sobreposição do footer */
+}
+
+.conteudo {
+    background-color: whitesmoke;
+    padding: 1.5rem;
+    border-radius: 7px;
 }
 
 section h2 {
-  text-align: center;
-  padding: 1rem;
+    text-align: center;
+    padding: 1rem;
 }
 
 section p {
-  padding: 0.5rem 0;
+    padding: 0.5rem 0;
 }
 
 figure {
-  text-align: center;
-  margin: 1rem 0;
+    text-align: center;
+    margin: 1rem 0;
 }
 
-/* --------------------------------------------------------------
-4. RESPONSIVIDADE (Media Queries)
---------------------------------------------------------------- */
 
-/* Estilos para telas a partir de 768px (tablets e desktops) */
-@media screen and (min-width: 768px) {
-  html {
-    font-size: 18px; /* Aumenta a fonte base para melhor leitura */
-  }
+/* ================================================================== */
+/* 5. MENU HAMBÚRGUER + MENU LATERAL */
+/* ================================================================== */
 
-  header .limitador {
-    height: 15vh;
-  }
-
-  .menu {
+/* Botão hambúrguer */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    width: 40px;
+    height: 30px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-  }
-
-  .menu a {
-    padding: 0 1rem;
-  }
 }
 
- /* Estilo do botão hamburguer */
-        .hamburger {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            cursor: pointer;
-            width: 40px;
-            height: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+.hamburger span {
+    background-color: #bfc9ce;
+    height: 5px;
+    width: 100%;
+    border-radius: 2px;
+    transition: 0.3s;
+}
 
-        .hamburger span {
-            background-color: #bfc9ce;
-            height: 5px;
-            width: 100%;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
+/* Animação */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
 
-        /* Animação do botão quando ativo */
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
-        }
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(10px, -10px);
+}
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(10px, -10px);
-        }
+/* MENU LATERAL */
+.menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: var(--card);
+    color: var(--muted);
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding-top: 60px;
+    overflow-y: auto;
+    font-family: "Aboreto", sans-serif;  /* Fonte do menu */
+}
 
-        /* Estilo do menu */
-        .menu {
-            position: fixed;
-            top: 0;
-            left: -300px; /* Menu escondido à esquerda */
-            width: 300px; /* Aumentado para acomodar subitens */
-            height: 100%;
-            background-color: #0e3f4b;
-            color: #bfc9ce;
-            transition: left 0.3s ease;
-            z-index: 999;
-            padding-top: 60px;
-            overflow-y: auto; /* Permite rolagem se o menu for longo */
-        }
+.menu.active {
+    left: 0;
+}
 
-        .menu.active {
-            left: 0; /* Menu visível */
-        }
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-        .menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+/* Títulos do menu */
+.menu > ul > li {
+    padding: 17px 20px;
+    border-bottom: 1px solid var(--bg);
+}
 
-        .menu > ul > li {
-            padding: 17px 20px;
-            border-bottom: 1px solid #072d38; /* Separação visual */
-        }
+.menu > ul > li > a,
+.menu > ul > li > span {
+    color: #bfc9ce;
+    font-size: 22px;
+    display: block;
+    cursor: pointer;
+    font-family: "Aboreto", sans-serif;
+}
 
-        .menu > ul > li > a,
-        .menu > ul > li > span {
-            color: #bfc9ce;
-            text-decoration: none;
-            font-size: 22px;
-            display: block;
-            cursor: pointer;
-        }
+.menu > ul > li > a:hover,
+.menu > ul > li > span:hover {
+    color: #0f637a;
+}
 
-        .menu > ul > li > a:hover,
-        .menu > ul > li > span:hover {
-            color: #0f637a;
-        }
+/* Espaço entre título e submenu */
+.menu > ul > li > span + .submenu,
+.menu > ul > li > a + .submenu {
+    margin-top: 15px;
+}
 
-        /* Estilo dos subitens */
-        .submenu {
-            display: none; /* Escondido por padrão */
-            padding-left: 10px;
-            background-color: #0f4b5b;
-        }
+/* Submenu */
+.submenu {
+    display: none;
+    padding-left: 10px;
+    background-color: #0f4b5b;
+}
 
-        .submenu.active {
-            display: block; /* Mostra quando ativo */
-        }
+.submenu.active {
+    display: block;
+}
 
-        .submenu li {
-            padding: 5px 10px;
-        }
+.submenu li {
+    padding: 5px 10px;
+}
 
-        .submenu li a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-        }
+.submenu li a {
+    color: #ccc;
+    font-size: 14px;
+    font-family: "Afacad", sans-serif;
+    font-weight: 500;
+}
 
-        .submenu li a:hover {
-            color: #1887a6;
-        }
+.submenu li a:hover {
+    color: #1887a6;
+}
 
 
-      /* Login icon */
+/* ================================================================== */
+/* 6. ÍCONE DE LOGIN */
+/* ================================================================== */
+
+header,
+.header,
+header.topo {
+    position: relative;
+}
+
 .login-btn {
-    position: absolute;      /* fixa dentro do header */
-    top: 15px;               /* distância do topo */
-    right: 20px;             /* distância da direita */
-
+    position: absolute;
+    top: 15px;
+    right: 20px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     width: 50px;
     height: 50px;
-
     background-color: white;
     border-radius: 50%;
     border: 2px solid #e0e0e0;
-
     cursor: pointer;
     text-decoration: none;
-
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: all .3s ease;
-    z-index: 1000;           /* garante que fica por cima */
+    transition: 0.3s ease;
+    z-index: 1000;
 }
 
 .login-btn:hover {
@@ -326,7 +288,48 @@ figure {
     fill: #4285f4;
 }
 
-/* Garanta que o header seja posição relativa */
-header, .header, header.topo {
-    position: relative;
+
+/* ================================================================== */
+/* 7. SCROLLBAR PERSONALIZADA */
+/* ================================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #072d38;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0f637a;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1887a6;
+}
+
+
+/* ================================================================== */
+/* 8. RESPONSIVIDADE */
+/* ================================================================== */
+
+@media screen and (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+
+    header .limitador {
+        height: 15vh;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu a {
+        padding: 0 1rem;
+    }
 }
