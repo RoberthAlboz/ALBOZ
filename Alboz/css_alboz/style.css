@@ -245,7 +245,7 @@ figure {
         }
 
         .menu > ul > li {
-            padding: 15px 20px;
+            padding: 17px 20px;
             border-bottom: 1px solid #072d38; /* Separação visual */
         }
 
@@ -253,7 +253,7 @@ figure {
         .menu > ul > li > span {
             color: #bfc9ce;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 22px;
             display: block;
             cursor: pointer;
         }
@@ -266,7 +266,7 @@ figure {
         /* Estilo dos subitens */
         .submenu {
             display: none; /* Escondido por padrão */
-            padding-left: 20px;
+            padding-left: 10px;
             background-color: #0f4b5b;
         }
 
@@ -275,13 +275,13 @@ figure {
         }
 
         .submenu li {
-            padding: 10px 20px;
+            padding: 5px 10px;
         }
 
         .submenu li a {
             color: #ccc;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .submenu li a:hover {
