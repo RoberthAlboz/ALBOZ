@@ -199,7 +199,7 @@ figure {
         }
 
         .hamburger span {
-            background-color: #000;
+            background-color: #bfc9ce;
             height: 5px;
             width: 100%;
             border-radius: 2px;
@@ -246,12 +246,12 @@ figure {
 
         .menu > ul > li {
             padding: 15px 20px;
-            border-bottom: 1px solid #444; /* Separação visual */
+            border-bottom: 1px solid #072d38; /* Separação visual */
         }
 
         .menu > ul > li > a,
         .menu > ul > li > span {
-            color: #fff;
+            color: #bfc9ce;
             text-decoration: none;
             font-size: 18px;
             display: block;
@@ -260,7 +260,7 @@ figure {
 
         .menu > ul > li > a:hover,
         .menu > ul > li > span:hover {
-            color: #ddd;
+            color: #072d38;
         }
 
         /* Estilo dos subitens */
