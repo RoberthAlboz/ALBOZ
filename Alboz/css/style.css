@@ -31,10 +31,14 @@ html {
   font-size: 14px;
 }
 
-/* Estilos gerais do corpo da página */
-body {
-  background-color: white;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+/* ================================
+   ESTILO DO BODY
+   ================================ */
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--accent);
 }
 
 /* Remove o sublinhado padrão dos links */

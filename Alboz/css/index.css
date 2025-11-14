@@ -1,25 +1,37 @@
+/* ================================
+   VARIÁVEIS DE CORES
+   ================================ */
 :root{
-    --bg:#072d38;
-    --card:#0e3f4b;
-    --muted:#bfc9ce;
-    --accent:#dfe7e9;
+    --bg:#072d38;            /* Cor do fundo principal */
+    --card:#0e3f4b;          /* Cor de fundo dos cards */
+    --muted:#bfc9ce;         /* Cor de texto suave */
+    --accent:#dfe7e9;        /* Cor de destaque / texto claro */
 }
+
+/* Garante que padding/border não quebre o layout */
 *{box-sizing:border-box}
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:var(--bg);
-    color:var(--accent);
-}
+
+
+/* ================================
+   TOPO / HEADER
+   ================================ */
 header.topo{
     display:flex;
     align-items:center;
     justify-content:center;
     padding:26px 16px;
-    letter-spacing:6px;
+    letter-spacing:6px;      /* Aumenta espaçamento entre letras */
     font-weight:700;
 }
-header.topo h1{margin:0;font-size:28px}
+
+header.topo h1{
+    margin:0;
+    font-size:28px;
+}
+
+/* ================================
+   SESSÃO HERO (título grande)
+   ================================ */
 .hero{
     height:58vh;
     min-height:380px;
@@ -30,21 +42,27 @@ header.topo h1{margin:0;font-size:28px}
     justify-content:center;
     position:relative;
 }
+
 .hero h2{
     position:relative;
     margin:0;
-    font-family: 'Brush Script MT', cursive;
+    font-family: 'Brush Script MT', cursive;  /* Fonte estilizada */
     font-size:48px;
     color:white;
 }
+
+/* ================================
+   CATEGORIAS (3 colunas)
+   ================================ */
 .categorias{
     max-width:1100px;
     margin:30px auto;
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr); /* 3 colunas */
     gap:22px;
     padding:0 18px;
 }
+
 .categorias .item{
     background:var(--card);
     padding:40px 20px;
@@ -53,64 +71,101 @@ header.topo h1{margin:0;font-size:28px}
     font-weight:600;
     color:var(--muted);
     min-height:160px;
-    display:flex;align-items:center;justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
+
+/* ================================
+   PRODUTOS EM DESTAQUE
+   ================================ */
 .destaques{
     max-width:1100px;
     margin:12px auto 40px;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr); /* 2 colunas */
     gap:26px;
     padding:0 18px;
 }
+
 .destaques .produto{
     background:rgba(255,255,255,0.04);
     padding:18px;
     min-height:260px;
     border-radius:6px;
     color:var(--muted);
-    display:flex;flex-direction:column;justify-content:flex-end;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;    /* Alinha o conteúdo ao final */
 }
+
+/* ================================
+   SEÇÃO SOB MEDIDA
+   ================================ */
 .sob-medida{
     max-width:1100px;
     margin:40px auto;
     padding:30px 18px;
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr 1fr; /* 2 colunas */
     gap:20px;
     align-items:center;
 }
+
 .sob-medida h2{
     font-family: Georgia, 'Times New Roman', serif;
     font-size:28px;
     margin:0 0 12px 0;
 }
-.sob-medida p{color:var(--muted);margin:0}
+
+.sob-medida p{
+    color:var(--muted);
+    margin:0;
+}
+
+/* ================================
+   RODAPÉ
+   ================================ */
 footer{
     border-top:4px solid rgba(255,255,255,0.03);
     margin-top:48px;
     padding:34px 18px 60px;
     max-width:1100px;
-    margin-left:auto;margin-right:auto;
+    margin-left:auto;
+    margin-right:auto;
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr); /* 3 colunas */
     gap:20px;
     color:var(--muted);
 }
-footer h3{margin:0 0 10px;font-size:16px}
-footer p{margin:6px 0;font-size:14px}
+
+footer h3{
+    margin:0 0 10px;
+    font-size:16px;
+}
+
+footer p{
+    margin:6px 0;
+    font-size:14px;
+}
+
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
 @media (max-width:880px){
-    .categorias{grid-template-columns:repeat(2,1fr)}
-    .destaques{grid-template-columns:repeat(1,1fr)}
-    .sob-medida{grid-template-columns:1fr}
-    footer{grid-template-columns:1fr}
+    .categorias{grid-template-columns:repeat(2,1fr);} /* 2 colunas */
+    .destaques{grid-template-columns:repeat(1,1fr);} /* 1 coluna */
+    .sob-medida{grid-template-columns:1fr;}          /* 1 coluna */
+    footer{grid-template-columns:1fr;}               /* 1 coluna */
 }
+
 @media (max-width:480px){
-    header.topo h1{font-size:20px}
-    .categorias .item{padding:22px}
-    .hero{height:40vh}
-    .hero h2{font-size:28px}
+    header.topo h1{font-size:20px;}
+    .categorias .item{padding:22px;}
+    .hero{height:40vh;}
+    .hero h2{font-size:28px;}
 }
+
 
 /* Estilo do botão hamburguer */
         .hamburger {
