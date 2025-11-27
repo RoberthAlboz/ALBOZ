@@ -25,6 +25,7 @@ html {
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--card) var(--bg);
+    overflow-x: hidden; 
 }
 
 body {
@@ -60,6 +61,10 @@ ul { list-style: none; }
     text-shadow: none;
 }
 
+
+/* ==================================================================
+   3. CARROSSEL DE FUNDO
+   ================================================================== */
 /* ==================================================================
    3. CARROSSEL DE FUNDO
    ================================================================== */
@@ -79,12 +84,21 @@ ul { list-style: none; }
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    
+    /* --- A CORREÇÃO ESTÁ AQUI --- */
+    object-fit: cover; /* Preenche a tela toda (sem barras pretas) */
+    
+    /* Trava a imagem no TOPO. Se a tela for larga/estreita, corta só embaixo */
+    object-position: top center; 
+    
+    /* Ajuste para o zoom da animação partir do topo também */
+    transform-origin: top center; 
+    
     opacity: 0;
     animation: fadeSlide 18s infinite ease-in-out; 
 }
 
+/* ... o resto dos delays e keyframes continua igual ... */
 .slide:nth-child(1) { animation-delay: 0s; }
 .slide:nth-child(2) { animation-delay: 6s; }
 .slide:nth-child(3) { animation-delay: 12s; }
@@ -202,87 +216,178 @@ ul { list-style: none; }
 .nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
 
 /* ==================================================================
-   5. HEADER (COM EFEITO SHINY)
+   5. HEADER (CENTRALIZAÇÃO EXATA)
    ================================================================== */
 .header {
     position: relative;
     width: 100%;
-    height: 70vh;
+    height: 70vh; /* Altura da área */
+    
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
+    /* Centraliza nos dois eixos (Vertical e Horizontal) */
+    justify-content: center; 
     align-items: center;
-    padding-top: 100px; 
+    
+    /* MUDANÇA: Removi o 'padding-top: 100px' */
+    /* Agora ele calcula o centro exato da tela */
+    padding-top: 0; 
 }
 
 .subtitulo {
     font-family: 'Great Vibes', cursive;
-    font-size: 4rem;
+    font-size: 6rem; /* Tamanho grande */
+    /* --- MUDANÇA AQUI: Empurra o texto para baixo --- */
+    margin-top: 9rem; /* Ajuste este valor se quiser mais baixo (ex: 8rem) */
+    
     z-index: 10;
     text-align: center;
     font-weight: 400;
     letter-spacing: normal;
     text-shadow: none;
 
-    /* --- EFEITO SHINY ADAPTADO PARA A COR #001826 --- */
+    /* EFEITO SHINY */
     background: linear-gradient(
         120deg,
-        #001826 40%,        /* Cor Base (Azul Escuro) */
-        #5e8396 50%,        /* Cor do Brilho (Azul Claro) */
-        #001826 60%         /* Cor Base (Azul Escuro) */
+        #001826 40%,
+        rgba(255, 255, 255, 0.8) 50%,
+        #001826 60%
     );
     background-size: 200% 100%;
     
-    /* Propriedades para recortar o fundo no formato do texto */
-    color: #001826; /* Cor de fallback */
+    /* Configurações para o fundo aparecer no texto */
+    color: #001826; 
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Deixa transparente para mostrar o gradiente */
+    -webkit-text-fill-color: transparent;
     
     display: inline-block;
     animation: shine 5s linear infinite;
 }
 
 /* ==================================================================
-   6. CONTEÚDO PRINCIPAL
+   5.5 NOVA SEÇÃO: GALERIA DE CATEGORIAS
+   ================================================================== */
+.galeria-categorias {
+    width: 100%;
+    background-color: #003554; 
+    margin-top: 210px; 
+    padding: 5rem 0; 
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid rgba(255,255,255,0.05); 
+}
+
+.galeria-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px; 
+}
+
+.categoria-item {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.img-container {
+    width: 100%;
+    height: 450px; 
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #001826; 
+}
+
+.categoria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cat-titulo {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 1.3rem; 
+    color: #8aaac2; 
+    border-bottom: 1px solid #4a6fa5; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    align-self: flex-start;
+    padding-bottom: 5px;
+    transition: 0.3s;
+}
+
+.categoria-item:hover .img-container {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.categoria-item:hover img {
+    transform: scale(1.1);
+}
+
+.categoria-item:hover .cat-titulo {
+    color: #ffffff; 
+    border-color: var(--gold); 
+}
+
+/* ==================================================================
+   6. CONTEÚDO PRINCIPAL (TELA CHEIA)
    ================================================================== */
 .sect1 {
-    padding: 4rem 0;
-    background: rgba(0, 24, 38, 0.85);
-    backdrop-filter: blur(5px);
-    border-radius: 20px 20px 0 0;
-    margin-top: -20px;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0 4rem 0; 
+    background: #ffffff;
+    backdrop-filter: none;
+    border-radius: 0;
+    margin-top: 0;
     text-align: center;
+}
+
+.sect1 p, 
+.sect1 table {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%; 
 }
 
 .sect1 h1 {
     font-family: 'League Script', cursive; 
     font-size: 3.5rem; 
     font-weight: 400;  
-    margin-bottom: 1.5rem;
-    color: var(--gold);
     line-height: 1.2;
+    background-color: #001826; 
+    color: #ffffff;            
+    width: 100%;               
+    padding: 3rem 1rem;        
+    margin-bottom: 3rem;       
+    margin-top: 0;
 }
 
 .sect1 p { 
     margin-bottom: 1rem; 
-    color: var(--muted);
+    color: #555;
     font-size: 1.1rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .tabela_ferramentas {
-    width: 100%;
     border-collapse: collapse;
     margin-top: 3rem;
-    background: #ffffff;
+    background: transparent;
     color: #333;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    border-radius: 0;
+    box-shadow: none;
     text-align: left;
+    border-top: 1px solid #eee;
 }
 
 .tabela_ferramentas td {
@@ -312,35 +417,39 @@ details p {
     font-size: 0.95rem;
     color: #555;
     text-align: left;
+    width: 100%;
 }
 
 /* ==================================================================
-   7. FORMULÁRIO DE LOGIN/CADASTRO
+   7. FORMULÁRIO DE LOGIN/CADASTRO (TELA CHEIA)
    ================================================================== */
 .secao_login {
-    background: #000f18;
-    padding: 4rem 0;
+    background: #f4f6f8;
+    padding: 5rem 0;
+    width: 100%;
 }
 
 .secao_login h2 {
-    color: #fff;
+    color: #001826;
     margin-bottom: 2rem;
     text-align: center;
 }
 
 .form-cadastro {
-    background: #ffffff;
-    padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
     color: #333;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .form-group { margin-bottom: 2rem; }
 .form-group h3 {
     font-size: 1.2rem;
     color: var(--card);
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 2px solid #ccc;
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
     font-weight: 700;
@@ -369,10 +478,10 @@ label {
 }
 
 input {
-    background: #f9f9f9;
+    background: #ffffff;
     border: 1px solid #ccc;
-    padding: 0.8rem;
-    border-radius: 6px;
+    padding: 1rem;
+    border-radius: 4px;
     color: #000;
     font-family: inherit;
     width: 100%;
@@ -381,19 +490,20 @@ input:focus {
     outline: none;
     border-color: var(--card);
     background: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 53, 84, 0.1);
 }
 
 .btn-submit {
     width: 100%;
-    padding: 1rem;
+    padding: 1.2rem;
     background: var(--card);
     color: #fff;
     border: none;
     border-radius: 6px;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 2rem;
     transition: 0.3s;
 }
 .btn-submit:hover { 
@@ -443,20 +553,13 @@ input:focus {
 }
 
 /* ==================================================================
-   9. ANIMAÇÕES (KEYFRAMES)
+   9. ANIMAÇÕES
    ================================================================== */
 @keyframes shine {
-  0% {
-    background-position: 100%;
-  }
-  100% {
-    background-position: -100%;
-  }
+  0% { background-position: 100%; }
+  100% { background-position: -100%; }
 }
-
-.shiny-text.disabled {
-  animation: none;
-}
+.shiny-text.disabled { animation: none; }
 
 /* ==================================================================
    10. RESPONSIVIDADE
@@ -465,8 +568,12 @@ input:focus {
     .rodape-content { flex-direction: column; gap: 2rem; }
     .tabela_ferramentas td { display: block; width: 100%; }
     .tabela_ferramentas td:first-child { border-bottom: none; padding-bottom: 0.5rem; }
-    .sect1 { padding: 2rem 0; }
     
+    .sect1 { padding: 3rem 0; }
     .subtitulo { font-size: 3rem; }
     .sect1 h1 { font-size: 2.5rem; }
+    
+    .galeria-categorias { margin-top: 80px; }
+    .galeria-flex { flex-direction: column; gap: 3rem; }
+    .img-container { height: 350px; }
 }
