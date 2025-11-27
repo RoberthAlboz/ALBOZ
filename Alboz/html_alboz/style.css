@@ -1,16 +1,18 @@
 /* ==================================================================
    1. IMPORTAÇÃO DE FONTES E VARIÁVEIS
    ================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Script&display=swap');
 
 :root {
-    --bg: #001826;        /* Corrigido: adicionei o ponto e vírgula que faltava */
-    --card: #003554;      /* Azul para detalhes */
+    --bg: #001826;        
+    --card: #003554;      
     --card-hover: #014e7b;
     --muted: #bfc9ce;
     --accent: #dfe7e9;
-    --gold: #ffffff;      /* Restaurei o tom dourado para o highlight funcionar */
+    --gold: #ffffff;      
 }
 
 /* ==================================================================
@@ -18,11 +20,16 @@
    ================================================================== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { font-size: 16px; scroll-behavior: smooth; }
+html { 
+    font-size: 16px; 
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--card) var(--bg);
+}
 
 body {
     margin: 0;
-    font-family: 'Afacad', Arial, sans-serif;
+    font-family: 'Monda', sans-serif;
     background: var(--bg);
     color: var(--accent);
     line-height: 1.6;
@@ -31,14 +38,22 @@ body {
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 ul { list-style: none; }
 
-/* Limitador global para centralizar conteúdo */
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+    background-color: var(--card);
+    border-radius: 5px;
+    border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--card-hover); }
+
 .limitador {
     max-width: 1100px;
     width: 90%;
     margin: 0 auto;
 }
 
-/* Customização da Seleção de Texto (Highlight Dourado) */
 ::selection {
     background-color: var(--gold);
     color: var(--bg);
@@ -46,7 +61,7 @@ ul { list-style: none; }
 }
 
 /* ==================================================================
-   3. CARROSSEL DE FUNDO (FULLSCREEN)
+   3. CARROSSEL DE FUNDO
    ================================================================== */
 .background-carousel {
     position: fixed;
@@ -90,7 +105,7 @@ ul { list-style: none; }
 }
 
 /* ==================================================================
-   4. MENU DE NAVEGAÇÃO (CARD FLUTUANTE BRANCO)
+   4. MENU DE NAVEGAÇÃO
    ================================================================== */
 .card-nav-container {
     position: absolute;
@@ -104,28 +119,29 @@ ul { list-style: none; }
 
 .card-nav {
     position: relative;
-    background-color: #ffffff; /* Fundo Branco */
+    background-color: #ffffff;
     border-radius: 1rem;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     overflow: hidden;
     transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    color: var(--card); /* Texto escuro */
+    color: var(--card);
 }
 
 .card-nav-top {
     height: 60px;
     display: flex;
     align-items: center;
-    justify-content: center; /* Logo Centralizado */
+    justify-content: center;
     padding: 0 1.5rem;
     position: relative;
 }
 
 .logo {
-    font-family: 'Aboreto', cursive;
-    font-weight: bold;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
+    font-family: 'Abhaya Libre', serif; 
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .hamburger-menu {
@@ -139,7 +155,7 @@ ul { list-style: none; }
 .hamburger-line {
     width: 25px;
     height: 2px;
-    background-color: var(--card); /* Hamburguer escuro */
+    background-color: var(--card);
     transition: 0.3s;
 }
 .hamburger-menu.open .hamburger-line:first-child { transform: translateY(7px) rotate(45deg); }
@@ -150,7 +166,7 @@ ul { list-style: none; }
     top: 10px;
     right: 20px;
     padding: 10px;
-    background: var(--card); /* Botão escuro */
+    background: var(--card);
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -170,7 +186,7 @@ ul { list-style: none; }
 }
 
 .nav-card {
-    background: #f4f6f8; /* Cinza claro */
+    background: #f4f6f8;
     border: 1px solid #e0e0e0;
     padding: 10px;
     border-radius: 8px;
@@ -186,7 +202,7 @@ ul { list-style: none; }
 .nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
 
 /* ==================================================================
-   5. HEADER
+   5. HEADER (COM EFEITO SHINY)
    ================================================================== */
 .header {
     position: relative;
@@ -200,29 +216,49 @@ ul { list-style: none; }
 }
 
 .subtitulo {
-    font-family: 'Aboreto', cursive;
-    font-size: 3rem;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
     z-index: 10;
     text-align: center;
-    letter-spacing: 2px;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-shadow: none;
+
+    /* --- EFEITO SHINY ADAPTADO PARA A COR #001826 --- */
+    background: linear-gradient(
+        120deg,
+        #001826 40%,        /* Cor Base (Azul Escuro) */
+        #5e8396 50%,        /* Cor do Brilho (Azul Claro) */
+        #001826 60%         /* Cor Base (Azul Escuro) */
+    );
+    background-size: 200% 100%;
+    
+    /* Propriedades para recortar o fundo no formato do texto */
+    color: #001826; /* Cor de fallback */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Deixa transparente para mostrar o gradiente */
+    
+    display: inline-block;
+    animation: shine 5s linear infinite;
 }
 
 /* ==================================================================
-   6. CONTEÚDO PRINCIPAL (TEXTO CENTRALIZADO + TABELA BRANCA)
+   6. CONTEÚDO PRINCIPAL
    ================================================================== */
 .sect1 {
     padding: 4rem 0;
-    background: rgba(0, 24, 38, 0.85); /* Adaptado para sua nova cor --bg */
+    background: rgba(0, 24, 38, 0.85);
     backdrop-filter: blur(5px);
     border-radius: 20px 20px 0 0;
     margin-top: -20px;
-    text-align: center; /* Centraliza o texto H1 e P */
+    text-align: center;
 }
 
 .sect1 h1 {
-    font-size: 2.2rem;
+    font-family: 'League Script', cursive; 
+    font-size: 3.5rem; 
+    font-weight: 400;  
     margin-bottom: 1.5rem;
     color: var(--gold);
     line-height: 1.2;
@@ -237,19 +273,16 @@ ul { list-style: none; }
     margin-right: auto;
 }
 
-/* TABELA BRANCA */
 .tabela_ferramentas {
     width: 100%;
     border-collapse: collapse;
     margin-top: 3rem;
-    
-    background: #ffffff; /* Fundo Branco */
-    color: #333;         /* Texto Escuro */
-    
+    background: #ffffff;
+    color: #333;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    text-align: left; /* Mantém tabela alinhada à esquerda */
+    text-align: left;
 }
 
 .tabela_ferramentas td {
@@ -261,18 +294,19 @@ ul { list-style: none; }
 
 .tabela_ferramentas td:first-child {
     font-weight: 800;
-    color: var(--card); /* Azul Escuro */
+    color: var(--card);
     width: 40%;
 }
 
 details summary {
     cursor: pointer;
-    color: #d4a017; /* Dourado escuro para fundo branco */
+    color: #005f97; 
     font-weight: bold;
     list-style: none;
 }
 details summary::after { content: "+"; float: right; }
 details[open] summary::after { content: "-"; }
+
 details p {
     margin-top: 10px;
     font-size: 0.95rem;
@@ -281,10 +315,10 @@ details p {
 }
 
 /* ==================================================================
-   7. FORMULÁRIO DE LOGIN/CADASTRO (BRANCO)
+   7. FORMULÁRIO DE LOGIN/CADASTRO
    ================================================================== */
 .secao_login {
-    background: #000f18; /* Levemente mais escuro que o bg */
+    background: #000f18;
     padding: 4rem 0;
 }
 
@@ -295,7 +329,7 @@ details p {
 }
 
 .form-cadastro {
-    background: #ffffff; /* Fundo Branco */
+    background: #ffffff;
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -334,7 +368,6 @@ label {
     font-weight: 600; 
 }
 
-/* Inputs claros */
 input {
     background: #f9f9f9;
     border: 1px solid #ccc;
@@ -353,7 +386,7 @@ input:focus {
 .btn-submit {
     width: 100%;
     padding: 1rem;
-    background: var(--card); /* Botão Azul Escuro */
+    background: var(--card);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -369,7 +402,7 @@ input:focus {
 }
 
 /* ==================================================================
-   8. RODAPÉ (CENTRALIZADO)
+   8. RODAPÉ
    ================================================================== */
 .rodape {
     background: #000c13;
@@ -380,11 +413,11 @@ input:focus {
 
 .rodape-content {
     display: flex;
-    justify-content: center; /* Centraliza os blocos */
+    justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 4rem;
-    text-align: center; /* Centraliza o texto interno */
+    text-align: center;
 }
 
 .rodape ul { min-width: 200px; }
@@ -410,12 +443,30 @@ input:focus {
 }
 
 /* ==================================================================
-   9. RESPONSIVIDADE
+   9. ANIMAÇÕES (KEYFRAMES)
+   ================================================================== */
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
+}
+
+.shiny-text.disabled {
+  animation: none;
+}
+
+/* ==================================================================
+   10. RESPONSIVIDADE
    ================================================================== */
 @media (max-width: 768px) {
     .rodape-content { flex-direction: column; gap: 2rem; }
     .tabela_ferramentas td { display: block; width: 100%; }
     .tabela_ferramentas td:first-child { border-bottom: none; padding-bottom: 0.5rem; }
     .sect1 { padding: 2rem 0; }
-    .subtitulo { font-size: 2rem; }
+    
+    .subtitulo { font-size: 3rem; }
+    .sect1 h1 { font-size: 2.5rem; }
 }
