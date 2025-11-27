@@ -4,10 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+        <div class="card-nav-container">
+            <div class="card-nav" id="cardNav">
+                <div class="card-nav-top">
+                    <div class="hamburger-menu" id="hamburgerBtn">
+                        <div class="hamburger-line"></div>
+                        <div class="hamburger-line"></div>
+                    </div>
+                    <div class="logo-container">
+                        <div class="logo">ALBOZ</div>
+                    </div>
+                </div>
+
+                <div class="card-nav-content">
+                    <div class="nav-card">
+                        <div class="nav-card-label">Início</div>
+                        <div class="nav-card-links">
+                            <a class="nav-card-link" href="index.html">Página Inicial</a>
+                        </div>
+                    </div>
+                    <div class="nav-card">
+                        <div class="nav-card-label">Sobre</div>
+                        <div class="nav-card-links">
+                            <a class="nav-card-link" href="informacoes_corporativas.html">Informações corporativas</a>
+                            <a class="nav-card-link" href="acessibilidade.html">Acessibilidade</a>
+                            <a class="nav-card-link" href="suporte.html">Suporte</a>
+                            <a class="nav-card-link" href=""></a>
+
+                        </div>
+                    </div>
+                    <div class="nav-card">
+                        <div class="nav-card-label">Serviços</div>
+                        <div class="nav-card-links">
+                            <a class="nav-card-link" href="cadastro_produtos.html">Cadastro de Produtos</a>
+                            <a class="nav-card-link" href="cadastro_distribuidoras.html">Cadastro de Distribuidor</a>
+                            <a class="nav-card-link" href="buscar_produto.html">Buscar meus produtos</a>
+                            <a class="nav-card-link" href="buscar_distribuidor.html">Buscar meus distribuidores</a>
+                        </div>
+                    </div>
+                    <a href="#login" class="botao-login" aria-label="Ir para login">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+            <script>
+        // Script do Menu Hamburguer
+        const hamburger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('cardNav');
+        
+        if(hamburger && nav){
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('open');
+                hamburger.classList.toggle('open');
+                
+                // Animação da altura
+                const content = nav.querySelector('.card-nav-content');
+                if (nav.classList.contains('open')) {
+                    nav.style.height = (content.scrollHeight + 60) + 'px';
+                } else {
+                    nav.style.height = '60px';
+                }
+            });
+            // Altura inicial
+            nav.style.height = '60px';
+        }
+    </script>
+
         <div id="login" class="secao_login">
             <div class="limitador">
+                <br><br>
                 <h2>Cadastre-se e se torne um membro Alboz.</h2>
                 <form action="" method="post" class="form-cadastro">
                     
@@ -78,5 +151,44 @@
                 </form>
             </div>
         </div>
+            <div class="rodape">
+        <div class="limitador rodape-content">
+            <ul class="sobre_nos">
+                <strong>Sobre nós</strong>
+                <a href="index.html">ALBOZ</a>
+                <br>
+                <a href="informacoes_corporativas.html">Informações Corporativas</a>
+                <br>
+                <a href="acessibilidade.html">Acessibilidade</a>
+                <br>
+                <a href="suporte.html">Suporte</a>
+                <br>
+            </ul>
+
+            <ul class="paginas">
+                <strong>Páginas</strong>
+                <a href="login.html">Login/Cadastro de Usuários</a>
+                <br>
+                <a href="cadastro_produtos.html">Cadastro de produtos</a>
+                <br>
+                <a href="cadastro_distribuidoras.html">Cadastro de ditribuidores</a>
+                <br>
+                <a href="meus_produtos.html">Meus Produtos</a>
+                <br>
+                <a href="meus_distribuidores.html">Meus distribuidores</a>
+                <br>
+            </ul>
+
+            <ul class="contato">
+                <strong>Contato</strong>
+                <li>Telefone: (11) 9999-9999</li>
+                <li>E-mail: contato@alboz.com</li>
+                <li>Endereço: Rua Exemplo, 123 - São Paulo, SP</li>
+            </ul>
+            <div class="logo">Alboz</div>
+            <p>© 2025-2025 Alboz.com</p>
+        </div>
+    </div>
+
 </body>
 </html>
