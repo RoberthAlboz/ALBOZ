@@ -3,281 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALGOZ</title>
-
+    <title>ALBOZ</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="java.js">
-    <link rel="stylesheet" href="logica.php">
+    
+    <style>
+        /* Container fixo no fundo */
+        .background-carousel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Fica atrás de tudo */
+            background-color: #000;
+        }
 
+        /* Imagens com SRC */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cobre a tela sem distorcer */
+            object-position: center;
+            opacity: 0;
+            animation: fadeLoop 15s infinite;
+        }
+
+        /* Tempos da animação (3 imagens = 5s cada intervalo) */
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 5s; }
+        .slide:nth-child(3) { animation-delay: 10s; }
+
+        /* A Animação */
+        @keyframes fadeLoop {
+            0% { opacity: 0; transform: scale(1); }
+            10% { opacity: 1; }
+            33% { opacity: 1; }
+            43% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 0; }
+        }
+
+        /* Overlay Escuro Opcional (Para o texto branco ficar legível) */
+        .overlay-escuro {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* 50% de preto */
+            z-index: 1; /* Fica acima da img, abaixo do site */
+        }
+    </style>
 </head>
 <body class="body">
+
+    <div class="background-carousel">
+        <img class="slide" src="../img.alboz/eugene-lim-J9yPHHc0Fe4-unsplash.jpg" alt="Fundo 1">
+        <img class="slide" src="../img.alboz/maarten-duineveld-pmfJcN7RGiw-unsplash (2).jpg" alt="Fundo 2">
+        <img class="slide" src="../img.alboz/spencer-davis-vdg14E8KsVM-unsplash.jpg" alt="Fundo 3">
+        
+        <div class="overlay-escuro"></div>
+    </div>
+
     <div class="header">
-
-<!-- CARROSSEL GIRANDO ENTRE IMAGENS -->
-
-<div id="meuCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-
-    <div class="carousel-item active">
-      <img src="img1.jpg" class="d-block w-100" alt="...">
-    </div>
-
-    <div class="carousel-item">
-      <img src="img2.jpg" class="d-block w-100" alt="...">
-    </div>
-
-    <div class="carousel-item">
-      <img src="img3.jpg" class="d-block w-100" alt="...">
-    </div>
-
-  </div>
-
-  <button class="carousel-control-prev" type="button" data-bs-target="#meuCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-
-  <button class="carousel-control-next" type="button" data-bs-target="#meuCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
-</div>
-
-<!-- MENU HAMBURGUER -->
-
+        
         <div class="card-nav-container">
-        <div class="card-nav" id="cardNav">
+            <div class="card-nav" id="cardNav">
+                <div class="card-nav-top">
+                    <div class="hamburger-menu" id="hamburgerBtn">
+                        <div class="hamburger-line"></div>
+                        <div class="hamburger-line"></div>
+                    </div>
+                    <div class="logo-container">
+                        <div class="logo">ALBOZ</div>
+                    </div>
+                </div>
 
-            <div class="card-nav-top">
-
-            <div class="hamburger-menu" id="hamburgerBtn">
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
-            </div>
-
-            <div class="logo-container">
-                <div class="logo">ALBOZ</div>
-            </div>
-
-            </div>
-
-            <div class="card-nav-content">
-
-            <div class="nav-card">
-                <div class="nav-card-label">Início</div>
-                <div class="nav-card-links">
-                <a class="nav-card-link" href="#">Página Inicial</a>
+                <div class="card-nav-content">
+                    <div class="nav-card">
+                        <div class="nav-card-label">Início</div>
+                        <div class="nav-card-links">
+                            <a class="nav-card-link" href="#">Página Inicial</a>
+                        </div>
+                    </div>
+                    <div class="nav-card">
+                        <div class="nav-card-label">Sobre</div>
+                        <div class="nav-card-links">
+                            <a class="nav-card-link" href="#">História</a>
+                            <a class="nav-card-link" href="#">Empresa</a>
+                        </div>
+                    </div>
+                    <div class="nav-card">
+                        <div class="nav-card-label">Serviços</div>
+                        <div class="nav-card-links">
+                            <a class="nav-card-link" href="#">Produtos</a>
+                            <a class="nav-card-link" href="#">Esportes</a>
+                        </div>
+                    </div>
+                    <a href="#login" class="botao-login" aria-label="Ir para login">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
                 </div>
             </div>
-
-            <div class="nav-card">
-                <div class="nav-card-label">Sobre</div>
-                <div class="nav-card-links">
-                <a class="nav-card-link" href="#">História</a>
-                <a class="nav-card-link" href="#">Empresa</a>
-                </div>
-            </div>
-
-            <div class="nav-card">
-                <div class="nav-card-label">Serviços</div>
-                <div class="nav-card-links">
-                <a class="nav-card-link" href="#">Produtos</a>
-                <a class="nav-card-link" href="#">Esportes</a>
-                </div>
-            </div>
-
-                <a href="#login" class="botao-login" aria-label="Ir para login">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </a>
-
-            </div>
-
         </div>
-        </div>
-
-<!-- SUBTITULO -->
 
         <div class="subtitulo">Ligne Sportive</div>
-
     </div>
 
-<!-- PRIMEIRA SEÇÃO PARA A DIVULGAÇÃO DAS FERRAMENTAS DISPONIVEIS DA EMPRESA E ETC -->
-
-    <div class="sect1">
+    <div class="sect1 limitador">
         <h1>Sua escolha na hora de procurar produtos do ramo esportivo!</h1>
-        <p>ALBOZ possui tudo que você precisa e de vários destribuidores diferentes</p>
-        <P>Com a ALBOZ você possui os seguintes benefícios:</P>
+        <p>ALBOZ possui tudo que você precisa e de vários distribuidores diferentes.</p>
+        <p>Com a ALBOZ você possui os seguintes benefícios:</p>
 
         <table class="tabela_ferramentas">
-
             <tr>
-                <td>Comparação de preço automática entre distribuidores;
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>Nossa tecnologia identifica, em tempo real, os melhores preços disponíveis entre diversas distribuidoras parceiras. Com isso, você realiza compras mais econômicas sem a necessidade de consultar múltiplos fornecedores de forma manual.</p>
-                        </details>
-                    </td>
-                </td>
-                <td>Facilidade de compra / pedido com um clique;
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>A plataforma permite a realização de pedidos com apenas um clique. Todo o fluxo de compra é otimizado para garantir rapidez, eficiência e praticidade no seu dia a dia.</p>
-                        </details>
-                    </td>
+                <td>Comparação de preço automática entre distribuidores</td>
+                <td>
+                    <details>
+                        <summary>Saiba mais</summary>
+                        <p>Nossa tecnologia identifica, em tempo real, os melhores preços disponíveis entre diversas distribuidoras parceiras.</p>
+                    </details>
                 </td>
             </tr>
-
             <tr>
-                <td>Integração com sistemas de gestão (ERP);</td>
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>É possível importar automaticamente sua lista de produtos diretamente do seu sistema de gestão (ERP). Isso elimina o retrabalho e reduz significativamente erros operacionais.</p>
-                        </details>
-                    </td>
-                <td>Economia de tempo e dinheiro;</td>
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>O uso da plataforma proporciona redução de até 90% no tempo dedicado ao processo de compras, além de gerar economia de até 15% no valor final, graças à comparação automática entre fornecedores.</p>
-                        </details>
-                    </td>
+                <td>Facilidade de compra / pedido com um clique</td>
+                <td>
+                    <details>
+                        <summary>Saiba mais</summary>
+                        <p>A plataforma permite a realização de pedidos com apenas um clique. Fluxo otimizado para rapidez.</p>
+                    </details>
+                </td>
             </tr>
-
             <tr>
-                <td>Agregação de várias distribuidoras / fornecedores em um só lugar;</td>
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>Reúna em um único ambiente todas as suas distribuidoras cadastradas e visualize suas condições comerciais personalizadas. Dessa forma, você mantém controle total sobre preços, prazos e disponibilidade.</p>
-                        </details>
-                    </td>
-                <td>Informações sobre disponibilidade de produtos e condições de compra especiais;</td>
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>Antes de finalizar um pedido, você tem acesso imediato a informações de disponibilidade de produtos, valores, prazos e demais condições. Isso torna a tomada de decisão mais assertiva e transparente.</p>
-                        </details>
-                    </td>
+                <td>Integração com sistemas de gestão (ERP)</td>
+                <td>
+                    <details>
+                        <summary>Saiba mais</summary>
+                        <p>Importe automaticamente sua lista de produtos diretamente do seu sistema de gestão.</p>
+                    </details>
+                </td>
             </tr>
-
             <tr>
-                <td>Acesso simplificado para pequenas e médias empresas ou lojas de bairro;</td>
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>A plataforma foi criada para democratizar o acesso a tecnologia de compras, permitindo que pequenas e médias empresas alcancem eficiência operacional, melhores condições comerciais e processos profissionais.</p>
-                        </details>
-                    </td>
-                <td>Interface online segura, centralizada e padronizada;</td>
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>Todo o processo é realizado em uma plataforma segura, com proteção de dados e navegação estável. As informações do cliente, histórico de operações e documentos ficam organizados em um painel único.</p>
-                        </details>
-                    </td>
+                <td>Economia de tempo e dinheiro</td>
+                <td>
+                    <details>
+                        <summary>Saiba mais</summary>
+                        <p>Redução de até 90% no tempo dedicado ao processo de compras e economia de até 15% no valor final.</p>
+                    </details>
+                </td>
             </tr>
-
             <tr>
-                <td>Suporte, atendimento e central de ajuda online para você;</td>
-                    <td>
-                        <details>
-                            <summary></summary>
-                            <p>Disponibilizamos atendimento especializado e uma base completa de suporte para auxiliar em todas as etapas, desde a integração até a realização de pedidos.</p>
-                        </details>
-                    </td>
+                <td>Interface online segura, centralizada e padronizada</td>
+                <td>
+                    <details>
+                        <summary>Saiba mais</summary>
+                        <p>Plataforma segura com proteção de dados e histórico de operações organizado.</p>
+                    </details>
+                </td>
             </tr>
         </table>
-
     </div>
 
     <div id="login" class="secao_login">
-        <h2>Cadastre-se e se torne um membro Alboz.</h2>
-        <form action="" method="post">
+        <div class="limitador">
+            <h2>Cadastre-se e se torne um membro Alboz.</h2>
+            <form action="" method="post" class="form-cadastro">
+                
+                <div class="form-group">
+                    <h3>Identificação da empresa</h3>
+                    <div class="input-row">
+                        <div class="field">
+                            <label for="nome">Nome:</label>
+                            <input type="text" id="nome" name="nome">
+                        </div>
+                        <div class="field">
+                            <label for="IE">I.E.:</label>
+                            <input type="number" id="IE" name="IE">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" id="cnpj" name="cnpj">
+                    </div>
+                </div>
 
-            <p>Identificação da empresa</p>
+                <div class="form-group">
+                    <h3>Endereço Comercial</h3>
+                    <div class="input-row">
+                        <div class="field">
+                            <label for="rua">Av./Rua:</label>
+                            <input type="text" id="rua" name="rua">
+                        </div>
+                        <div class="field short">
+                            <label for="numero">Número:</label>
+                            <input type="text" id="numero" name="numero">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="field">
+                            <label for="bairro">Bairro:</label>
+                            <input type="text" id="bairro" name="bairro">
+                        </div>
+                        <div class="field">
+                            <label for="cidade">Cidade:</label>
+                            <input type="text" id="cidade" name="cidade">
+                        </div>
+                        <div class="field short">
+                            <label for="uf">UF:</label>
+                            <input type="text" id="uf" name="uf">
+                        </div>
+                    </div>
+                </div>
 
-            <label for="Nome">Nome:</label>
-            <input type="text" name="nome">
+                <div class="form-group">
+                    <h3>Contato</h3>
+                    <div class="input-row">
+                        <div class="field">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="field">
+                            <label for="celular">Celular:</label>
+                            <input type="number" id="celular" name="celular">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Fazer cadastro</button>
+                </div>
 
-            <label for="IE">I.E.</label>
-            <input type="number" name="IE">
-
-            <label for="cnpj">CNPJ</label>
-            <input type="text" name="cnpj">
-
-            <p>Endereço Comercial</p>
-
-            <label for="rua">Av./Rua:</label>
-            <input type="text" name="rua">
-
-            <label for="numero">Número:</label>
-            <input type="text" name="numero">
-
-            <label for="bairro">Bairro:</label>
-            <input type="text" name="bairro">
-
-            <label for="complemento">Complemento:</label>
-            <input type="text" name="complemento">
-
-            <label for="cep">CEP:</label>
-            <input type="text" name="cep">
-
-            <label for="cidade">Cidade:</label>
-            <input type="text" name="cidade">
-
-            <label for="uf">UF:</label>
-            <input type="text" name="uf">
-
-            <label for="caixa_postal">Caixa Postal:</label>
-            <input type="text" name="caixa_postal">
-
-            <label for="nmr_estabelecimento">Número do Estabelecimento</label>
-            <input type="text" name="nmr_estabelecimento">
-
-            <label for="Email">Email:</label>
-            <input type="email" name="email">
-
-            <p>Telefones</p>
-
-            <label for="comercial">Comercial:</label>
-            <input type="number" name="comercial">
-
-            <label for="celular">Celular:</label>
-            <input type="number" name="celular">
-
-            <label for="fax">FAX:</label>
-            <input type="text" name="fax">
-
-            <button type="submit">Fazer cadastro</button>
-        </form>
+            </form>
+        </div>
     </div>
 
     <div class="rodape">
+        <div class="limitador rodape-content">
+            <ul class="sobre_nos">
+                <strong>Sobre nós</strong>
+                <li>ALBOZ</li>
+                <li>Informações corporativas</li>
+                <li>Acessibilidade</li>
+            </ul>
 
-        <ul class="sobre_nos">Sobre nós
-            <li>ALBOZ</li>
-            <li>Informações corporativas</li>
-            <li>Acessibilidade</li>
-            <li>Comunicados</li>
-        </ul>
+            <ul class="paginas">
+                <strong>Páginas</strong>
+                <li>Cadastro de produtos</li>
+                <li>Distribuidoras Companheiras</li>
+                <li>Meus Produtos</li>
+            </ul>
 
-        <ul class="paginas">Páginas
-            <li>Cadastro de produtos</li>
-            <li>Distribuidoras Companheiras</li>
-            <li>Meus Produtos</li>
-            <li>Busca por Produto</li>
-        </ul>
-
-        <ul class="contato">Contato
-            <li>Telefone:</li>
-            <li>E-mail:</li>
-            <li></li>
-            <li></li>
-        </ul>
+            <ul class="contato">
+                <strong>Contato</strong>
+                <li>Telefone: (11) 9999-9999</li>
+                <li>E-mail: contato@alboz.com</li>
+            </ul>
+        </div>
     </div>
+
+    <script>
+        // Script do Menu Hamburguer
+        const hamburger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('cardNav');
+        
+        if(hamburger && nav){
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('open');
+                hamburger.classList.toggle('open');
+                
+                // Animação da altura
+                const content = nav.querySelector('.card-nav-content');
+                if (nav.classList.contains('open')) {
+                    nav.style.height = (content.scrollHeight + 60) + 'px';
+                } else {
+                    nav.style.height = '60px';
+                }
+            });
+            // Altura inicial
+            nav.style.height = '60px';
+        }
+    </script>
 </body>
 </html>
