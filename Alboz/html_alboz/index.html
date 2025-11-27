@@ -1,108 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botão Hamburguer Fixo à Esquerda</title>
-    <link rel="stylesheet" href="../css_alboz/style.css">
-    <link rel="stylesheet" href="../css_alboz/index.css">
-    <link rel="stylesheet" href="../js_alboz/index.js">
+    <title>ALGOZ</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="java.js">
+    <link rel="stylesheet" href="logica.php">
 
 </head>
+<body class="body">
+    <div class="header">
 
-<body>
-    <!-- Botão Hamburguer -->
-    <div class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+<!-- CARROSSEL GIRANDO ENTRE IMAGENS -->
 
-    <!-- Menu -->
-    <nav class="menu">
-        <ul>
-            <li><a href="#">Início</a></li>
-            <li>
-                <span onclick="toggleSubmenu(this)">Roupas</span>
-                <ul class="submenu">
-                    <li><a href="#">Camisetas</a></li>
-                    <li><a href="#">Calças Sociais</a></li>
-                    <li><a href="#">Blazers</a></li>
-                    <li><a href="#">Calçados</a></li>
-                </ul>
-            </li>
-            <li>
-                <span onclick="toggleSubmenu(this)">Acessórios Finos</span>
-                <ul class="submenu">
-                    <li><a href="#">Relógios Clássicos</a></li>
-                    <li><a href="#">Cintos</a></li>
-                    <li><a href="#">Pulseiras</a></li>
-                    <li><a href="#">Óculos de Sol</a></li>
-                    <li><a href="#">Brincos</a></li>
-                    <li><a href="#">Bolsas</a></li>
-                    <li><a href="#">Colares</a></li>
-                </ul>
-            </li>
-            <li>
-                <span onclick="toggleSubmenu(this)">Nossas Informações</span>
-                <ul class="submenu">
-                    <li><a href="#">História da Alboz</a></li>
-                    <li><a href="#">Missão da Alboz</a></li>
-                    <li><a href="#">Contato</a></li>
-                    <li><a href="#">Localizações (próximas de você)</a></li>
-                </ul>
-            </li>
-            <li>
-                <span onclick="toggleSubmenu(this)">Você</span>
-                <ul class="submenu">
-                    <li><a href="#">Meu Carrinho</a></li>
-                    <li><a href="#">Minha Conta</a></li>
-                    <li><a href="#">Perfil</a></li>
-                    <li><a href="#">Favoritados</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-
-    <script>
-        // Função para alternar o botão e o menu principal
-        function toggleMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const menu = document.querySelector('.menu');
-            hamburger.classList.toggle('active');
-            menu.classList.toggle('active');
-        }
-
-        // Função para alternar submenus
-        function toggleSubmenu(element) {
-            const submenu = element.nextElementSibling;
-            submenu.classList.toggle('active');
-        }
-    </script>
-
-    <h1 class="alboz_cabecario">ALBOZ</h1>
-
-    <img src="/Alboz/img.alboz/maarten-duineveld-pmfJcN7RGiw-unsplash (2).jpg" alt="">
-
-    <main>
-
-        <div class="container_main">
-
-            <img class="imagem_camisetas" src="/Alboz/img.alboz/camisetas.jpg" alt="imagem não carregada">
-            <h1 class="titulo_camisetas">Camisetas</h1>
-
-            <img class="imagem_acessorios" src="/Alboz/img.alboz/acessorios.jpg" alt="imagem não carregada">
-            <h1 class="titulo_acessorios">Camisetas</h1>
-
-            <img class="imagem_trajes" src="/Alboz/img.alboz/trajes.jpg" alt="imagem não carregada">
-            <h1 class="titulo_trajes">Camisetas</h1>
-
+        <div class="carousel">
+            <div class="slide-img1"></div>
+            <div class="slide-img2"></div>
+            <div class="slide-img3"></div>
         </div>
 
-    </main>
+<!-- MENU HAMBURGUER -->
 
+        <button class="hamburger">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <nav class="menu">
+
+            <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+            </ul>
+
+        </nav>
+
+<!-- NOME DA EMPRESA -->
+
+        <h1 class="titulo">ALBOZ</h1>
+
+<!-- ESPAÇO PARA O LOGIN DA LOJA/USUARIO/CLIENTE -->
+
+        <div class="login-container">
+            <button class="login-icon" id="openLogin">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </button>
+
+            <div class="login-menu" id="loginMenu">
+                <form>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Senha">
+                <button type="submit">Entrar</button>
+                </form>
+            </div>
+        </div>
+
+<!-- SUBTITULO -->
+
+        <div class="subtitulo">Ligne Sportive</div>
+
+    </div>
+
+<!-- PRIMEIRA SEÇÃO PARA A DIVULGAÇÃO DAS FERRAMENTAS DISPONIVEIS DA EMPRESA E ETC -->
+
+    <div class="sect1">
+        <h1>Sua escolha na hora de procurar produtos do ramo esportivo!</h1>
+        <p>ALBOZ possui tudo que você precisa e de vários destribuidores diferentes</p>
+        <P>Com a ALBOZ você possui os seguintes benefícios:</P>
+
+        <table class="tabela_ferramentas">
+
+            <tr>
+                <td>Comparação de preço automática entre distribuidores;
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>Nossa tecnologia identifica, em tempo real, os melhores preços disponíveis entre diversas distribuidoras parceiras. Com isso, você realiza compras mais econômicas sem a necessidade de consultar múltiplos fornecedores de forma manual.</p>
+                        </details>
+                    </td>
+                </td>
+                <td>Facilidade de compra / pedido com um clique;
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>A plataforma permite a realização de pedidos com apenas um clique. Todo o fluxo de compra é otimizado para garantir rapidez, eficiência e praticidade no seu dia a dia.</p>
+                        </details>
+                    </td>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Integração com sistemas de gestão (ERP);</td>
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>É possível importar automaticamente sua lista de produtos diretamente do seu sistema de gestão (ERP). Isso elimina o retrabalho e reduz significativamente erros operacionais.</p>
+                        </details>
+                    </td>
+                <td>Economia de tempo e dinheiro;</td>
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>O uso da plataforma proporciona redução de até 90% no tempo dedicado ao processo de compras, além de gerar economia de até 15% no valor final, graças à comparação automática entre fornecedores.</p>
+                        </details>
+                    </td>
+            </tr>
+
+            <tr>
+                <td>Agregação de várias distribuidoras / fornecedores em um só lugar;</td>
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>Reúna em um único ambiente todas as suas distribuidoras cadastradas e visualize suas condições comerciais personalizadas. Dessa forma, você mantém controle total sobre preços, prazos e disponibilidade.</p>
+                        </details>
+                    </td>
+                <td>Informações sobre disponibilidade de produtos e condições de compra especiais;</td>
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>Antes de finalizar um pedido, você tem acesso imediato a informações de disponibilidade de produtos, valores, prazos e demais condições. Isso torna a tomada de decisão mais assertiva e transparente.</p>
+                        </details>
+                    </td>
+            </tr>
+
+            <tr>
+                <td>Acesso simplificado para pequenas e médias empresas ou lojas de bairro;</td>
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>A plataforma foi criada para democratizar o acesso a tecnologia de compras, permitindo que pequenas e médias empresas alcancem eficiência operacional, melhores condições comerciais e processos profissionais.</p>
+                        </details>
+                    </td>
+                <td>Interface online segura, centralizada e padronizada;</td>
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>Todo o processo é realizado em uma plataforma segura, com proteção de dados e navegação estável. As informações do cliente, histórico de operações e documentos ficam organizados em um painel único.</p>
+                        </details>
+                    </td>
+            </tr>
+
+            <tr>
+                <td>Suporte, atendimento e central de ajuda online para você;</td>
+                    <td>
+                        <details>
+                            <summary></summary>
+                            <p>Disponibilizamos atendimento especializado e uma base completa de suporte para auxiliar em todas as etapas, desde a integração até a realização de pedidos.</p>
+                        </details>
+                    </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="rodape">
+
+    </div>
 
 </body>
-
 </html>
