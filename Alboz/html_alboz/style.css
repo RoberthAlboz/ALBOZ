@@ -1,18 +1,21 @@
 /* ==================================================================
-   1. VARIÁVEIS E RESET
+   1. IMPORTAÇÃO DE FONTES E VARIÁVEIS
    ================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Afacad:wght@100..900&display=swap');
 
 :root {
-    --bg: #072d38;
-    --card: #0e3f4b;
-    --card-hover: #165261;
+    --bg: #001826;        /* Corrigido: adicionei o ponto e vírgula que faltava */
+    --card: #003554;      /* Azul para detalhes */
+    --card-hover: #014e7b;
     --muted: #bfc9ce;
     --accent: #dfe7e9;
-    --gold: #f7e8aa;
+    --gold: #ffffff;      /* Restaurei o tom dourado para o highlight funcionar */
 }
 
+/* ==================================================================
+   2. RESET E CONFIGURAÇÕES GERAIS
+   ================================================================== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -20,7 +23,7 @@ html { font-size: 16px; scroll-behavior: smooth; }
 body {
     margin: 0;
     font-family: 'Afacad', Arial, sans-serif;
-    background: var(--bg); /* Cor de fundo caso imagem falhe */
+    background: var(--bg);
     color: var(--accent);
     line-height: 1.6;
 }
@@ -35,16 +38,23 @@ ul { list-style: none; }
     margin: 0 auto;
 }
 
+/* Customização da Seleção de Texto (Highlight Dourado) */
+::selection {
+    background-color: var(--gold);
+    color: var(--bg);
+    text-shadow: none;
+}
+
 /* ==================================================================
-   2. CARROSSEL DE FUNDO (FULLSCREEN)
+   3. CARROSSEL DE FUNDO (FULLSCREEN)
    ================================================================== */
 .background-carousel {
-    position: fixed; /* Fixa na tela */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Joga para trás de tudo */
+    z-index: -1;
     background-color: #000;
 }
 
@@ -54,19 +64,16 @@ ul { list-style: none; }
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Garante preenchimento sem distorção */
+    object-fit: cover;
     object-position: center;
     opacity: 0;
-    /* Animação de 18s (6s por slide) conforme seu pedido */
     animation: fadeSlide 18s infinite ease-in-out; 
 }
 
-/* Delays configurados para 3 imagens */
 .slide:nth-child(1) { animation-delay: 0s; }
 .slide:nth-child(2) { animation-delay: 6s; }
 .slide:nth-child(3) { animation-delay: 12s; }
 
-/* O Overlay escuro para melhorar leitura do texto branco */
 .overlay-escuro {
     position: absolute;
     inset: 0;
@@ -74,40 +81,16 @@ ul { list-style: none; }
     z-index: 1;
 }
 
-/* ANIMAÇÃO */
 @keyframes fadeSlide {
     0% { opacity: 0; transform: scale(1); }
-    10% { opacity: 1; } /* Entra rápido */
-    45% { opacity: 1; } /* Fica visível */
-    55% { opacity: 0; transform: scale(1.05); } /* Sai suave com zoom */
+    10% { opacity: 1; }
+    45% { opacity: 1; }
+    55% { opacity: 0; transform: scale(1.05); }
     100% { opacity: 0; }
 }
 
 /* ==================================================================
-   3. HEADER (ESTRUTURA)
-   ================================================================== */
-.header {
-    position: relative;
-    width: 100%;
-    height: 70vh; /* Altura da área inicial */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Empurra subtítulo para baixo */
-}
-
-.subtitulo {
-    width: 100%;
-    text-align: center;
-    font-family: 'Aboreto', cursive;
-    font-size: 2rem;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    padding-bottom: 40px;
-    z-index: 10;
-}
-
-/* ==================================================================
-   4. MENU DE NAVEGAÇÃO (CARD FLUTUANTE)
+   4. MENU DE NAVEGAÇÃO (CARD FLUTUANTE BRANCO)
    ================================================================== */
 .card-nav-container {
     position: absolute;
@@ -120,20 +103,22 @@ ul { list-style: none; }
 }
 
 .card-nav {
-    background-color: rgba(255, 255, 255, 0.95);
+    position: relative;
+    background-color: #ffffff; /* Fundo Branco */
     border-radius: 1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     overflow: hidden;
     transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    color: #333;
+    color: var(--card); /* Texto escuro */
 }
 
 .card-nav-top {
     height: 60px;
     display: flex;
     align-items: center;
+    justify-content: center; /* Logo Centralizado */
     padding: 0 1.5rem;
-    justify-content: space-between;
+    position: relative;
 }
 
 .logo {
@@ -143,8 +128,9 @@ ul { list-style: none; }
     letter-spacing: 2px;
 }
 
-/* Ícone Hamburguer */
 .hamburger-menu {
+    position: absolute;
+    left: 20px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -153,90 +139,135 @@ ul { list-style: none; }
 .hamburger-line {
     width: 25px;
     height: 2px;
-    background-color: #333;
+    background-color: var(--card); /* Hamburguer escuro */
     transition: 0.3s;
 }
-/* Efeito X quando aberto */
 .hamburger-menu.open .hamburger-line:first-child { transform: translateY(7px) rotate(45deg); }
 .hamburger-menu.open .hamburger-line:last-child { transform: translateY(0px) rotate(-45deg); }
 
-.card-nav-content {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.nav-card {
-    background: #f0f0f0;
-    padding: 10px;
-    border-radius: 8px;
-}
-.nav-card-label { font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; color: #555; }
-.nav-card-links a { 
-    display: inline-block; 
-    margin-right: 10px; 
-    font-size: 0.9rem; 
-    color: #000;
-}
-.nav-card-links a:hover { text-decoration: underline; }
-
 .botao-login {
-    align-self: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 20px;
     padding: 10px;
-    background: #333;
+    background: var(--card); /* Botão escuro */
     color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.2s;
+    z-index: 10;
 }
 .botao-login:hover { transform: scale(1.1); }
 
+.card-nav-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.nav-card {
+    background: #f4f6f8; /* Cinza claro */
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    border-radius: 8px;
+}
+.nav-card-label { font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; color: var(--card); }
+.nav-card-links a { 
+    display: inline-block; 
+    margin-right: 10px; 
+    font-size: 0.9rem; 
+    color: #555;
+    font-weight: 500;
+}
+.nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
+
 /* ==================================================================
-   5. SEÇÃO 1 E TABELA
+   5. HEADER
+   ================================================================== */
+.header {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; 
+}
+
+.subtitulo {
+    font-family: 'Aboreto', cursive;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 10;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+/* ==================================================================
+   6. CONTEÚDO PRINCIPAL (TEXTO CENTRALIZADO + TABELA BRANCA)
    ================================================================== */
 .sect1 {
     padding: 4rem 0;
-    background: rgba(7, 45, 56, 0.8); /* Fundo sutil para separar imagem do texto */
-    backdrop-filter: blur(5px); /* Desfoque moderno atrás do texto */
-    border-radius: 20px 20px 0 0; /* Arredondado no topo */
-    margin-top: -20px; /* Sobe um pouco sobre o header */
+    background: rgba(0, 24, 38, 0.85); /* Adaptado para sua nova cor --bg */
+    backdrop-filter: blur(5px);
+    border-radius: 20px 20px 0 0;
+    margin-top: -20px;
+    text-align: center; /* Centraliza o texto H1 e P */
 }
-.sect1 h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--gold);
-}
-.sect1 p { margin-bottom: 1rem; color: var(--muted); }
 
+.sect1 h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--gold);
+    line-height: 1.2;
+}
+
+.sect1 p { 
+    margin-bottom: 1rem; 
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* TABELA BRANCA */
 .tabela_ferramentas {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 2rem;
-    background: var(--card);
+    margin-top: 3rem;
+    
+    background: #ffffff; /* Fundo Branco */
+    color: #333;         /* Texto Escuro */
+    
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    text-align: left; /* Mantém tabela alinhada à esquerda */
 }
 
 .tabela_ferramentas td {
     padding: 1.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid #e0e0e0;
     vertical-align: top;
 }
 .tabela_ferramentas tr:last-child td { border-bottom: none; }
 
 .tabela_ferramentas td:first-child {
-    font-weight: bold;
-    color: #fff;
+    font-weight: 800;
+    color: var(--card); /* Azul Escuro */
     width: 40%;
 }
 
 details summary {
     cursor: pointer;
-    color: var(--gold);
+    color: #d4a017; /* Dourado escuro para fundo branco */
     font-weight: bold;
     list-style: none;
 }
@@ -244,15 +275,16 @@ details summary::after { content: "+"; float: right; }
 details[open] summary::after { content: "-"; }
 details p {
     margin-top: 10px;
-    font-size: 0.9rem;
-    color: var(--muted);
+    font-size: 0.95rem;
+    color: #555;
+    text-align: left;
 }
 
 /* ==================================================================
-   6. FORMULÁRIO DE LOGIN/CADASTRO
+   7. FORMULÁRIO DE LOGIN/CADASTRO (BRANCO)
    ================================================================== */
 .secao_login {
-    background: #052028;
+    background: #000f18; /* Levemente mais escuro que o bg */
     padding: 4rem 0;
 }
 
@@ -263,19 +295,21 @@ details p {
 }
 
 .form-cadastro {
-    background: var(--card);
-    padding: 2rem;
+    background: #ffffff; /* Fundo Branco */
+    padding: 2.5rem;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    color: #333;
 }
 
 .form-group { margin-bottom: 2rem; }
 .form-group h3 {
-    font-size: 1.1rem;
-    color: var(--gold);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 1.2rem;
+    color: var(--card);
+    border-bottom: 2px solid #f0f0f0;
     padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
 }
 
 .input-row {
@@ -293,26 +327,34 @@ details p {
 }
 .field.short { flex: 0.3; min-width: 80px; }
 
-label { font-size: 0.85rem; margin-bottom: 0.3rem; color: var(--muted); }
+label { 
+    font-size: 0.9rem; 
+    margin-bottom: 0.4rem; 
+    color: #444; 
+    font-weight: 600; 
+}
+
+/* Inputs claros */
 input {
-    background: rgba(0,0,0,0.2);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #f9f9f9;
+    border: 1px solid #ccc;
     padding: 0.8rem;
     border-radius: 6px;
-    color: #fff;
+    color: #000;
     font-family: inherit;
+    width: 100%;
 }
 input:focus {
     outline: none;
-    border-color: var(--gold);
-    background: rgba(0,0,0,0.4);
+    border-color: var(--card);
+    background: #fff;
 }
 
 .btn-submit {
     width: 100%;
     padding: 1rem;
-    background: var(--gold);
-    color: #072d38;
+    background: var(--card); /* Botão Azul Escuro */
+    color: #fff;
     border: none;
     border-radius: 6px;
     font-weight: bold;
@@ -321,13 +363,16 @@ input:focus {
     margin-top: 1rem;
     transition: 0.3s;
 }
-.btn-submit:hover { background: #fff; }
+.btn-submit:hover { 
+    background: var(--card-hover); 
+    transform: translateY(-2px);
+}
 
 /* ==================================================================
-   7. RODAPÉ
+   8. RODAPÉ (CENTRALIZADO)
    ================================================================== */
 .rodape {
-    background: #021216;
+    background: #000c13;
     padding: 3rem 0;
     margin-top: auto;
     border-top: 1px solid rgba(255,255,255,0.05);
@@ -335,16 +380,21 @@ input:focus {
 
 .rodape-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centraliza os blocos */
+    align-items: flex-start;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 4rem;
+    text-align: center; /* Centraliza o texto interno */
 }
+
+.rodape ul { min-width: 200px; }
 
 .rodape ul strong {
     display: block;
     color: #fff;
     margin-bottom: 1rem;
     font-size: 1.1rem;
+    letter-spacing: 1px;
 }
 
 .rodape li {
@@ -354,15 +404,18 @@ input:focus {
     cursor: pointer;
     transition: 0.2s;
 }
-.rodape li:hover { color: var(--gold); padding-left: 5px; }
+.rodape li:hover { 
+    color: var(--gold); 
+    transform: scale(1.05); 
+}
 
-/* Responsivo */
+/* ==================================================================
+   9. RESPONSIVIDADE
+   ================================================================== */
 @media (max-width: 768px) {
-    .rodape-content { flex-direction: column; text-align: center; }
+    .rodape-content { flex-direction: column; gap: 2rem; }
     .tabela_ferramentas td { display: block; width: 100%; }
     .tabela_ferramentas td:first-child { border-bottom: none; padding-bottom: 0.5rem; }
-    
-    .sect1 {
-        padding: 2rem 0;
-    }
+    .sect1 { padding: 2rem 0; }
+    .subtitulo { font-size: 2rem; }
 }
