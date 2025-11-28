@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALBOZ</title>
     <link rel="stylesheet" href="style.css">
-    <script src="java.js" defer></script>
-    
+    <link rel="stylesheet" href="java.js">
+   
     <style>
         /* Container fixo no fundo */
         .background-carousel {
@@ -15,26 +15,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -1; /* Fica atrás de tudo */
             background-color: #000;
         }
 
+        /* Imagens com SRC */
         .slide {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Cobre a tela sem distorcer */
             object-position: center;
             opacity: 0;
             animation: fadeLoop 15s infinite;
         }
 
+        /* Tempos da animação (3 imagens = 5s cada intervalo) */
         .slide:nth-child(1) { animation-delay: 0s; }
         .slide:nth-child(2) { animation-delay: 5s; }
         .slide:nth-child(3) { animation-delay: 10s; }
 
+        /* A Animação */
         @keyframes fadeLoop {
             0% { opacity: 0; transform: scale(1); }
             10% { opacity: 1; }
@@ -43,27 +46,31 @@
             100% { opacity: 0; }
         }
 
+        /* Overlay Escuro Opcional (Para o texto branco ficar legível) */
         .overlay-escuro {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
+            background: rgba(0, 0, 0, 0.5); /* 50% de preto */
+            z-index: 1; /* Fica acima da img, abaixo do site */
         }
     </style>
 </head>
 <body class="body">
 
+
     <div class="background-carousel">
         <img class="slide" src="../img.alboz/eugene-lim-J9yPHHc0Fe4-unsplash.jpg" alt="Fundo 1">
         <img class="slide" src="../img.alboz/maarten-duineveld-pmfJcN7RGiw-unsplash (2).jpg" alt="Fundo 2">
         <img class="slide" src="../img.alboz/spencer-davis-vdg14E8KsVM-unsplash.jpg" alt="Fundo 3">
+       
         <div class="overlay-escuro"></div>
     </div>
 
     <div class="header">
+       
         <div class="card-nav-container">
             <div class="card-nav" id="cardNav">
                 <div class="card-nav-top">
@@ -89,20 +96,20 @@
                             <a class="nav-card-link" href="informacoes_corporativas.html">Informações corporativas</a>
                             <a class="nav-card-link" href="acessibilidade.html">Acessibilidade</a>
                             <a class="nav-card-link" href="suporte.html">Suporte</a>
+                            <a class="nav-card-link" href=""></a>
+
                         </div>
                     </div>
                     <div class="nav-card">
                         <div class="nav-card-label">Serviços</div>
                         <div class="nav-card-links">
-                            <a class="nav-card-link" href="cadastro_produtos.html">Cadastro de Produtos</a>
-                            <a class="nav-card-link" href="cadastro_distribuidoras.html">Cadastro de Distribuidor</a>
-                            
-                            <a class="nav-card-link" href="buscar_produto.php">Buscar meus produtos</a>
-                            
-                            <a class="nav-card-link" href="buscar_distribuidor.html">Buscar meus distribuidores</a>
+                            <a class="nav-card-link" href="cadastrar_produtos.php">Cadastro de Produtos</a>
+                            <a class="nav-card-link" href="cadastrar_fornecedor.php">Cadastro de Fornecedores</a>
+                            <a class="nav-card-link" href="listar_produtos.php">Buscar meus produtos</a>
+                            <a class="nav-card-link" href="listar_fornecedores.php">Buscar meus fornecedores</a>
                         </div>
                     </div>
-                    <a href="login.html" class="botao-login" aria-label="Ir para login">
+                    <a href="login.php" class="botao-login" aria-label="Ir para login">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
@@ -115,31 +122,37 @@
         <div class="subtitulo">Ligne Sportive</div>
     </div>
 
-    <div class="galeria-categorias">
+<div class="galeria-categorias">
         <div class="limitador galeria-flex">
+           
             <a href="LINK_DA_PAGINA_CAMISETAS" class="categoria-item">
                 <div class="img-container">
                     <img src="../img.alboz/camisetas.jpg" alt="Camisetas">
                 </div>
                 <span class="cat-titulo">Camisetas</span>
             </a>
+
             <a href="LINK_DA_PAGINA_ACESSORIOS" class="categoria-item">
                 <div class="img-container">
                     <img src="../img.alboz/acessorios.jpg" alt="Acessórios">
                 </div>
                 <span class="cat-titulo">Acessórios</span>
             </a>
+
             <a href="LINK_DA_PAGINA_TRAJES" class="categoria-item">
                 <div class="img-container">
                     <img src="../img.alboz/trajes.jpg" alt="Trajes">
                 </div>
                 <span class="cat-titulo">Trajes</span>
             </a>
+
         </div>
     </div>
 
     <div class="sect1 limitador">
         <h1>Supere seus limites com o estilo Alboz.</h1>
+       
+
         <table class="tabela_ferramentas">
             <tr>
                 <td>Comparação de preço automática entre distribuidores</td>
@@ -193,21 +206,30 @@
         <div class="limitador rodape-content">
             <ul class="sobre_nos">
                 <strong>Sobre nós</strong>
-                <a href="index.html">ALBOZ</a><br>
-                <a href="informacoes_corporativas.html">Informações Corporativas</a><br>
-                <a href="acessibilidade.html">Acessibilidade</a><br>
-                <a href="suporte.html">Suporte</a><br>
+                <a href="index.html">ALBOZ</a>
+                <br>
+                <a href="informacoes_corporativas.html">Informações Corporativas</a>
+                <br>
+                <a href="acessibilidade.html">Acessibilidade</a>
+                <br>
+                <a href="suporte.html">Suporte</a>
+                <br>
             </ul>
+
             <ul class="paginas">
                 <strong>Páginas</strong>
-                <a href="login.html">Login/Cadastro de Usuários</a><br>
-                <a href="cadastro_produtos.html">Cadastro de produtos</a><br>
-                <a href="cadastro_distribuidoras.html">Cadastro de ditribuidores</a><br>
-                
-                <a href="buscar_produto.php">Meus Produtos</a><br>
-                
-                <a href="meus_distribuidores.html">Meus distribuidores</a><br>
+                <a href="login.html">Login/Cadastro de Usuários</a>
+                <br>
+                <a href="cadastro_produtos.html">Cadastro de produtos</a>
+                <br>
+                <a href="cadastro_distribuidoras.html">Cadastro de ditribuidores</a>
+                <br>
+                <a href="meus_produtos.html">Meus Produtos</a>
+                <br>
+                <a href="meus_distribuidores.html">Meus distribuidores</a>
+                <br>
             </ul>
+
             <ul class="contato">
                 <strong>Contato</strong>
                 <li>Telefone: (11) 9999-9999</li>
@@ -218,14 +240,16 @@
     </div>
 
     <script>
+        // Script do Menu Hamburguer
         const hamburger = document.getElementById('hamburgerBtn');
         const nav = document.getElementById('cardNav');
-        
+       
         if(hamburger && nav){
             hamburger.addEventListener('click', () => {
                 nav.classList.toggle('open');
                 hamburger.classList.toggle('open');
-                
+               
+                // Animação da altura
                 const content = nav.querySelector('.card-nav-content');
                 if (nav.classList.contains('open')) {
                     nav.style.height = (content.scrollHeight + 60) + 'px';
@@ -233,6 +257,7 @@
                     nav.style.height = '60px';
                 }
             });
+            // Altura inicial
             nav.style.height = '60px';
         }
     </script>

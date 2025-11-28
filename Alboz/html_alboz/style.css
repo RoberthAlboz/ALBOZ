@@ -20,12 +20,12 @@
    ================================================================== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { 
-    font-size: 16px; 
+html {
+    font-size: 16px;
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--card) var(--bg);
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 body {
@@ -118,18 +118,18 @@ a, button, .btn-submit, summary, .categoria-item {
     left: 0;
     width: 100%;
     height: 100%;
-    
+   
     /* --- A CORREÇÃO ESTÁ AQUI --- */
     object-fit: cover; /* Preenche a tela toda (sem barras pretas) */
-    
+   
     /* Trava a imagem no TOPO. Se a tela for larga/estreita, corta só embaixo */
-    object-position: top center; 
-    
+    object-position: top center;
+   
     /* Ajuste para o zoom da animação partir do topo também */
-    transform-origin: top center; 
-    
+    transform-origin: top center;
+   
     opacity: 0;
-    animation: fadeSlide 18s infinite ease-in-out; 
+    animation: fadeSlide 18s infinite ease-in-out;
 }
 
 /* ... o resto dos delays e keyframes continua igual ... */
@@ -185,7 +185,7 @@ a, button, .btn-submit, summary, .categoria-item {
 }
 
 .logo {
-    font-family: 'Abhaya Libre', serif; 
+    font-family: 'Abhaya Libre', serif;
     font-weight: 800;
     font-size: 1.5rem;
     letter-spacing: 1px;
@@ -240,10 +240,10 @@ a, button, .btn-submit, summary, .categoria-item {
     border-radius: 8px;
 }
 .nav-card-label { font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; color: var(--card); }
-.nav-card-links a { 
-    display: inline-block; 
-    margin-right: 10px; 
-    font-size: 0.9rem; 
+.nav-card-links a {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 0.9rem;
     color: #555;
     font-weight: 500;
 }
@@ -260,18 +260,18 @@ a, button, .btn-submit, summary, .categoria-item {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 0; 
+    padding-top: 0;
 }
 
 .subtitulo {
     font-family: 'Great Vibes', cursive;
     font-size: 6rem;
-    
+   
     /* Posição */
     margin-top: 5rem;
     z-index: 10;
     text-align: center;
-    
+   
     /* Estilo da Fonte */
     font-weight: 400;
     letter-spacing: normal;
@@ -286,18 +286,18 @@ a, button, .btn-submit, summary, .categoria-item {
         #001826 60%                  /* Azul Escuro */
     );
     background-size: 200% 100%;
-    
+   
     /* Define a posição inicial do brilho (Escondido na direita) */
-    background-position: 100%; 
-    
+    background-position: 100%;
+   
     /* Recorta o fundo no formato do texto */
-    color: #001826; 
+    color: #001826;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
+   
     display: inline-block;
-    
+   
     /* MUDANÇA: Removi a animação daqui. Agora ela é estática por padrão. */
     transition: background-position 0.5s; /* Suaviza a saída do mouse */
 }
@@ -305,7 +305,7 @@ a, button, .btn-submit, summary, .categoria-item {
 /* MUDANÇA: A animação só acontece quando passa o mouse */
 .subtitulo:hover {
     /* Mudei para 2s para ser um brilho mais rápido e reativo */
-    animation: shine 2s linear infinite; 
+    animation: shine 2s linear infinite;
 }
 
 /* ==================================================================
@@ -313,22 +313,22 @@ a, button, .btn-submit, summary, .categoria-item {
    ================================================================== */
 .galeria-categorias {
     width: 100%;
-    background-color: #003554; 
-    margin-top: 210px; 
-    padding: 5rem 0; 
+    background-color: #003554;
+    margin-top: 210px;
+    padding: 5rem 0;
     position: relative;
     z-index: 2;
-    border-bottom: 1px solid rgba(255,255,255,0.05); 
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .galeria-flex {
     display: flex;
     justify-content: space-between;
-    gap: 30px; 
+    gap: 30px;
 }
 
 .categoria-item {
-    flex: 1; 
+    flex: 1;
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -337,13 +337,13 @@ a, button, .btn-submit, summary, .categoria-item {
 
 .img-container {
     width: 100%;
-    height: 450px; 
+    height: 450px;
     overflow: hidden;
     border-radius: 12px;
     margin-bottom: 1.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #001826; 
+    background-color: #001826;
 }
 
 .categoria-item img {
@@ -355,9 +355,9 @@ a, button, .btn-submit, summary, .categoria-item {
 
 .cat-titulo {
     font-family: 'Abhaya Libre', serif;
-    font-size: 1.3rem; 
-    color: #8aaac2; 
-    border-bottom: 1px solid #4a6fa5; 
+    font-size: 1.3rem;
+    color: #8aaac2;
+    border-bottom: 1px solid #4a6fa5;
     text-transform: uppercase;
     letter-spacing: 2px;
     display: inline-block;
@@ -376,8 +376,8 @@ a, button, .btn-submit, summary, .categoria-item {
 }
 
 .categoria-item:hover .cat-titulo {
-    color: #ffffff; 
-    border-color: var(--gold); 
+    color: #ffffff;
+    border-color: var(--gold);
 }
 
 /* ==================================================================
@@ -386,7 +386,7 @@ a, button, .btn-submit, summary, .categoria-item {
 .sect1 {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0 0 4rem 0; 
+    padding: 0 0 4rem 0;
     background: #ffffff;
     backdrop-filter: none;
     border-radius: 0;
@@ -394,29 +394,29 @@ a, button, .btn-submit, summary, .categoria-item {
     text-align: center;
 }
 
-.sect1 p, 
+.sect1 p,
 .sect1 table {
     max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
-    width: 90%; 
+    width: 90%;
 }
 
 .sect1 h1 {
-    font-family: 'League Script', cursive; 
-    font-size: 3.5rem; 
+    font-family: 'League Script', cursive;
+    font-size: 3.5rem;
     font-weight: 400;  
     line-height: 1.2;
-    background-color: #001826; 
+    background-color: #001826;
     color: #ffffff;            
-    width: 100%;               
+    width: 100%;              
     padding: 3rem 1rem;        
-    margin-bottom: 3rem;       
+    margin-bottom: 3rem;      
     margin-top: 0;
 }
 
-.sect1 p { 
-    margin-bottom: 1rem; 
+.sect1 p {
+    margin-bottom: 1rem;
     color: #555;
     font-size: 1.1rem;
 }
@@ -447,7 +447,7 @@ a, button, .btn-submit, summary, .categoria-item {
 
 details summary {
     cursor: pointer;
-    color: #005f97; 
+    color: #005f97;
     font-weight: bold;
     list-style: none;
 }
@@ -512,11 +512,11 @@ details p {
 }
 .field.short { flex: 0.3; min-width: 80px; }
 
-label { 
-    font-size: 0.9rem; 
-    margin-bottom: 0.4rem; 
-    color: #444; 
-    font-weight: 600; 
+label {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: #444;
+    font-weight: 600;
 }
 
 input {
@@ -548,8 +548,8 @@ input:focus {
     margin-top: 2rem;
     transition: 0.3s;
 }
-.btn-submit:hover { 
-    background: var(--card-hover); 
+.btn-submit:hover {
+    background: var(--card-hover);
     transform: translateY(-2px);
 }
 
@@ -589,9 +589,9 @@ input:focus {
     cursor: pointer;
     transition: 0.2s;
 }
-.rodape li:hover { 
-    color: var(--gold); 
-    transform: scale(1.05); 
+.rodape li:hover {
+    color: var(--gold);
+    transform: scale(1.05);
 }
 
 /* ==================================================================
@@ -617,192 +617,12 @@ input:focus {
     .rodape-content { flex-direction: column; gap: 2rem; }
     .tabela_ferramentas td { display: block; width: 100%; }
     .tabela_ferramentas td:first-child { border-bottom: none; padding-bottom: 0.5rem; }
-    
+   
     .sect1 { padding: 3rem 0; }
     .subtitulo { font-size: 3rem; }
     .sect1 h1 { font-size: 2.5rem; }
-    
+   
     .galeria-categorias { margin-top: 80px; }
     .galeria-flex { flex-direction: column; gap: 3rem; }
     .img-container { height: 350px; }
-}
-
-/* ==================================================================
-   11. PÁGINA DE BUSCAR PRODUTOS (Estilo Referência)
-   ================================================================== */
-
-/* Ajuste para o header em páginas internas (sem o subtítulo gigante) */
-.header-reduzido {
-    position: relative;
-    width: 100%;
-    /* Altura menor que a home */
-    min-height: 250px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Alinha o título embaixo */
-    align-items: center;
-    padding-bottom: 2rem;
-    z-index: 10;
-}
-
-.titulo-pagina {
-    font-family: 'Abhaya Libre', serif;
-    font-size: 3rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 100px; /* Espaço para o menu não ficar em cima */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-/* Container Principal da seção */
-.secao-produtos {
-    padding: 4rem 0;
-    position: relative;
-    z-index: 2;
-}
-
-/* Grid Layout (2 colunas em telas grandes, 1 em pequenas) */
-.produtos-grid {
-    display: grid;
-    /* Cria colunas de no mínimo 350px. Se couber mais, ele cria mais colunas */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem; /* Espaço entre os itens */
-    justify-content: center;
-}
-
-/* O item individual do produto */
-.produto-item {
-    display: flex;
-    flex-direction: column;
-    /* Efeito suave ao passar o mouse (opcional) */
-    transition: transform 0.3s ease;
-}
-
-/* Opcional: Levantar um pouco ao passar o mouse */
-.produto-item:hover {
-    transform: translateY(-5px);
-}
-
-/* Caixa da imagem */
-.prod-img-box {
-    width: 100%;
-    /* Define a proporção retangular (4 de largura por 5 de altura) */
-    aspect-ratio: 4 / 5; 
-    background-color: #8c8c8c; /* Cor de fundo neutra para imagens com transparência */
-    overflow: hidden;
-    border-radius: 4px; /* Cantos levemente arredondados */
-    margin-bottom: 1rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.prod-img-box img {
-    width: 100%;
-    height: 100%;
-    /* Garante que a imagem cubra todo o retângulo sem distorcer */
-    object-fit: cover; 
-    /* Garante que o centro da imagem seja o foco */
-    object-position: center;
-    transition: transform 0.5s ease;
-}
-
-/* Zoom suave na imagem ao passar o mouse no item */
-.produto-item:hover .prod-img-box img {
-    transform: scale(1.05);
-}
-
-/* Informações de texto (Nome e Preço) */
-.prod-info {
-    text-align: left;
-    color: var(--accent); /* Usa a cor clara do seu tema */
-    font-family: 'Monda', sans-serif; /* Fonte limpa do seu tema */
-}
-
-.prod-nome {
-    font-size: 1.1rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-    letter-spacing: 1px;
-}
-
-.prod-preco {
-    font-size: 1rem;
-    font-weight: 700; /* Preço um pouco mais grosso */
-    color: var(--muted); /* Cor um pouco mais apagada para o preço */
-}
-
-/* Ajuste Responsivo para telas menores que 768px */
-@media (max-width: 768px) {
-    .produtos-grid {
-        /* Em celulares, força 1 coluna e diminui o tamanho mínimo */
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-    }
-    .titulo-pagina {
-        font-size: 2rem;
-    }
-}
-
-/* ==================================================================
-   12. BARRA DE PESQUISA (Estilo Alboz)
-   ================================================================== */
-.search-container {
-    text-align: center;
-    margin: -20px auto 4rem auto; /* Sobe um pouco para perto do título */
-    width: 90%;
-    max-width: 600px;
-    position: relative;
-    z-index: 10;
-}
-
-.form-busca {
-    display: flex;
-    gap: 10px;
-}
-
-.input-busca {
-    flex: 1;
-    padding: 1rem 1.5rem;
-    border-radius: 50px;
-    border: 2px solid transparent;
-    background: rgba(255, 255, 255, 0.9);
-    font-family: 'Monda', sans-serif;
-    font-size: 1rem;
-    color: #001826;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.input-busca:focus {
-    outline: none;
-    background: #fff;
-    border-color: #d4af37; /* Dourado ao focar */
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-}
-
-.btn-busca {
-    padding: 0 2rem;
-    border-radius: 50px;
-    border: none;
-    background: #003554; /* Azul Card */
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.btn-busca:hover {
-    background: #001826;
-    transform: translateY(-2px);
-}
-
-.mensagem-aviso {
-    text-align: center;
-    color: #fff;
-    font-size: 1.2rem;
-    margin-top: 2rem;
-    opacity: 0.8;
 }
