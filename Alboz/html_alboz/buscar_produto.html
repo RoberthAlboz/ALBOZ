@@ -3,57 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALBOZ</title>
+    <title>Meus Produtos | ALBOZ</title>
     <link rel="stylesheet" href="style.css">
     <script src="java.js" defer></script>
-    
-    <style>
-        /* Container fixo no fundo */
-        .background-carousel {
-            position: fixed;    
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-color: #000;
-        }
-
-        /* Imagens com SRC */
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            opacity: 0;
-            animation: fadeLoop 15s infinite;
-        }
-
-        .slide:nth-child(1) { animation-delay: 0s; }
-        .slide:nth-child(2) { animation-delay: 5s; }
-        .slide:nth-child(3) { animation-delay: 10s; }
-
-        @keyframes fadeLoop {
-            0% { opacity: 0; transform: scale(1); }
-            10% { opacity: 1; }
-            33% { opacity: 1; }
-            43% { opacity: 0; transform: scale(1.05); }
-            100% { opacity: 0; }
-        }
-
-        .overlay-escuro {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-    </style>
 </head>
 <body class="body">
 
@@ -64,7 +16,7 @@
         <div class="overlay-escuro"></div>
     </div>
 
-    <div class="header">
+    <div class="header-reduzido">
         <div class="card-nav-container">
             <div class="card-nav" id="cardNav">
                 <div class="card-nav-top">
@@ -73,7 +25,7 @@
                         <div class="hamburger-line"></div>
                     </div>
                     <div class="logo-container">
-                        <div class="logo">ALBOZ</div>
+                        <a href="index.html" class="logo">ALBOZ</a>
                     </div>
                 </div>
 
@@ -98,7 +50,7 @@
                             <a class="nav-card-link" href="cadastro_produtos.html">Cadastro de Produtos</a>
                             <a class="nav-card-link" href="cadastro_distribuidoras.html">Cadastro de Distribuidor</a>
                             
-                            <a class="nav-card-link" href="buscar_produto.html">Buscar meus produtos</a>
+                            <a class="nav-card-link active-link" href="buscar_produto.html">Buscar meus produtos</a>
                             
                             <a class="nav-card-link" href="buscar_distribuidor.html">Buscar meus distribuidores</a>
                         </div>
@@ -112,83 +64,74 @@
                 </div>
             </div>
         </div>
-
-        <div class="subtitulo">Ligne Sportive</div>
+        <h1 class="titulo-pagina">MEUS PRODUTOS</h1>
     </div>
 
-    <div class="galeria-categorias">
-        <div class="limitador galeria-flex">
-            <a href="LINK_DA_PAGINA_CAMISETAS" class="categoria-item">
-                <div class="img-container">
-                    <img src="../img.alboz/camisetas.jpg" alt="Camisetas">
+    <section class="secao-produtos limitador">
+        <div class="produtos-grid">
+            
+            <div class="produto-item">
+                <div class="prod-img-box">
+                    <img src="https://via.placeholder.com/400x500/808080/FFFFFF?text=Capacete" alt="Produto 1">
                 </div>
-                <span class="cat-titulo">Camisetas</span>
-            </a>
-            <a href="LINK_DA_PAGINA_ACESSORIOS" class="categoria-item">
-                <div class="img-container">
-                    <img src="../img.alboz/acessorios.jpg" alt="Acessórios">
+                <div class="prod-info">
+                    <h3 class="prod-nome">NICO ROSBERG 2015 - BELL</h3>
+                    <span class="prod-preco">R$ 12.350,00</span>
                 </div>
-                <span class="cat-titulo">Acessórios</span>
-            </a>
-            <a href="LINK_DA_PAGINA_TRAJES" class="categoria-item">
-                <div class="img-container">
-                    <img src="../img.alboz/trajes.jpg" alt="Trajes">
+            </div>
+
+            <div class="produto-item">
+                <div class="prod-img-box">
+                    <img src="https://via.placeholder.com/400x500/909090/FFFFFF?text=Florete" alt="Produto 2">
                 </div>
-                <span class="cat-titulo">Trajes</span>
-            </a>
+                <div class="prod-info">
+                    <h3 class="prod-nome">FLORETE - FOLO</h3>
+                    <span class="prod-preco">R$ 1.600,00</span>
+                </div>
+            </div>
+
+            <div class="produto-item">
+                <div class="prod-img-box">
+                    <img src="https://via.placeholder.com/400x500/707070/FFFFFF?text=Sela" alt="Produto 3">
+                </div>
+                <div class="prod-info">
+                    <h3 class="prod-nome">SELA AMERICANA - EQUITECH</h3>
+                    <span class="prod-preco">R$ 20.400,00</span>
+                </div>
+            </div>
+
+            <div class="produto-item">
+                <div class="prod-img-box">
+                    <img src="https://via.placeholder.com/400x500/A0A0A0/FFFFFF?text=Prancha" alt="Produto 4">
+                </div>
+                <div class="prod-info">
+                    <h3 class="prod-nome">PRANCHA WING FOIL - NSP</h3>
+                    <span class="prod-preco">R$ 16.500,00</span>
+                </div>
+            </div>
+
+            <div class="produto-item">
+                <div class="prod-img-box">
+                    <img src="https://via.placeholder.com/400x500/858585/FFFFFF?text=Tatico" alt="Produto 5">
+                </div>
+                <div class="prod-info">
+                    <h3 class="prod-nome">EQUIPAMENTO TÁTICO X5</h3>
+                    <span class="prod-preco">R$ 5.200,00</span>
+                </div>
+            </div>
+
+            <div class="produto-item">
+                <div class="prod-img-box">
+                    <img src="https://via.placeholder.com/400x500/959595/FFFFFF?text=Performance" alt="Produto 6">
+                </div>
+                <div class="prod-info">
+                    <h3 class="prod-nome">CONJUNTO DE ALTA PERFORMANCE</h3>
+                    <span class="prod-preco">R$ 8.990,00</span>
+                </div>
+            </div>
+
         </div>
-    </div>
-
-    <div class="sect1 limitador">
-        <h1>Supere seus limites com o estilo Alboz.</h1>
-        <table class="tabela_ferramentas">
-            <tr>
-                <td>Comparação de preço automática entre distribuidores</td>
-                <td>
-                    <details>
-                        <summary>Saiba mais</summary>
-                        <p>Nossa tecnologia identifica, em tempo real, os melhores preços disponíveis entre diversas distribuidoras parceiras.</p>
-                    </details>
-                </td>
-            </tr>
-            <tr>
-                <td>Facilidade de compra / pedido com um clique</td>
-                <td>
-                    <details>
-                        <summary>Saiba mais</summary>
-                        <p>A plataforma permite a realização de pedidos com apenas um clique. Fluxo otimizado para rapidez.</p>
-                    </details>
-                </td>
-            </tr>
-            <tr>
-                <td>Integração com sistemas de gestão (ERP)</td>
-                <td>
-                    <details>
-                        <summary>Saiba mais</summary>
-                        <p>Importe automaticamente sua lista de produtos diretamente do seu sistema de gestão.</p>
-                    </details>
-                </td>
-            </tr>
-            <tr>
-                <td>Economia de tempo e dinheiro</td>
-                <td>
-                    <details>
-                        <summary>Saiba mais</summary>
-                        <p>Redução de até 90% no tempo dedicado ao processo de compras e economia de até 15% no valor final.</p>
-                    </details>
-                </td>
-            </tr>
-            <tr>
-                <td>Interface online segura, centralizada e padronizada</td>
-                <td>
-                    <details>
-                        <summary>Saiba mais</summary>
-                        <p>Plataforma segura com proteção de dados e histórico de operações organizado.</p>
-                    </details>
-                </td>
-            </tr>
-        </table>
-    </div>
+    </section>
 
     <div class="rodape">
         <div class="limitador rodape-content">

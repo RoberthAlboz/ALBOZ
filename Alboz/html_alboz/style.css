@@ -61,6 +61,42 @@ ul { list-style: none; }
     text-shadow: none;
 }
 
+/* ==================================================================
+   2.1 CURSOR PERSONALIZADO (SEGUIDOR)
+   ================================================================== */
+/* Esconde o cursor seguidor em telas touch (celulares) */
+@media (hover: none) {
+    .cursor-follower { display: none; }
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 40px;  /* Tamanho da argola */
+    height: 40px;
+    border: 1px solid var(--gold); /* Cor Dourada */
+    border-radius: 50%; /* Deixa redondo */
+    pointer-events: none; /* Garante que o clique passe através dele */
+    z-index: 9999; /* Fica acima de tudo */
+    transform: translate(-50%, -50%); /* Centraliza no ponteiro */
+    transition: transform 0.1s ease, width 0.3s, height 0.3s, background-color 0.3s;
+    mix-blend-mode: difference; /* Efeito legal que inverte a cor dependendo do fundo */
+}
+
+/* Quando clicar, o círculo diminui */
+.cursor-follower.click {
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: var(--gold); /* Preenche de dourado ao clicar */
+    opacity: 0.5;
+}
+
+/* Opcional: Mudar o cursor padrão para um pointer mais bonito */
+body {
+    cursor: default; /* Pode trocar por 'crosshair' se quiser um estilo mais técnico */
+}
+
+a, button, .btn-submit, summary, .categoria-item {
+    cursor: pointer;
+}
 
 /* ==================================================================
    3. CARROSSEL DE FUNDO
@@ -214,54 +250,62 @@ ul { list-style: none; }
 .nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
 
 /* ==================================================================
-   5. HEADER (CENTRALIZAÇÃO EXATA)
+   5. HEADER (SHINY APENAS NO HOVER)
    ================================================================== */
 .header {
     position: relative;
     width: 100%;
-    height: 70vh; /* Altura da área */
-    
+    height: 70vh;
     display: flex;
     flex-direction: column;
-    
-    /* Centraliza nos dois eixos (Vertical e Horizontal) */
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    
-    /* MUDANÇA: Removi o 'padding-top: 100px' */
-    /* Agora ele calcula o centro exato da tela */
     padding-top: 0; 
 }
 
 .subtitulo {
     font-family: 'Great Vibes', cursive;
-    font-size: 6rem; /* Tamanho grande */
-    /* --- MUDANÇA AQUI: Empurra o texto para baixo --- */
-    margin-top: 9rem; /* Ajuste este valor se quiser mais baixo (ex: 8rem) */
+    font-size: 6rem;
     
+    /* Posição */
+    margin-top: 5rem;
     z-index: 10;
     text-align: center;
+    
+    /* Estilo da Fonte */
     font-weight: 400;
     letter-spacing: normal;
     text-shadow: none;
+    cursor: default; /* Mostra que é apenas texto, não um link clicável */
 
-    /* EFEITO SHINY */
+    /* CONFIGURAÇÃO DO EFEITO SHINY (BASE) */
     background: linear-gradient(
         120deg,
-        #001826 40%,
-        rgba(255, 255, 255, 0.8) 50%,
-        #001826 60%
+        #001826 40%,                 /* Azul Escuro */
+        rgba(255, 255, 255, 0.8) 50%, /* O Brilho */
+        #001826 60%                  /* Azul Escuro */
     );
     background-size: 200% 100%;
     
-    /* Configurações para o fundo aparecer no texto */
+    /* Define a posição inicial do brilho (Escondido na direita) */
+    background-position: 100%; 
+    
+    /* Recorta o fundo no formato do texto */
     color: #001826; 
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     
     display: inline-block;
-    animation: shine 5s linear infinite;
+    
+    /* MUDANÇA: Removi a animação daqui. Agora ela é estática por padrão. */
+    transition: background-position 0.5s; /* Suaviza a saída do mouse */
+}
+
+/* MUDANÇA: A animação só acontece quando passa o mouse */
+.subtitulo:hover {
+    /* Mudei para 2s para ser um brilho mais rápido e reativo */
+    animation: shine 2s linear infinite; 
 }
 
 /* ==================================================================
@@ -554,10 +598,17 @@ input:focus {
    9. ANIMAÇÕES
    ================================================================== */
 @keyframes shine {
-  0% { background-position: 100%; }
-  100% { background-position: -100%; }
+  0% {
+    background-position: 100%; /* Começa na direita */
+  }
+  100% {
+    background-position: -100%; /* Atravessa para a esquerda */
+  }
 }
-.shiny-text.disabled { animation: none; }
+
+.shiny-text.disabled {
+  animation: none;
+}
 
 /* ==================================================================
    10. RESPONSIVIDADE
@@ -574,4 +625,121 @@ input:focus {
     .galeria-categorias { margin-top: 80px; }
     .galeria-flex { flex-direction: column; gap: 3rem; }
     .img-container { height: 350px; }
+}
+
+/* ==================================================================
+   11. PÁGINA DE BUSCAR PRODUTOS (Estilo Referência)
+   ================================================================== */
+
+/* Ajuste para o header em páginas internas (sem o subtítulo gigante) */
+.header-reduzido {
+    position: relative;
+    width: 100%;
+    /* Altura menor que a home */
+    min-height: 250px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinha o título embaixo */
+    align-items: center;
+    padding-bottom: 2rem;
+    z-index: 10;
+}
+
+.titulo-pagina {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 3rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 100px; /* Espaço para o menu não ficar em cima */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Container Principal da seção */
+.secao-produtos {
+    padding: 4rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Grid Layout (2 colunas em telas grandes, 1 em pequenas) */
+.produtos-grid {
+    display: grid;
+    /* Cria colunas de no mínimo 350px. Se couber mais, ele cria mais colunas */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem; /* Espaço entre os itens */
+    justify-content: center;
+}
+
+/* O item individual do produto */
+.produto-item {
+    display: flex;
+    flex-direction: column;
+    /* Efeito suave ao passar o mouse (opcional) */
+    transition: transform 0.3s ease;
+}
+
+/* Opcional: Levantar um pouco ao passar o mouse */
+.produto-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Caixa da imagem */
+.prod-img-box {
+    width: 100%;
+    /* Define a proporção retangular (4 de largura por 5 de altura) */
+    aspect-ratio: 4 / 5; 
+    background-color: #8c8c8c; /* Cor de fundo neutra para imagens com transparência */
+    overflow: hidden;
+    border-radius: 4px; /* Cantos levemente arredondados */
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.prod-img-box img {
+    width: 100%;
+    height: 100%;
+    /* Garante que a imagem cubra todo o retângulo sem distorcer */
+    object-fit: cover; 
+    /* Garante que o centro da imagem seja o foco */
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+/* Zoom suave na imagem ao passar o mouse no item */
+.produto-item:hover .prod-img-box img {
+    transform: scale(1.05);
+}
+
+/* Informações de texto (Nome e Preço) */
+.prod-info {
+    text-align: left;
+    color: var(--accent); /* Usa a cor clara do seu tema */
+    font-family: 'Monda', sans-serif; /* Fonte limpa do seu tema */
+}
+
+.prod-nome {
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+    letter-spacing: 1px;
+}
+
+.prod-preco {
+    font-size: 1rem;
+    font-weight: 700; /* Preço um pouco mais grosso */
+    color: var(--muted); /* Cor um pouco mais apagada para o preço */
+}
+
+/* Ajuste Responsivo para telas menores que 768px */
+@media (max-width: 768px) {
+    .produtos-grid {
+        /* Em celulares, força 1 coluna e diminui o tamanho mínimo */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    .titulo-pagina {
+        font-size: 2rem;
+    }
 }
