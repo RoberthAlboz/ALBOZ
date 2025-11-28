@@ -247,7 +247,7 @@ a, button, .btn-submit, summary, .categoria-item {
 .nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
 
 /* ==================================================================
-   5. HEADER
+   5. HEADER (AGORA COM EFEITO BUGATTI NO MOUSE)
    ================================================================== */
 .header {
     position: relative;
@@ -266,27 +266,41 @@ a, button, .btn-submit, summary, .categoria-item {
     margin-top: 5rem;
     z-index: 10;
     text-align: center;
+    
+    /* Estilo da Fonte */
     font-weight: 400;
+    letter-spacing: normal;
+    text-shadow: none;
     cursor: default;
 
+    /* --- EFEITO METÁLICO (Igual ao do Rodapé) --- */
     background: linear-gradient(
-        120deg,
-        #001826 40%,                
-        rgba(255, 255, 255, 0.8) 50%, 
-        #001826 60%                  
+        110deg,
+        #333333 10%,   /* Cinza Escuro */
+        #888888 40%,   /* Prata */
+        #ffffff 50%,   /* Brilho Branco */
+        #888888 60%,   /* Prata */
+        #333333 90%    /* Cinza Escuro */
     );
-    background-size: 200% 100%;
-    background-position: 100%;
-    color: #001826;
-    background-clip: text;
+    
+    /* Configuração para o brilho se mover */
+    background-size: 200% auto;
+    background-position: center; /* Começa no centro */
+    
+    /* Recorta o fundo no texto */
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-    display: inline-block;
-    transition: background-position 0.5s;
+    color: transparent;
+    
+    /* Suavidade do movimento */
+    transition: background-position 0.1s linear;
+    will-change: background-position;
 }
 
+/* Removemos a animação automática antiga do hover */
 .subtitulo:hover {
-    animation: shine 2s linear infinite;
+    animation: none;
 }
 
 /* ==================================================================
@@ -647,4 +661,61 @@ input:focus {
     
     pointer-events: none;
     z-index: 1000;
+}
+
+/* ==================================================================
+   12. RODAPÉ DE MARCA (ESTILO BUGATTI COM BRILHO NO MOUSE)
+   ================================================================== */
+.brand-footer {
+    position: relative; /* Necessário para posicionar o brilho */
+    width: 100%;
+    background-color: #000000; /* Fundo preto total para contraste */
+    padding: 2rem 0 0 0; /* Padding superior para espaçamento */
+    text-align: center;
+    overflow: hidden;
+    user-select: none;
+    margin-bottom: 0;
+    line-height: 0.8;
+    cursor: default; /* Mantenha o cursor padrão */
+}
+
+.alboz-giant {
+    font-family: 'Monda', sans-serif;
+    font-weight: 700;
+    font-size: 18vw; 
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    
+    /* --- Base do Efeito Metálico (SEM ANIMAÇÃO) --- */
+    background: linear-gradient(
+        110deg,
+        #333333 10%,
+        #888888 40%,
+        #ffffff 50%, /* Brilho base do gradiente */
+        #888888 60%,
+        #333333 90%
+    );
+    background-size: 200% auto; /* Ainda precisamos de um tamanho maior para o JS manipular */
+    background-position: center; /* Inicia centralizado */
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Redundante, mas seguro */
+    
+    transition: background-position 0.1s linear; /* Transição suave para o movimento do brilho */
+    will-change: background-position; /* Otimização para animação */
+}
+
+/* Opcional: Efeito de borda sutil ao passar o mouse */
+.alboz-giant:hover {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Opcional: Se quiser um efeito de "pressionar" ao clicar no ALBOZ gigante */
+.alboz-giant:active {
+    transform: scale(0.99);
+    transition: transform 0.05s ease-out;
 }

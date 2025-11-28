@@ -7,7 +7,6 @@
     
     <link rel="stylesheet" href="style.css">
     
-    <script src="java.js" defer></script> 
 </head>
 <body class="body">
 
@@ -21,16 +20,15 @@
             <div style="-webkit-backdrop-filter: blur(64px); backdrop-filter: blur(64px); -webkit-mask-image: linear-gradient(to top, black 0%, transparent 10%); mask-image: linear-gradient(to top, black 0%, transparent 10%);"></div>
         </div>
     </div>
+
     <div class="background-carousel">
         <img class="slide" src="../img.alboz/eugene-lim-J9yPHHc0Fe4-unsplash.jpg" alt="Fundo 1">
         <img class="slide" src="../img.alboz/maarten-duineveld-pmfJcN7RGiw-unsplash (2).jpg" alt="Fundo 2">
         <img class="slide" src="../img.alboz/spencer-davis-vdg14E8KsVM-unsplash.jpg" alt="Fundo 3">
-        
         <div class="overlay-escuro"></div>
     </div>
 
     <div class="header">
-        
         <div class="card-nav-container">
             <div class="card-nav" id="cardNav">
                 <div class="card-nav-top">
@@ -56,8 +54,6 @@
                             <a class="nav-card-link" href="informacoes_corporativas.html">Informações corporativas</a>
                             <a class="nav-card-link" href="acessibilidade.html">Acessibilidade</a>
                             <a class="nav-card-link" href="suporte.html">Suporte</a>
-                            <a class="nav-card-link" href=""></a>
-
                         </div>
                     </div>
                     <div class="nav-card">
@@ -78,40 +74,35 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="subtitulo">Ligne Sportive</div>
     </div>
 
     <div class="galeria-categorias">
         <div class="limitador galeria-flex">
-            
             <a href="LINK_DA_PAGINA_CAMISETAS" class="categoria-item">
                 <div class="img-container">
                     <img src="../img.alboz/camisetas.jpg" alt="Camisetas">
                 </div>
                 <span class="cat-titulo">Camisetas</span>
             </a>
-
             <a href="LINK_DA_PAGINA_ACESSORIOS" class="categoria-item">
                 <div class="img-container">
                     <img src="../img.alboz/acessorios.jpg" alt="Acessórios">
                 </div>
                 <span class="cat-titulo">Acessórios</span>
             </a>
-
             <a href="LINK_DA_PAGINA_TRAJES" class="categoria-item">
                 <div class="img-container">
                     <img src="../img.alboz/trajes.jpg" alt="Trajes">
                 </div>
                 <span class="cat-titulo">Trajes</span>
             </a>
-
         </div>
     </div>
 
     <div class="sect1 limitador">
         <h1>Supere seus limites com o estilo Alboz.</h1>
-        
         <table class="tabela_ferramentas">
             <tr>
                 <td>Comparação de preço automática entre distribuidores</td>
@@ -165,30 +156,19 @@
         <div class="limitador rodape-content">
             <ul class="sobre_nos">
                 <strong>Sobre nós</strong>
-                <a href="index.html">ALBOZ</a>
-                <br>
-                <a href="informacoes_corporativas.html">Informações Corporativas</a>
-                <br>
-                <a href="acessibilidade.html">Acessibilidade</a>
-                <br>
-                <a href="suporte.html">Suporte</a>
-                <br>
+                <a href="index.html">ALBOZ</a><br>
+                <a href="informacoes_corporativas.html">Informações Corporativas</a><br>
+                <a href="acessibilidade.html">Acessibilidade</a><br>
+                <a href="suporte.php">Suporte</a><br>
             </ul>
-
             <ul class="paginas">
                 <strong>Páginas</strong>
-                <a href="login.html">Login/Cadastro de Usuários</a>
-                <br>
-                <a href="cadastro_produtos.html">Cadastro de produtos</a>
-                <br>
-                <a href="cadastro_distribuidoras.html">Cadastro de ditribuidores</a>
-                <br>
-                <a href="meus_produtos.html">Meus Produtos</a>
-                <br>
-                <a href="meus_distribuidores.html">Meus distribuidores</a>
-                <br>
+                <a href="login.php">Login/Cadastro de Usuários</a><br>
+                <a href="cadastrar_produtos.php">Cadastro de produtos</a><br>
+                <a href="cadastrar_fornecedor.php">Cadastro de ditribuidores</a><br>
+                <a href="listar_produtos.php">Meus Produtos</a><br>
+                <a href="listar_fornecedores.php">Meus fornecedores/a><br>
             </ul>
-
             <ul class="contato">
                 <strong>Contato</strong>
                 <li>Telefone: (11) 9999-9999</li>
@@ -198,24 +178,57 @@
         </div>
     </div>
 
+    <div class="brand-footer">
+        <h1 class="alboz-giant">ALBOZ</h1>
+    </div>
+
     <script>
-        const hamburger = document.getElementById('hamburgerBtn');
-        const nav = document.getElementById('cardNav');
-        
-        if(hamburger && nav){
-            hamburger.addEventListener('click', () => {
-                nav.classList.toggle('open');
-                hamburger.classList.toggle('open');
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. LÓGICA DO MENU HAMBURGUER ---
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('cardNav');
+            
+            if(hamburger && nav){
+                hamburger.addEventListener('click', () => {
+                    nav.classList.toggle('open');
+                    hamburger.classList.toggle('open');
+                    
+                    const content = nav.querySelector('.card-nav-content');
+                    if (nav.classList.contains('open')) {
+                        nav.style.height = (content.scrollHeight + 60) + 'px';
+                    } else {
+                        nav.style.height = '60px';
+                    }
+                });
+                nav.style.height = '60px'; 
+            }
+
+            // --- 2. LÓGICA DO EFEITO BRILHO NO MOUSE ---
+            // Seleciona TANTO o rodapé gigante QUANTO o subtítulo
+            const shinyElements = document.querySelectorAll('.alboz-giant, .subtitulo');
+
+            // Aplica a lógica para cada um deles
+            shinyElements.forEach(element => {
                 
-                const content = nav.querySelector('.card-nav-content');
-                if (nav.classList.contains('open')) {
-                    nav.style.height = (content.scrollHeight + 60) + 'px';
-                } else {
-                    nav.style.height = '60px';
-                }
+                element.addEventListener('mousemove', (e) => {
+                    const { left, width } = element.getBoundingClientRect();
+                    
+                    // Posição do mouse de 0 a 1 (da esquerda pra direita do texto)
+                    const xPos = (e.clientX - left) / width; 
+                    
+                    // Converte para porcentagem do gradiente
+                    const bgPosition = xPos * 100 - 50; 
+
+                    element.style.backgroundPosition = `${bgPosition}% center`;
+                });
+
+                // Quando o mouse sai, volta ao centro
+                element.addEventListener('mouseleave', () => {
+                    element.style.backgroundPosition = 'center'; 
+                });
             });
-            nav.style.height = '60px';
-        }
+        });
     </script>
 </body>
 </html>
