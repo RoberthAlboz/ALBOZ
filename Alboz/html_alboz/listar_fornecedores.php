@@ -274,7 +274,7 @@ if (isset($_GET['edit_id'])) {
             text-align: center; font-weight: 400; cursor: default;
             background: linear-gradient(120deg, #001826 40%, rgba(255, 255, 255, 0.8) 50%, #001826 60%);
             background-size: 200% 100%; background-position: 100%; color: #001826;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             /* Fallback visual */
             text-shadow: 0 0 10px rgba(255,255,255,0.1);
             transition: background-position 0.5s;
