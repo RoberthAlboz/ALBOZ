@@ -166,10 +166,24 @@ $historico = $mysqli->query($sql_historico);
             <ul class="sobre_nos">
                 <strong>Sobre nós</strong>
                 <a href="index.html">ALBOZ</a><br>
+                <a href="informacoes_corporativas.html">Informações Corporativas</a><br>
+                <a href="acessibilidade.html">Acessibilidade</a><br>
                 <a href="suporte.php">Suporte</a><br>
             </ul>
-            <div class="logo">Alboz</div>
-            <p>© 2025 Alboz.com</p>
+            <ul class="paginas">
+                <strong>Páginas</strong>
+                <a href="login.php">Login/Cadastro de Usuários</a><br>
+                <a href="cadastrar_produtos.php">Cadastro de produtos</a><br>
+                <a href="cadastrar_fornecedor.php">Cadastro de ditribuidores</a><br>
+                <a href="listar_produtos.php">Meus Produtos</a><br>
+                <a href="listar_fornecedores.php">Meus fornecedores</a><br>
+            </ul>
+            <ul class="contato">
+                <strong>Contato</strong>
+                <li>Telefone: (11) 9999-9999</li>
+                <li>E-mail: contato@alboz.com</li>
+                <li>Endereço: Rua Exemplo, 123 - São Paulo, SP</li>
+            </ul>
         </div>
     </div>
 

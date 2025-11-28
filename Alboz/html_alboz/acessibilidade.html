@@ -1,11 +1,194 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acessibilidade</title>
+    <title>Acessibilidade - ALBOZ</title>
+    
+    <style>
+        /* REUTILIZANDO O CSS PADRÃO (Mesmo do arquivo anterior) */
+        @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap');
+
+        :root {
+            --bg: #001826; --card: #003554; --card-hover: #014e7b;
+            --muted: #bfc9ce; --accent: #dfe7e9; --gold: #ffffff;      
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Monda', sans-serif; background: var(--bg); color: var(--accent);
+            line-height: 1.8; min-height: 100vh; display: flex; flex-direction: column;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
+        ul { list-style: none; }
+        .limitador { max-width: 1100px; width: 90%; margin: 0 auto; }
+
+        /* NAVBAR */
+        .card-nav-container { position: absolute; top: 2em; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; z-index: 1001; }
+        .card-nav { position: relative; background-color: #ffffff; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden; transition: height 0.4s ease; color: var(--card); }
+        .card-nav-top { height: 60px; display: flex; align-items: center; justify-content: center; padding: 0 1.5rem; position: relative; }
+        .logo { font-family: 'Abhaya Libre', serif; font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; text-transform: uppercase; }
+        .hamburger-menu { position: absolute; left: 20px; cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
+        .hamburger-line { width: 25px; height: 2px; background-color: var(--card); transition: 0.3s; }
+        .hamburger-menu.open .hamburger-line:first-child { transform: translateY(7px) rotate(45deg); }
+        .hamburger-menu.open .hamburger-line:last-child { transform: translateY(0px) rotate(-45deg); }
+        .card-nav-content { padding: 1rem; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        .nav-card { background: #f4f6f8; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px; }
+        .nav-card-links a { display: inline-block; margin-right: 10px; font-size: 0.9rem; color: #555; font-weight: 500; }
+        .nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
+        .botao-login { position: absolute; top: 10px; right: 20px; padding: 10px; background: var(--card); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; z-index: 10; }
+        .botao-login:hover { transform: scale(1.1); }
+
+        /* HEADER */
+        .header { position: relative; width: 100%; height: auto; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-bottom: 2rem; }
+        .subtitulo {
+            font-family: 'Great Vibes', cursive; font-size: 4rem; margin-top: 6rem; z-index: 10;
+            text-align: center; font-weight: 400; cursor: default;
+            background: linear-gradient(120deg, #001826 40%, rgba(255, 255, 255, 0.8) 50%, #001826 60%);
+            background-size: 200% 100%; background-position: 100%; color: #001826;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1); transition: background-position 0.5s;
+        }
+        .subtitulo:hover { animation: shine 2s linear infinite; }
+        @keyframes shine { 0% { background-position: 100%; } 100% { background-position: -100%; } }
+
+        /* CONTEÚDO */
+        .container { max-width: 1000px; margin: 0 auto 60px auto; padding: 40px; background: #fff; color: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-radius: 8px; }
+        .section-title { color: var(--card); font-family: 'Abhaya Libre', serif; font-size: 1.8rem; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .section-title:first-child { margin-top: 0; }
+        p { margin-bottom: 20px; text-align: justify; color: #555; }
+        
+        /* Lista de Atalhos */
+        .atalhos-list { list-style: none; padding: 0; margin-top: 20px; }
+        .atalhos-list li { margin-bottom: 15px; background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 4px solid var(--card); }
+        .tecla { background: #333; color: white; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-weight: bold; font-size: 0.9em; margin-right: 10px; }
+
+        /* RODAPÉ */
+        .rodape { background: #000c13; padding: 3rem 0; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); }
+        .rodape-content { display: flex; justify-content: center; gap: 4rem; text-align: center; flex-wrap: wrap; }
+        .rodape ul strong { display: block; color: #fff; margin-bottom: 1rem; font-size: 1.1rem; }
+        .rodape li { color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; transition: 0.2s; }
+        .rodape li:hover { color: var(--gold); }
+    </style>
 </head>
-<body>
-    <h1>Acessibilidade</h1>
+<body class="body">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="card-nav-container">
+            <div class="card-nav" id="cardNav">
+                <div class="card-nav-top">
+                    <div class="hamburger-menu" id="hamburgerBtn">
+                        <div class="hamburger-line"></div>
+                        <div class="hamburger-line"></div>
+                    </div>
+                    <div class="logo-container"><div class="logo">ALBOZ</div></div>
+                </div>
+                <div class="card-nav-content">
+                    <div class="nav-card">
+                        <div class="nav-card-label">Início</div>
+                        <div class="nav-card-links">
+                            <a class="nav-card-link" href="index.html">Página Inicial</a>
+                            <a class="nav-card-link" href="painel.php">Meu Painel</a>
+                        </div>
+                    </div>
+                    <div class="nav-card">
+                        <div class="nav-card-label">Institucional</div>
+                        <div class="nav-card-links">
+                            <a class="nav-card-link" href="informacoes_corporativas.php">Informações corporativas</a>
+                            <a class="nav-card-link" href="acessibilidade.php">Acessibilidade</a>
+                            <a class="nav-card-link" href="suporte.php">Suporte</a>
+                        </div>
+                    </div>
+                    <a href="login.php" class="botao-login" aria-label="Ir para login">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="subtitulo">Declaração de Acessibilidade</div>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="container">
+        
+        <h2 class="section-title">Nosso Compromisso</h2>
+        <p>A <strong>ALBOZ</strong> se compromete a fornecer um website acessível ao maior público possível, independentemente das circunstâncias e capacidades. Nosso objetivo é aderir o mais estritamente possível às Diretrizes de Acessibilidade para Conteúdo Web (WCAG 2.1) em nível AA.</p>
+        <p>Acreditamos que o esporte e a tecnologia devem ser universais. Por isso, nossa plataforma foi desenhada com alto contraste, fontes legíveis e estrutura semântica para facilitar a navegação por leitores de tela e dispositivos assistivos.</p>
+
+        <h2 class="section-title">Recursos Disponíveis</h2>
+        <ul class="atalhos-list">
+            <li>
+                <strong>Navegação por Teclado:</strong> Nosso site é totalmente navegável usando apenas o teclado. Use a tecla <span class="tecla">TAB</span> para avançar entre links e campos de formulário, e <span class="tecla">SHIFT + TAB</span> para retroceder.
+            </li>
+            <li>
+                <strong>Contraste Aprimorado:</strong> Utilizamos o tema "Dark Mode" por padrão, com textos claros sobre fundos escuros (azul marinho e preto) para reduzir o cansaço visual e melhorar a legibilidade.
+            </li>
+            <li>
+                <strong>Imagens Descritivas:</strong> Todas as imagens de produtos e elementos visuais importantes possuem atributos "ALT" (texto alternativo) para descrição por leitores de tela.
+            </li>
+            <li>
+                <strong>Design Responsivo:</strong> O layout se adapta automaticamente a diferentes tamanhos de tela, permitindo o uso de zoom do navegador em até 200% sem perda de funcionalidade.
+            </li>
+        </ul>
+
+        <h2 class="section-title">Tecnologias Assistivas</h2>
+        <p>O site da ALBOZ foi desenvolvido utilizando HTML5 e CSS3 padronizados, garantindo compatibilidade com os principais leitores de tela do mercado, como NVDA, JAWS e VoiceOver, além de navegadores modernos como Chrome, Firefox e Edge.</p>
+
+        <h2 class="section-title">Feedback e Suporte</h2>
+        <p>Apesar de nossos esforços para tornar todas as páginas acessíveis, algumas funcionalidades podem ainda apresentar barreiras. Se você encontrar qualquer dificuldade ou tiver sugestões de melhoria, por favor, entre em contato conosco:</p>
+        <p>
+            <strong>E-mail:</strong> acessibilidade@alboz.com<br>
+            <strong>Telefone:</strong> (11) 9999-9999<br>
+            <strong>Canal de Suporte:</strong> <a href="suporte.php" style="color:var(--card); font-weight:bold; text-decoration:underline;">Clique aqui para abrir um chamado</a>.
+        </p>
+
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="rodape">
+        <div class="limitador rodape-content">
+            <ul class="sobre_nos">
+                <strong>Sobre nós</strong>
+                <a href="index.html">ALBOZ</a><br>
+                <a href="informacoes_corporativas.html">Informações Corporativas</a><br>
+                <a href="acessibilidade.html">Acessibilidade</a><br>
+                <a href="suporte.php">Suporte</a><br>
+            </ul>
+            <ul class="paginas">
+                <strong>Páginas</strong>
+                <a href="login.php">Login/Cadastro de Usuários</a><br>
+                <a href="cadastrar_produtos.php">Cadastro de produtos</a><br>
+                <a href="cadastrar_fornecedor.php">Cadastro de ditribuidores</a><br>
+                <a href="listar_produtos.php">Meus Produtos</a><br>
+                <a href="listar_fornecedores.php">Meus fornecedores</a><br>
+            </ul>
+            <ul class="contato">
+                <strong>Contato</strong>
+                <li>Telefone: (11) 9999-9999</li>
+                <li>E-mail: contato@alboz.com</li>
+                <li>Endereço: Rua Exemplo, 123 - São Paulo, SP</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="java.js" defer></script>
+    <script>
+        const hamburger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('cardNav');
+        if(hamburger && nav){
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('open');
+                hamburger.classList.toggle('open');
+                const content = nav.querySelector('.card-nav-content');
+                nav.style.height = nav.classList.contains('open') ? (content.scrollHeight + 60) + 'px' : '60px';
+            });
+            nav.style.height = '60px';
+        }
+    </script>
 </body>
 </html>
