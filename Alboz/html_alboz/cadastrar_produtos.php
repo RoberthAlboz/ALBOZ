@@ -14,18 +14,18 @@ $produto_edit = null;
 // --- 1. SE FOR EDIÇÃO, BUSCA OS DADOS ANTIGOS ---
 if (isset($_GET['edit_id'])) {
     $edit_id = $_GET['edit_id'];
-    
+
     $sql_busca = "SELECT p.* FROM produtos p 
                   JOIN fornecedores f ON p.fornecedor_id = f.id 
                   WHERE p.id = ? AND f.usuario_id = ?";
-                  
+
     $stmt = $mysqli->prepare($sql_busca);
     $stmt->bind_param("ii", $edit_id, $usuario_id);
     $stmt->execute();
     $result = $stmt->get_result();
     $produto_edit = $result->fetch_assoc();
-    
-    if(!$produto_edit) {
+
+    if (!$produto_edit) {
         die("Produto não encontrado ou você não tem permissão para editá-lo.");
     }
 }
@@ -37,23 +37,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $estoque = (int)$_POST['estoque']; // Força ser número inteiro
-    
+
     // --- CORREÇÃO DO PREÇO (CRÍTICO) ---
     $preco_entrada = $_POST['preco'];
     $preco_limpo = preg_replace('/[^0-9,]/', '', $preco_entrada);
     $preco = str_replace(',', '.', $preco_limpo);
-    if(!is_numeric($preco)) $preco = 0.00;
+    if (!is_numeric($preco)) $preco = 0.00;
 
     // --- UPLOAD DE IMAGEM ---
-    $imagem = $produto_edit['imagem'] ?? ''; 
-    
+    $imagem = $produto_edit['imagem'] ?? '';
+
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
         $pasta = "img_produtos/";
-        if (!is_dir($pasta)) mkdir($pasta, 0777, true); 
-        
+        if (!is_dir($pasta)) mkdir($pasta, 0777, true);
+
         $nome_arquivo = uniqid() . "_" . basename($_FILES['imagem']['name']);
         $caminho_completo = $pasta . $nome_arquivo;
-        
+
         if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminho_completo)) {
             $imagem = $caminho_completo;
         } else {
@@ -95,11 +95,12 @@ if (!$fornecedores) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produto - ALBOZ</title>
-    
+
     <!-- CSS INTERNO COMPLETO -->
     <style>
         /* ==================================================================
@@ -111,18 +112,22 @@ if (!$fornecedores) {
         @import url('https://fonts.googleapis.com/css2?family=League+Script&display=swap');
 
         :root {
-            --bg: #001826;        
-            --card: #003554;      
+            --bg: #001826;
+            --card: #003554;
             --card-hover: #014e7b;
             --muted: #bfc9ce;
             --accent: #dfe7e9;
-            --gold: #ffffff;      
+            --gold: #ffffff;
         }
 
         /* ==================================================================
            2. GERAL
            ================================================================== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         html {
             font-size: 16px;
@@ -139,124 +144,341 @@ if (!$fornecedores) {
             line-height: 1.6;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
-        ul { list-style: none; }
-        
-        ::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background-color: var(--card); border-radius: 5px; border: 2px solid var(--bg); }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+            cursor: pointer;
+        }
 
-        .limitador { max-width: 1100px; width: 90%; margin: 0 auto; }
+        ul {
+            list-style: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--card);
+            border-radius: 5px;
+            border: 2px solid var(--bg);
+        }
+
+        .limitador {
+            max-width: 1100px;
+            width: 90%;
+            margin: 0 auto;
+        }
 
         /* ==================================================================
            3. NAVBAR
            ================================================================== */
         .card-nav-container {
-            position: absolute; top: 2em; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 600px; z-index: 1001;
+            position: absolute;
+            top: 2em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            z-index: 1001;
         }
-        .card-nav {
-            position: relative; background-color: #ffffff; border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden;
-            transition: height 0.4s ease; color: var(--card);
-        }
-        .card-nav-top {
-            height: 60px; display: flex; align-items: center; justify-content: center;
-            padding: 0 1.5rem; position: relative;
-        }
-        .logo {
-            font-family: 'Abhaya Libre', serif; font-weight: 800; font-size: 1.5rem;
-            letter-spacing: 1px; text-transform: uppercase;
-        }
-        .hamburger-menu {
-            position: absolute; left: 20px; cursor: pointer; display: flex; flex-direction: column; gap: 5px;
-        }
-        .hamburger-line { width: 25px; height: 2px; background-color: var(--card); transition: 0.3s; }
-        .hamburger-menu.open .hamburger-line:first-child { transform: translateY(7px) rotate(45deg); }
-        .hamburger-menu.open .hamburger-line:last-child { transform: translateY(0px) rotate(-45deg); }
 
-        .card-nav-content { padding: 1rem; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-        .nav-card { background: #f4f6f8; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px; }
-        .nav-card-label { font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; color: var(--card); }
-        .nav-card-links a { display: inline-block; margin-right: 10px; font-size: 0.9rem; color: #555; font-weight: 500; }
-        .nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
+        .card-nav {
+            position: relative;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: height 0.4s ease;
+            color: var(--card);
+        }
+
+        .card-nav-top {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Abhaya Libre', serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hamburger-menu {
+            position: absolute;
+            left: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 2px;
+            background-color: var(--card);
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.open .hamburger-line:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger-menu.open .hamburger-line:last-child {
+            transform: translateY(0px) rotate(-45deg);
+        }
+
+        .card-nav-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .nav-card {
+            background: #f4f6f8;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .nav-card-label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--card);
+        }
+
+        .nav-card-links a {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .nav-card-links a:hover {
+            text-decoration: underline;
+            color: var(--card-hover);
+        }
 
         /* ==================================================================
            4. HEADER
            ================================================================== */
         .header {
-            position: relative; width: 100%; height: auto; min-height: 250px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             padding-bottom: 2rem;
         }
+
         .subtitulo {
-            font-family: 'Great Vibes', cursive; font-size: 4rem; margin-top: 6rem; z-index: 10;
-            text-align: center; font-weight: 400; cursor: default;
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            margin-top: 6rem;
+            z-index: 10;
+            text-align: center;
+            font-weight: 400;
+            cursor: default;
             background: linear-gradient(120deg, #001826 40%, rgba(255, 255, 255, 0.8) 50%, #001826 60%);
-            background-size: 200% 100%; background-position: 100%; color: #001826;
-            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+            background-size: 200% 100%;
+            background-position: 100%;
+            color: #001826;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             transition: background-position 0.5s;
         }
-        .subtitulo:hover { animation: shine 2s linear infinite; }
-        @keyframes shine { 0% { background-position: 100%; } 100% { background-position: -100%; } }
+
+        .subtitulo:hover {
+            animation: shine 2s linear infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 100%;
+            }
+
+            100% {
+                background-position: -100%;
+            }
+        }
 
         /* ==================================================================
            5. CONTAINER E FORMULÁRIO (CRUD)
            ================================================================== */
         .container {
-            max-width: 1000px; margin: 0 auto 60px auto; padding: 30px;
-            background: #fff; color: #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-radius: 8px;
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            padding: 30px;
+            background: #fff;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
         }
-        
+
         .form-crud {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-            background: #f9f9f9; padding: 25px; border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
             border: 1px solid #e9ecef;
         }
-        .full-width { grid-column: 1 / -1; }
-        
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--card); font-size: 0.9rem; }
-        input, select, textarea {
-            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px;
-            background: #fff; color: #333; font-family: inherit;
+
+        .full-width {
+            grid-column: 1 / -1;
         }
-        input:focus, textarea:focus { border-color: var(--card); outline: none; }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--card);
+            font-size: 0.9rem;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            color: #333;
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--card);
+            outline: none;
+        }
 
         button {
-            background-color: #28a745; color: white; padding: 12px 25px; border: none;
-            border-radius: 4px; font-weight: bold; font-size: 1rem; cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
             transition: 0.3s;
         }
-        button:hover { background-color: #218838; transform: translateY(-2px); }
+
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
 
         .btn-cancelar {
-            display: inline-block; padding: 12px 25px; background: #6c757d; color: white;
-            border-radius: 4px; font-weight: bold; margin-left: 10px;
+            display: inline-block;
+            padding: 12px 25px;
+            background: #6c757d;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-left: 10px;
         }
-        .btn-cancelar:hover { background: #5a6268; }
 
-        .img-preview { max-width: 150px; margin-top: 10px; border: 1px solid #ddd; padding: 5px; border-radius: 4px; }
+        .btn-cancelar:hover {
+            background: #5a6268;
+        }
 
-        .message { padding: 15px; margin-bottom: 20px; border-radius: 4px; text-align: center; font-weight: bold; }
-        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .img-preview {
+            max-width: 150px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .message {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
 
         /* ==================================================================
            6. RODAPÉ
            ================================================================== */
-        .rodape { background: #000c13; padding: 3rem 0; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); }
-        .rodape-content { display: flex; justify-content: center; gap: 4rem; text-align: center; flex-wrap: wrap; }
-        .rodape ul strong { display: block; color: #fff; margin-bottom: 1rem; font-size: 1.1rem; }
-        .rodape li { color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; transition: 0.2s; }
-        .rodape li:hover { color: var(--gold); }
+        .rodape {
+            background: #000c13;
+            padding: 3rem 0;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .rodape-content {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .rodape ul strong {
+            display: block;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .rodape li {
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .rodape li:hover {
+            color: var(--gold);
+        }
 
         @media (max-width: 768px) {
-            .form-crud { grid-template-columns: 1fr; }
+            .form-crud {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body class="body">
 
     <!-- HEADER -->
@@ -268,11 +490,13 @@ if (!$fornecedores) {
                         <div class="hamburger-line"></div>
                         <div class="hamburger-line"></div>
                     </div>
-                    <div class="logo-container"><div class="logo">ALBOZ</div></div>
+                    <div class="logo-container">
+                        <div class="logo">ALBOZ</div>
+                    </div>
                 </div>
                 <div class="card-nav-content">
                     <div class="nav-card">
-                         <div class="nav-card-links">
+                        <div class="nav-card-links">
                             <a class="nav-card-link" href="painel.php">Voltar ao Painel</a>
                             <a class="nav-card-link" href="logout.php" style="color:red">Sair</a>
                         </div>
@@ -285,7 +509,7 @@ if (!$fornecedores) {
 
     <!-- CONTEÚDO -->
     <div class="container">
-        
+
         <?php if ($mensagem) echo "<div class='message $class'>$mensagem</div>"; ?>
 
         <form method="post" enctype="multipart/form-data" class="form-crud">
@@ -295,14 +519,14 @@ if (!$fornecedores) {
                 <label>Fornecedor / Distribuidor:</label>
                 <select name="fornecedor_id" required>
                     <option value="">Selecione...</option>
-                    <?php 
+                    <?php
                     if ($fornecedores->num_rows > 0) {
-                        while($f = $fornecedores->fetch_assoc()): ?>
-                            <option value="<?php echo $f['id']; ?>" 
-                                <?php if($produto_edit && $produto_edit['fornecedor_id'] == $f['id']) echo 'selected'; ?>>
+                        while ($f = $fornecedores->fetch_assoc()): ?>
+                            <option value="<?php echo $f['id']; ?>"
+                                <?php if ($produto_edit && $produto_edit['fornecedor_id'] == $f['id']) echo 'selected'; ?>>
                                 <?php echo $f['nome_fornecedor']; ?>
                             </option>
-                        <?php endwhile; 
+                    <?php endwhile;
                     } else {
                         echo "<option value='' disabled>Nenhum fornecedor cadastrado. Cadastre um primeiro!</option>";
                     }
@@ -384,7 +608,7 @@ if (!$fornecedores) {
     <script>
         const hamburger = document.getElementById('hamburgerBtn');
         const nav = document.getElementById('cardNav');
-        if(hamburger && nav){
+        if (hamburger && nav) {
             hamburger.addEventListener('click', () => {
                 nav.classList.toggle('open');
                 hamburger.classList.toggle('open');
@@ -395,4 +619,5 @@ if (!$fornecedores) {
         }
     </script>
 </body>
+
 </html>

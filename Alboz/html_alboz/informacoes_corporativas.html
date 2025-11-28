@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações Corporativas - ALBOZ</title>
-    
+
     <style>
         /* ==================================================================
            1. IMPORTAÇÃO E VARIÁVEIS (PADRÃO ALBOZ)
@@ -14,15 +15,19 @@
         @import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap');
 
         :root {
-            --bg: #001826;        
-            --card: #003554;      
+            --bg: #001826;
+            --card: #003554;
             --card-hover: #014e7b;
             --muted: #bfc9ce;
             --accent: #dfe7e9;
-            --gold: #ffffff;      
+            --gold: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Monda', sans-serif;
@@ -34,116 +39,306 @@
             flex-direction: column;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
-        ul { list-style: none; }
-        
-        .limitador { max-width: 1100px; width: 90%; margin: 0 auto; }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .limitador {
+            max-width: 1100px;
+            width: 90%;
+            margin: 0 auto;
+        }
 
         /* ==================================================================
            2. NAVBAR
            ================================================================== */
         .card-nav-container {
-            position: absolute; top: 2em; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 600px; z-index: 1001;
+            position: absolute;
+            top: 2em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            z-index: 1001;
         }
-        .card-nav {
-            position: relative; background-color: #ffffff; border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden;
-            transition: height 0.4s ease; color: var(--card);
-        }
-        .card-nav-top {
-            height: 60px; display: flex; align-items: center; justify-content: center;
-            padding: 0 1.5rem; position: relative;
-        }
-        .logo {
-            font-family: 'Abhaya Libre', serif; font-weight: 800; font-size: 1.5rem;
-            letter-spacing: 1px; text-transform: uppercase;
-        }
-        .hamburger-menu {
-            position: absolute; left: 20px; cursor: pointer; display: flex; flex-direction: column; gap: 5px;
-        }
-        .hamburger-line { width: 25px; height: 2px; background-color: var(--card); transition: 0.3s; }
-        .hamburger-menu.open .hamburger-line:first-child { transform: translateY(7px) rotate(45deg); }
-        .hamburger-menu.open .hamburger-line:last-child { transform: translateY(0px) rotate(-45deg); }
 
-        .card-nav-content { padding: 1rem; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-        .nav-card { background: #f4f6f8; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px; }
-        .nav-card-label { font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; color: var(--card); }
-        .nav-card-links a { display: inline-block; margin-right: 10px; font-size: 0.9rem; color: #555; font-weight: 500; }
-        .nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
-        
-        .botao-login {
-            position: absolute; top: 10px; right: 20px; padding: 10px;
-            background: var(--card); color: #fff; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            transition: transform 0.2s; z-index: 10;
+        .card-nav {
+            position: relative;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: height 0.4s ease;
+            color: var(--card);
         }
-        .botao-login:hover { transform: scale(1.1); }
+
+        .card-nav-top {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Abhaya Libre', serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hamburger-menu {
+            position: absolute;
+            left: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 2px;
+            background-color: var(--card);
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.open .hamburger-line:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger-menu.open .hamburger-line:last-child {
+            transform: translateY(0px) rotate(-45deg);
+        }
+
+        .card-nav-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .nav-card {
+            background: #f4f6f8;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .nav-card-label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--card);
+        }
+
+        .nav-card-links a {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .nav-card-links a:hover {
+            text-decoration: underline;
+            color: var(--card-hover);
+        }
+
+        .botao-login {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            padding: 10px;
+            background: var(--card);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            z-index: 10;
+        }
+
+        .botao-login:hover {
+            transform: scale(1.1);
+        }
 
         /* ==================================================================
            3. HEADER
            ================================================================== */
         .header {
-            position: relative; width: 100%; height: auto; min-height: 250px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             padding-bottom: 2rem;
         }
+
         .subtitulo {
-            font-family: 'Great Vibes', cursive; font-size: 4rem; margin-top: 6rem; z-index: 10;
-            text-align: center; font-weight: 400; cursor: default;
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            margin-top: 6rem;
+            z-index: 10;
+            text-align: center;
+            font-weight: 400;
+            cursor: default;
             background: linear-gradient(120deg, #001826 40%, rgba(255, 255, 255, 0.8) 50%, #001826 60%);
-            background-size: 200% 100%; background-position: 100%; color: #001826;
-            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+            background-size: 200% 100%;
+            background-position: 100%;
+            color: #001826;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             transition: background-position 0.5s;
         }
-        .subtitulo:hover { animation: shine 2s linear infinite; }
-        @keyframes shine { 0% { background-position: 100%; } 100% { background-position: -100%; } }
+
+        .subtitulo:hover {
+            animation: shine 2s linear infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 100%;
+            }
+
+            100% {
+                background-position: -100%;
+            }
+        }
 
         /* ==================================================================
            4. CONTEÚDO CORPORATIVO
            ================================================================== */
         .container {
-            max-width: 1000px; margin: 0 auto 60px auto; padding: 40px;
-            background: #fff; color: #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-radius: 8px;
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            padding: 40px;
+            background: #fff;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
         }
-        
-        .section-title {
-            color: var(--card); font-family: 'Abhaya Libre', serif; font-size: 2rem;
-            margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 5px;
-        }
-        .section-title:first-child { margin-top: 0; }
 
-        p { margin-bottom: 20px; text-align: justify; color: #555; }
+        .section-title {
+            color: var(--card);
+            font-family: 'Abhaya Libre', serif;
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+            color: #555;
+        }
 
         .valores-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
+
         .valor-card {
-            background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center;
-            border: 1px solid #eee; transition: 0.3s;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: 0.3s;
         }
-        .valor-card:hover { transform: translateY(-5px); border-color: var(--card); }
-        .valor-icon { font-size: 2rem; color: var(--card); margin-bottom: 10px; display: block; }
-        .valor-titulo { font-weight: bold; color: var(--card); margin-bottom: 10px; display: block; }
+
+        .valor-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--card);
+        }
+
+        .valor-icon {
+            font-size: 2rem;
+            color: var(--card);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .valor-titulo {
+            font-weight: bold;
+            color: var(--card);
+            margin-bottom: 10px;
+            display: block;
+        }
 
         /* ==================================================================
            5. RODAPÉ
            ================================================================== */
-        .rodape { background: #000c13; padding: 3rem 0; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); }
-        .rodape-content { display: flex; justify-content: center; gap: 4rem; text-align: center; flex-wrap: wrap; }
-        .rodape ul strong { display: block; color: #fff; margin-bottom: 1rem; font-size: 1.1rem; }
-        .rodape li { color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; transition: 0.2s; }
-        .rodape li:hover { color: var(--gold); }
+        .rodape {
+            background: #000c13;
+            padding: 3rem 0;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .rodape-content {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .rodape ul strong {
+            display: block;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .rodape li {
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .rodape li:hover {
+            color: var(--gold);
+        }
 
         @media (max-width: 768px) {
-            .container { padding: 20px; }
-            .subtitulo { font-size: 3rem; margin-top: 5rem; }
+            .container {
+                padding: 20px;
+            }
+
+            .subtitulo {
+                font-size: 3rem;
+                margin-top: 5rem;
+            }
         }
     </style>
 </head>
+
 <body class="body">
 
     <!-- HEADER -->
@@ -155,7 +350,9 @@
                         <div class="hamburger-line"></div>
                         <div class="hamburger-line"></div>
                     </div>
-                    <div class="logo-container"><div class="logo">ALBOZ</div></div>
+                    <div class="logo-container">
+                        <div class="logo">ALBOZ</div>
+                    </div>
                 </div>
                 <div class="card-nav-content">
                     <div class="nav-card">
@@ -174,7 +371,11 @@
                         </div>
                     </div>
                     <a href="login.php" class="botao-login" aria-label="Ir para login">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -184,43 +385,55 @@
 
     <!-- CONTEÚDO -->
     <div class="container">
-        
+
         <h2 class="section-title">Quem Somos</h2>
-        <p>A <strong>ALBOZ</strong> nasceu com o propósito de redefinir o mercado de artigos esportivos finos. Fundada em 2025, somos uma plataforma que conecta os melhores distribuidores globais a clientes exigentes que buscam excelência em equipamentos de Golfe, Tênis, Hipismo, Vela e Polo.</p>
-        <p>Nossa curadoria é implacável: selecionamos apenas produtos que unem alta performance, design sofisticado e durabilidade. Atuamos como um elo de confiança, garantindo que a paixão pelo esporte seja acompanhada pela melhor tecnologia disponível no mercado.</p>
+        <p>A <strong>ALBOZ</strong> nasceu com o propósito de redefinir o mercado de artigos esportivos finos. Fundada
+            em 2025, somos uma plataforma que conecta os melhores distribuidores globais a clientes exigentes que buscam
+            excelência em equipamentos de Golfe, Tênis, Hipismo, Vela e Polo.</p>
+        <p>Nossa curadoria é implacável: selecionamos apenas produtos que unem alta performance, design sofisticado e
+            durabilidade. Atuamos como um elo de confiança, garantindo que a paixão pelo esporte seja acompanhada pela
+            melhor tecnologia disponível no mercado.</p>
 
         <h2 class="section-title">Nossa Missão</h2>
-        <p>Proporcionar aos atletas, amadores e profissionais, acesso simplificado e seguro aos melhores equipamentos do mundo, promovendo a prática esportiva com estilo, segurança e alta performance.</p>
+        <p>Proporcionar aos atletas, amadores e profissionais, acesso simplificado e seguro aos melhores equipamentos do
+            mundo, promovendo a prática esportiva com estilo, segurança e alta performance.</p>
 
         <h2 class="section-title">Nossa Visão</h2>
-        <p>Ser reconhecida internacionalmente como a referência definitiva em "Ligne Sportive" (Linha Esportiva de Luxo), liderando a inovação na distribuição digital de artigos especializados até 2030.</p>
+        <p>Ser reconhecida internacionalmente como a referência definitiva em "Ligne Sportive" (Linha Esportiva de
+            Luxo), liderando a inovação na distribuição digital de artigos especializados até 2030.</p>
 
         <h2 class="section-title">Nossos Valores</h2>
         <div class="valores-grid">
             <div class="valor-card">
                 <span class="valor-icon">★</span>
                 <span class="valor-titulo">Excelência</span>
-                <p style="font-size:0.9rem; margin:0;">Não aceitamos o "bom". Buscamos sempre o extraordinário em cada produto e atendimento.</p>
+                <p style="font-size:0.9rem; margin:0;">Não aceitamos o "bom". Buscamos sempre o extraordinário em cada
+                    produto e atendimento.</p>
             </div>
             <div class="valor-card">
                 <span class="valor-icon">⚖</span>
                 <span class="valor-titulo">Integridade</span>
-                <p style="font-size:0.9rem; margin:0;">Transparência total nas relações com nossos fornecedores, parceiros e clientes.</p>
+                <p style="font-size:0.9rem; margin:0;">Transparência total nas relações com nossos fornecedores,
+                    parceiros e clientes.</p>
             </div>
             <div class="valor-card">
                 <span class="valor-icon">⚡</span>
                 <span class="valor-titulo">Inovação</span>
-                <p style="font-size:0.9rem; margin:0;">Uso de tecnologia de ponta para otimizar a logística e a experiência de compra.</p>
+                <p style="font-size:0.9rem; margin:0;">Uso de tecnologia de ponta para otimizar a logística e a
+                    experiência de compra.</p>
             </div>
             <div class="valor-card">
                 <span class="valor-icon">♥</span>
                 <span class="valor-titulo">Paixão</span>
-                <p style="font-size:0.9rem; margin:0;">Somos movidos pelo amor ao esporte e pelo respeito à sua tradição.</p>
+                <p style="font-size:0.9rem; margin:0;">Somos movidos pelo amor ao esporte e pelo respeito à sua
+                    tradição.</p>
             </div>
         </div>
 
         <h2 class="section-title">Governança e Compliance</h2>
-        <p>A ALBOZ opera sob rigorosos padrões éticos. Comprometemo-nos com a sustentabilidade, priorizando fornecedores que respeitam normas ambientais e trabalhistas. Nosso canal de suporte está sempre aberto para garantir a conformidade e a satisfação plena de todos os stakeholders.</p>
+        <p>A ALBOZ opera sob rigorosos padrões éticos. Comprometemo-nos com a sustentabilidade, priorizando fornecedores
+            que respeitam normas ambientais e trabalhistas. Nosso canal de suporte está sempre aberto para garantir a
+            conformidade e a satisfação plena de todos os stakeholders.</p>
 
     </div>
 
@@ -255,7 +468,7 @@
     <script>
         const hamburger = document.getElementById('hamburgerBtn');
         const nav = document.getElementById('cardNav');
-        if(hamburger && nav){
+        if (hamburger && nav) {
             hamburger.addEventListener('click', () => {
                 nav.classList.toggle('open');
                 hamburger.classList.toggle('open');
@@ -266,4 +479,5 @@
         }
     </script>
 </body>
+
 </html>

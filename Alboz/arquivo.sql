@@ -76,7 +76,8 @@ CREATE TABLE suporte (
     ON DELETE CASCADE
 );
 
--- (OPCIONAL) Inserir um Usuário Admin de Teste Inicial
+-- (OPCIONAL) Inserir um Usuário Admin de Teste Inicial e dados básicos
+-- LEMBRE-SE DO E-MAIL E DA SENHA PARA LOGIN NO FUTURO
 -- Senha "12345"
 INSERT INTO usuarios (nome, email, senha, cnpj) 
 VALUES ('Admin Inicial', 'admin@teste.com', '12345', '00.000.000/0001-99');

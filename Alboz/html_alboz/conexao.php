@@ -18,4 +18,3 @@ $mysqli->set_charset("utf8mb4");
 
 // Variável extra para compatibilidade (alguns códigos usam $conn, outros $mysqli)
 $conn = $mysqli;
-?>

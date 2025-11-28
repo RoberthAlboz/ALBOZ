@@ -6,7 +6,9 @@ error_reporting(E_ALL);
 include('conexao.php');
 
 // Padroniza a variável de conexão (garante compatibilidade)
-if (isset($conn)) { $mysqli = $conn; }
+if (isset($conn)) {
+    $mysqli = $conn;
+}
 
 $mensagem = "";
 $class = "";
@@ -21,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // 1. Verifica se o usuário já existe pelo e-mail
     $check_sql = "SELECT id FROM usuarios WHERE email = '$email'";
     $check = $mysqli->query($check_sql);
-    
+
     if ($check && $check->num_rows > 0) {
         $mensagem = "Erro: Este e-mail já está cadastrado!";
         $class = "erro";
@@ -29,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // 2. Insere o novo usuário
         $sql = "INSERT INTO usuarios (nome, email, senha, cnpj) VALUES (?, ?, ?, ?)";
         $stmt = $mysqli->prepare($sql);
-        
+
         if ($stmt) {
             $stmt->bind_param("ssss", $nome, $email, $senha, $cnpj);
             if ($stmt->execute()) {
@@ -49,11 +51,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário - ALBOZ</title>
-    
+
     <!-- CSS INTERNO (Tema Dark/Gold) -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap');
@@ -61,15 +64,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         @import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap');
 
         :root {
-            --bg: #001826;        
-            --card: #003554;      
+            --bg: #001826;
+            --card: #003554;
             --card-hover: #014e7b;
             --muted: #bfc9ce;
             --accent: #dfe7e9;
-            --gold: #ffffff;      
+            --gold: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Monda', sans-serif;
@@ -81,27 +88,65 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             flex-direction: column;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
-        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
         /* --- NAVBAR --- */
         .card-nav-container {
-            position: absolute; top: 2em; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 600px; z-index: 1001;
+            position: absolute;
+            top: 2em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            z-index: 1001;
         }
+
         .card-nav {
-            background-color: #ffffff; border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            color: var(--card); overflow: hidden;
-            transition: height 0.4s ease; /* Animação suave da altura */
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            color: var(--card);
+            overflow: hidden;
+            transition: height 0.4s ease;
+            /* Animação suave da altura */
         }
-        .card-nav-top { height: 60px; display: flex; align-items: center; justify-content: center; position: relative; }
+
+        .card-nav-top {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
         .logo {
-            font-family: 'Abhaya Libre', serif; font-weight: 800; font-size: 1.5rem;
-            letter-spacing: 1px; text-transform: uppercase;
+            font-family: 'Abhaya Libre', serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
-        .card-nav-content { padding: 10px; text-align: center; }
-        .nav-card-links a { color: #555; font-weight: 500; font-size: 0.9rem; }
-        .nav-card-links a:hover { color: var(--card-hover); text-decoration: underline; }
+
+        .card-nav-content {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .nav-card-links a {
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .nav-card-links a:hover {
+            color: var(--card-hover);
+            text-decoration: underline;
+        }
 
         /* --- CONTEÚDO CENTRALIZADO --- */
         .secao_login {
@@ -118,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             background: #ffffff;
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             border-top: 5px solid var(--card);
         }
 
@@ -148,6 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #333;
             margin-bottom: 20px;
         }
+
         input:focus {
             outline: none;
             border-color: var(--card);
@@ -169,44 +215,84 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         button:hover {
             background: var(--card-hover);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .msg {
-            padding: 15px; margin-bottom: 20px; border-radius: 6px;
-            text-align: center; font-weight: bold; font-size: 0.95rem;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.95rem;
         }
-        .sucesso { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .erro { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        .sucesso {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .erro {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
 
         .link-login {
-            display: block; text-align: center; margin-top: 20px;
-            color: var(--card); font-weight: bold; text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--card);
+            font-weight: bold;
+            text-decoration: none;
         }
-        .link-login:hover { text-decoration: underline; }
+
+        .link-login:hover {
+            text-decoration: underline;
+        }
 
         /* --- RODAPÉ --- */
         .rodape {
             background: #000c13;
             padding: 2rem 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
             font-size: 0.9rem;
             color: var(--muted);
         }
-        
+
         /* Menu Hambúrguer CSS */
         .hamburger-menu {
-            position: absolute; left: 20px; cursor: pointer; display: flex; flex-direction: column; gap: 5px;
+            position: absolute;
+            left: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
-        .hamburger-line { width: 25px; height: 2px; background-color: var(--card); transition: 0.3s; }
-        .hamburger-menu.open .hamburger-line:first-child { transform: translateY(7px) rotate(45deg); }
-        .hamburger-menu.open .hamburger-line:last-child { transform: translateY(0px) rotate(-45deg); }
+
+        .hamburger-line {
+            width: 25px;
+            height: 2px;
+            background-color: var(--card);
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.open .hamburger-line:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger-menu.open .hamburger-line:last-child {
+            transform: translateY(0px) rotate(-45deg);
+        }
     </style>
 </head>
+
 <body>
 
     <!-- NAVBAR -->
@@ -231,11 +317,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="secao_login">
         <div class="login-container">
             <h2>Criar Nova Conta</h2>
-            
+
             <?php if ($mensagem): ?>
                 <div class="msg <?php echo $class; ?>">
                     <?php echo $mensagem; ?>
-                    <?php if($class == 'sucesso'): ?>
+                    <?php if ($class == 'sucesso'): ?>
                         <br><br><a href="login.php" style="color: #155724; text-decoration: underline;">CLIQUE AQUI PARA ENTRAR</a>
                     <?php endif; ?>
                 </div>
@@ -272,7 +358,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         const hamburger = document.getElementById('hamburgerBtn');
         const nav = document.getElementById('cardNav');
-        if(hamburger && nav){
+        if (hamburger && nav) {
             hamburger.addEventListener('click', () => {
                 nav.classList.toggle('open');
                 hamburger.classList.toggle('open');
@@ -283,4 +369,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </script>
 </body>
+
 </html>

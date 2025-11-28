@@ -27,17 +27,18 @@ if ($result) {
         echo "<li>" . $row['Field'] . "</li>";
     }
     echo "</ul>";
-    
+
     // Verifica se tem a coluna imagem
     $tem_imagem = false;
     $result->data_seek(0);
-    while ($row = $result->fetch_assoc()) { if($row['Field'] == 'imagem') $tem_imagem = true; }
-    
-    if(!$tem_imagem) {
+    while ($row = $result->fetch_assoc()) {
+        if ($row['Field'] == 'imagem') $tem_imagem = true;
+    }
+
+    if (!$tem_imagem) {
         echo "<p style='color:red'>⚠️ ALERTA CRÍTICO: A coluna 'imagem' não existe na tabela produtos! O código vai quebrar.</p>";
         echo "<p>Rode este SQL no banco: <code>ALTER TABLE produtos ADD COLUMN imagem VARCHAR(255);</code></p>";
     }
-
 } else {
     echo "<p style='color:red'>❌ ERRO CRÍTICO: Tabela 'produtos' não existe! (" . $mysqli->error . ")</p>";
 }
@@ -50,4 +51,3 @@ if ($query) {
 } else {
     echo "<p style='color:red'>❌ ERRO NO SQL: " . $mysqli->error . "</p>";
 }
-?>
