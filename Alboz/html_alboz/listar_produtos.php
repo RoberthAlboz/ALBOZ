@@ -186,7 +186,7 @@ if (!$produtos) {
                             ?>
                         </td>
                         <td class="acoes">
-                            <a href="cadastrar_produto.php?edit_id=<?php echo $row['id']; ?>" class="btn-edit">Editar</a>
+                            <a href="cadastrar_produtos.php?edit_id=<?php echo $row['id']; ?>" class="btn-edit">Editar</a>
                             <a href="?delete_id=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a>
                         </td>
                     </tr>
@@ -195,7 +195,7 @@ if (!$produtos) {
                     <tr>
                         <td colspan="6" style="text-align:center; padding:40px; color:#666;">
                             Nenhum produto encontrado.<br><br>
-                            <a href="cadastrar_produto.php" style="color:blue;">Clique aqui para cadastrar o primeiro!</a>
+                            <a href="cadastrar_produtos.php" style="color:blue;">Clique aqui para cadastrar o primeiro!</a>
                         </td>
                     </tr>
                 <?php endif; ?>

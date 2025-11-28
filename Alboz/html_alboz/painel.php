@@ -141,7 +141,7 @@ include('protecao.php'); // Garante que o usuário está logado
             <div class="card destaque">
                 <h3>Cadastrar Produtos</h3>
                 <p>Adicione novos itens ao seu catálogo, defina preços e controle o estoque.</p>
-                <a href="cadastrar_produto.php" class="btn-card">Novo Produto</a>
+                <a href="cadastrar_produtos.php" class="btn-card">Novo Produto</a>
             </div>
 
             <!-- Card 2: Cadastrar Fornecedor -->
