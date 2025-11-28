@@ -96,16 +96,25 @@ a, button, .btn-submit, summary, .categoria-item {
 }
 
 /* ==================================================================
-   3. CARROSSEL DE FUNDO (CÓDIGO QUE ESTAVA NO HTML)
+   3. CARROSSEL DE FUNDO (FIXO NO TOPO DA PÁGINA)
    ================================================================== */
 .background-carousel {
-    position: fixed;
+    /* MUDANÇA: De 'fixed' para 'absolute' */
+    /* Absolute = Fica preso no topo do site e não te segue */
+    position: absolute; 
+    
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1; /* Fica atrás de tudo */
+    
+    /* Garante que ocupe a altura exata da tela inicial */
+    height: 100vh; 
+    
+    z-index: -1;
     background-color: #000;
+    
+    /* Garante que não vaze para os lados */
+    overflow: hidden; 
 }
 
 .slide {
@@ -115,16 +124,12 @@ a, button, .btn-submit, summary, .categoria-item {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    
-    /* --- POSICIONAMENTO CORRIGIDO --- */
     object-position: center 20%; 
     transform-origin: center 20%;
-    
     opacity: 0;
-    /* Usando 15s igual estava no seu HTML */
     animation: fadeLoop 15s infinite;
 }
-
+/* ... o resto continua igual ... */
 .slide:nth-child(1) { animation-delay: 0s; }
 .slide:nth-child(2) { animation-delay: 5s; }
 .slide:nth-child(3) { animation-delay: 10s; }
@@ -135,7 +140,7 @@ a, button, .btn-submit, summary, .categoria-item {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 50% de preto */
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -148,18 +153,20 @@ a, button, .btn-submit, summary, .categoria-item {
 }
 
 /* ==================================================================
-   4. MENU DE NAVEGAÇÃO
+   4. MENU DE NAVEGAÇÃO (FIXADO)
    ================================================================== */
 .card-nav-container {
-    position: absolute;
-    top: 2em;
+    /* MUDANÇA AQUI: De absolute para fixed */
+    position: fixed; 
+    
+    top: 20px; /* Distância do topo */
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 600px;
     
-    /* Z-index alto para ficar acima do Blur e do Carrossel */
-    z-index: 1001;
+    /* Z-index altíssimo para ficar na frente de tudo */
+    z-index: 9999; 
 }
 
 .card-nav {
@@ -266,14 +273,12 @@ a, button, .btn-submit, summary, .categoria-item {
     margin-top: 5rem;
     z-index: 10;
     text-align: center;
-    
-    /* Estilo da Fonte */
     font-weight: 400;
     letter-spacing: normal;
     text-shadow: none;
     cursor: default;
 
-    /* --- EFEITO METÁLICO (Igual ao do Rodapé) --- */
+    /* EFEITO METÁLICO */
     background: linear-gradient(
         110deg,
         #333333 10%,   /* Cinza Escuro */
@@ -282,23 +287,16 @@ a, button, .btn-submit, summary, .categoria-item {
         #888888 60%,   /* Prata */
         #333333 90%    /* Cinza Escuro */
     );
-    
-    /* Configuração para o brilho se mover */
     background-size: 200% auto;
-    background-position: center; /* Começa no centro */
-    
-    /* Recorta o fundo no texto */
+    background-position: center; 
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    
-    /* Suavidade do movimento */
     transition: background-position 0.1s linear;
     will-change: background-position;
 }
 
-/* Removemos a animação automática antiga do hover */
 .subtitulo:hover {
     animation: none;
 }
@@ -641,24 +639,13 @@ input:focus {
         opacity: 0.5;
     }
 }
-
-/* --- AQUI ESTÁ A MUDANÇA --- */
 .gradual-blur-fixed {
     position: fixed !important;
-    
-    /* MUDANÇA 1: Tiramos o 'top: 0' e colocamos 'auto' */
     top: auto; 
-    
-    /* Mantemos colado embaixo */
     bottom: 0;
     left: 0;
     right: 0;
-    
-    /* MUDANÇA 2: Definimos uma altura fixa. 
-       25% significa que o blur só vai ocupar o 1/4 inferior da tela.
-       Se quiser mais baixo, diminua para 15% ou 20%. */
-    height: 10%; 
-    
+    height: 10%; /* Altura do blur (rodapé) */
     pointer-events: none;
     z-index: 1000;
 }
@@ -667,16 +654,16 @@ input:focus {
    12. RODAPÉ DE MARCA (ESTILO BUGATTI COM BRILHO NO MOUSE)
    ================================================================== */
 .brand-footer {
-    position: relative; /* Necessário para posicionar o brilho */
+    position: relative;
     width: 100%;
-    background-color: #000000; /* Fundo preto total para contraste */
-    padding: 2rem 0 0 0; /* Padding superior para espaçamento */
+    background-color: #000000;
+    padding: 2rem 0 0 0;
     text-align: center;
     overflow: hidden;
     user-select: none;
     margin-bottom: 0;
     line-height: 0.8;
-    cursor: default; /* Mantenha o cursor padrão */
+    cursor: default;
 }
 
 .alboz-giant {
@@ -688,34 +675,21 @@ input:focus {
     margin: 0;
     padding: 0;
     
-    /* --- Base do Efeito Metálico (SEM ANIMAÇÃO) --- */
     background: linear-gradient(
         110deg,
         #333333 10%,
         #888888 40%,
-        #ffffff 50%, /* Brilho base do gradiente */
+        #ffffff 50%, 
         #888888 60%,
         #333333 90%
     );
-    background-size: 200% auto; /* Ainda precisamos de um tamanho maior para o JS manipular */
-    background-position: center; /* Inicia centralizado */
-    
+    background-size: 200% auto;
+    background-position: center; 
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: transparent; /* Redundante, mas seguro */
+    color: transparent;
     
-    transition: background-position 0.1s linear; /* Transição suave para o movimento do brilho */
-    will-change: background-position; /* Otimização para animação */
-}
-
-/* Opcional: Efeito de borda sutil ao passar o mouse */
-.alboz-giant:hover {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-}
-
-/* Opcional: Se quiser um efeito de "pressionar" ao clicar no ALBOZ gigante */
-.alboz-giant:active {
-    transform: scale(0.99);
-    transition: transform 0.05s ease-out;
+    transition: background-position 0.1s linear; 
+    will-change: background-position;
 }
