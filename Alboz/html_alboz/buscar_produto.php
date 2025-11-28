@@ -1,62 +1,50 @@
 <?php
-// Mantendo sua proteção (certifique-se que o arquivo existe)
+// Mantém a proteção
 include('protecao.php');
 
 // ==========================================================
-// 1. BANCO DE DADOS SIMULADO (MOCK DATA)
+// 1. CONFIGURAÇÃO DO BANCO DE DADOS
 // ==========================================================
-// Aqui simulamos os produtos que estariam no seu MySQL.
-// Quando você conectar no banco real, vai substituir isso pela Query SQL.
-$todos_produtos = [
-    [
-        'nome' => 'NICO ROSBERG 2015 - BELL',
-        'preco' => 'R$ 12.350,00',
-        'img' => 'https://via.placeholder.com/400x500/808080/FFFFFF?text=Capacete'
-    ],
-    [
-        'nome' => 'FLORETE - FOLO',
-        'preco' => 'R$ 1.600,00',
-        'img' => 'https://via.placeholder.com/400x500/909090/FFFFFF?text=Florete'
-    ],
-    [
-        'nome' => 'SELA AMERICANA - EQUITECH',
-        'preco' => 'R$ 20.400,00',
-        'img' => 'https://via.placeholder.com/400x500/707070/FFFFFF?text=Sela'
-    ],
-    [
-        'nome' => 'PRANCHA WING FOIL - NSP',
-        'preco' => 'R$ 16.500,00',
-        'img' => 'https://via.placeholder.com/400x500/A0A0A0/FFFFFF?text=Prancha'
-    ],
-    [
-        'nome' => 'EQUIPAMENTO TÁTICO X5',
-        'preco' => 'R$ 5.200,00',
-        'img' => 'https://via.placeholder.com/400x500/858585/FFFFFF?text=Tatico'
-    ],
-    [
-        'nome' => 'CONJUNTO DE ALTA PERFORMANCE',
-        'preco' => 'R$ 8.990,00',
-        'img' => 'https://via.placeholder.com/400x500/959595/FFFFFF?text=Performance'
-    ]
-];
+$host = 'localhost';      // Geralmente é localhost
+$db   = 'NOME_DO_SEU_BANCO'; // <--- COLOQUE O NOME DO SEU BANCO AQUI
+$user = 'root';           // Seu usuário do MySQL (padrão do XAMPP é 'root')
+$pass = '';               // Sua senha do MySQL (padrão do XAMPP é vazio)
+
+try {
+    // Cria a conexão usando PDO (mais seguro)
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro ao conectar com o banco de dados: " . $e->getMessage());
+}
 
 // ==========================================================
-// 2. LÓGICA DE BUSCA
+// 2. LÓGICA DE BUSCA REAL
 // ==========================================================
 $resultados = [];
 $termo_busca = "";
-$buscou = false; // Variável para saber se o usuário clicou em buscar
+$buscou = false;
 
 if (isset($_GET['busca'])) {
     $termo_busca = $_GET['busca'];
     $buscou = true;
 
-    // Filtra o array (Simulando um "SELECT * FROM produtos WHERE nome LIKE...")
-    foreach ($todos_produtos as $produto) {
-        // stripos verifica se o termo existe no nome (ignorando maiúsculas/minúsculas)
-        if (stripos($produto['nome'], $termo_busca) !== false) {
-            $resultados[] = $produto;
-        }
+    try {
+        // Prepara o SQL para buscar onde o nome se parece com o termo digitado
+        // ATENÇÃO: Troque 'produtos' pelo nome da sua tabela no banco
+        $sql = "SELECT * FROM produtos WHERE nome LIKE :termo";
+        
+        $stmt = $pdo->prepare($sql);
+        
+        // Adiciona as porcentagens (%) para buscar em qualquer parte do texto
+        $stmt->bindValue(':termo', '%' . $termo_busca . '%');
+        $stmt->execute();
+
+        // Pega todos os resultados e joga na variável $resultados
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        echo "Erro na busca: " . $e->getMessage();
     }
 }
 ?>
