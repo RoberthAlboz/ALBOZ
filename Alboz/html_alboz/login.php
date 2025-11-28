@@ -127,7 +127,7 @@ if(isset($_POST['email']) && isset($_POST['senha'])) {
                     
                     <!-- BOTÃO DE EMERGÊNCIA: Cria o usuário se ele não existir -->
                     <p style="text-align:center; font-size:12px; color:#666;">
-                        Não consegue entrar? <a href="criar_admin.php" style="color:blue;">Clique aqui para resetar o usuário Admin</a>.
+                        Não possui cadastro? <a href="criar_admin.php" style="color:blue;">Clique aqui para criar outro usuario/administrador.</a>.
                     </p>
                 </div>
             </form>
