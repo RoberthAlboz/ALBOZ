@@ -743,3 +743,66 @@ input:focus {
         font-size: 2rem;
     }
 }
+
+/* ==================================================================
+   12. BARRA DE PESQUISA (Estilo Alboz)
+   ================================================================== */
+.search-container {
+    text-align: center;
+    margin: -20px auto 4rem auto; /* Sobe um pouco para perto do título */
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    z-index: 10;
+}
+
+.form-busca {
+    display: flex;
+    gap: 10px;
+}
+
+.input-busca {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Monda', sans-serif;
+    font-size: 1rem;
+    color: #001826;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.input-busca:focus {
+    outline: none;
+    background: #fff;
+    border-color: #d4af37; /* Dourado ao focar */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-busca {
+    padding: 0 2rem;
+    border-radius: 50px;
+    border: none;
+    background: #003554; /* Azul Card */
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-busca:hover {
+    background: #001826;
+    transform: translateY(-2px);
+}
+
+.mensagem-aviso {
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    opacity: 0.8;
+}
