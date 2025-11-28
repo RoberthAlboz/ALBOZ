@@ -64,34 +64,31 @@ ul { list-style: none; }
 /* ==================================================================
    2.1 CURSOR PERSONALIZADO (SEGUIDOR)
    ================================================================== */
-/* Esconde o cursor seguidor em telas touch (celulares) */
 @media (hover: none) {
     .cursor-follower { display: none; }
 }
 
 .cursor-follower {
     position: fixed;
-    width: 40px;  /* Tamanho da argola */
+    width: 40px;
     height: 40px;
-    border: 1px solid var(--gold); /* Cor Dourada */
-    border-radius: 50%; /* Deixa redondo */
-    pointer-events: none; /* Garante que o clique passe através dele */
-    z-index: 9999; /* Fica acima de tudo */
-    transform: translate(-50%, -50%); /* Centraliza no ponteiro */
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
     transition: transform 0.1s ease, width 0.3s, height 0.3s, background-color 0.3s;
-    mix-blend-mode: difference; /* Efeito legal que inverte a cor dependendo do fundo */
+    mix-blend-mode: difference;
 }
 
-/* Quando clicar, o círculo diminui */
 .cursor-follower.click {
     transform: translate(-50%, -50%) scale(0.8);
-    background-color: var(--gold); /* Preenche de dourado ao clicar */
+    background-color: var(--gold);
     opacity: 0.5;
 }
 
-/* Opcional: Mudar o cursor padrão para um pointer mais bonito */
 body {
-    cursor: default; /* Pode trocar por 'crosshair' se quiser um estilo mais técnico */
+    cursor: default;
 }
 
 a, button, .btn-submit, summary, .categoria-item {
@@ -99,16 +96,15 @@ a, button, .btn-submit, summary, .categoria-item {
 }
 
 /* ==================================================================
-   3. CARROSSEL DE FUNDO
+   3. CARROSSEL DE FUNDO (CÓDIGO QUE ESTAVA NO HTML)
    ================================================================== */
-
 .background-carousel {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -1; /* Fica atrás de tudo */
     background-color: #000;
 }
 
@@ -118,37 +114,36 @@ a, button, .btn-submit, summary, .categoria-item {
     left: 0;
     width: 100%;
     height: 100%;
-   
-    /* --- A CORREÇÃO ESTÁ AQUI --- */
-    object-fit: cover; /* Preenche a tela toda (sem barras pretas) */
-   
-    /* Trava a imagem no TOPO. Se a tela for larga/estreita, corta só embaixo */
-    object-position: top center;
-   
-    /* Ajuste para o zoom da animação partir do topo também */
-    transform-origin: top center;
-   
+    object-fit: cover;
+    
+    /* --- POSICIONAMENTO CORRIGIDO --- */
+    object-position: center 20%; 
+    transform-origin: center 20%;
+    
     opacity: 0;
-    animation: fadeSlide 18s infinite ease-in-out;
+    /* Usando 15s igual estava no seu HTML */
+    animation: fadeLoop 15s infinite;
 }
 
-/* ... o resto dos delays e keyframes continua igual ... */
 .slide:nth-child(1) { animation-delay: 0s; }
-.slide:nth-child(2) { animation-delay: 6s; }
-.slide:nth-child(3) { animation-delay: 12s; }
+.slide:nth-child(2) { animation-delay: 5s; }
+.slide:nth-child(3) { animation-delay: 10s; }
 
 .overlay-escuro {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(7, 45, 56, 0.3), rgba(7, 45, 56, 0.9));
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 50% de preto */
     z-index: 1;
 }
 
-@keyframes fadeSlide {
+@keyframes fadeLoop {
     0% { opacity: 0; transform: scale(1); }
     10% { opacity: 1; }
-    45% { opacity: 1; }
-    55% { opacity: 0; transform: scale(1.05); }
+    33% { opacity: 1; }
+    43% { opacity: 0; transform: scale(1.05); }
     100% { opacity: 0; }
 }
 
@@ -162,7 +157,9 @@ a, button, .btn-submit, summary, .categoria-item {
     transform: translateX(-50%);
     width: 90%;
     max-width: 600px;
-    z-index: 99;
+    
+    /* Z-index alto para ficar acima do Blur e do Carrossel */
+    z-index: 1001;
 }
 
 .card-nav {
@@ -250,7 +247,7 @@ a, button, .btn-submit, summary, .categoria-item {
 .nav-card-links a:hover { text-decoration: underline; color: var(--card-hover); }
 
 /* ==================================================================
-   5. HEADER (SHINY APENAS NO HOVER)
+   5. HEADER
    ================================================================== */
 .header {
     position: relative;
@@ -266,50 +263,34 @@ a, button, .btn-submit, summary, .categoria-item {
 .subtitulo {
     font-family: 'Great Vibes', cursive;
     font-size: 6rem;
-   
-    /* Posição */
     margin-top: 5rem;
     z-index: 10;
     text-align: center;
-   
-    /* Estilo da Fonte */
     font-weight: 400;
-    letter-spacing: normal;
-    text-shadow: none;
-    cursor: default; /* Mostra que é apenas texto, não um link clicável */
+    cursor: default;
 
-    /* CONFIGURAÇÃO DO EFEITO SHINY (BASE) */
     background: linear-gradient(
         120deg,
-        #001826 40%,                 /* Azul Escuro */
-        rgba(255, 255, 255, 0.8) 50%, /* O Brilho */
-        #001826 60%                  /* Azul Escuro */
+        #001826 40%,                
+        rgba(255, 255, 255, 0.8) 50%, 
+        #001826 60%                  
     );
     background-size: 200% 100%;
-   
-    /* Define a posição inicial do brilho (Escondido na direita) */
     background-position: 100%;
-   
-    /* Recorta o fundo no formato do texto */
     color: #001826;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-   
     display: inline-block;
-   
-    /* MUDANÇA: Removi a animação daqui. Agora ela é estática por padrão. */
-    transition: background-position 0.5s; /* Suaviza a saída do mouse */
+    transition: background-position 0.5s;
 }
 
-/* MUDANÇA: A animação só acontece quando passa o mouse */
 .subtitulo:hover {
-    /* Mudei para 2s para ser um brilho mais rápido e reativo */
     animation: shine 2s linear infinite;
 }
 
 /* ==================================================================
-   5.5 NOVA SEÇÃO: GALERIA DE CATEGORIAS
+   5.5 GALERIA DE CATEGORIAS
    ================================================================== */
 .galeria-categorias {
     width: 100%;
@@ -463,7 +444,7 @@ details p {
 }
 
 /* ==================================================================
-   7. FORMULÁRIO DE LOGIN/CADASTRO (TELA CHEIA)
+   7. FORMULÁRIO DE LOGIN/CADASTRO
    ================================================================== */
 .secao_login {
     background: #f4f6f8;
@@ -598,12 +579,8 @@ input:focus {
    9. ANIMAÇÕES
    ================================================================== */
 @keyframes shine {
-  0% {
-    background-position: 100%; /* Começa na direita */
-  }
-  100% {
-    background-position: -100%; /* Atravessa para a esquerda */
-  }
+  0% { background-position: 100%; }
+  100% { background-position: -100%; }
 }
 
 .shiny-text.disabled {
@@ -617,12 +594,57 @@ input:focus {
     .rodape-content { flex-direction: column; gap: 2rem; }
     .tabela_ferramentas td { display: block; width: 100%; }
     .tabela_ferramentas td:first-child { border-bottom: none; padding-bottom: 0.5rem; }
-   
+    
     .sect1 { padding: 3rem 0; }
     .subtitulo { font-size: 3rem; }
     .sect1 h1 { font-size: 2.5rem; }
-   
+    
     .galeria-categorias { margin-top: 80px; }
     .galeria-flex { flex-direction: column; gap: 3rem; }
     .img-container { height: 350px; }
+}
+
+/* ==================================================================
+   11. EFEITO DE BLUR GRADUAL (CORRIGIDO)
+   ================================================================== */
+.gradual-blur-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.gradual-blur-inner > div {
+    -webkit-backdrop-filter: inherit;
+    backdrop-filter: inherit;
+    position: absolute;
+    inset: 0;
+}
+.gradual-blur {
+    isolation: isolate;
+}
+@supports not (backdrop-filter: blur(1px)) {
+    .gradual-blur-inner > div {
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0.5;
+    }
+}
+
+/* --- AQUI ESTÁ A MUDANÇA --- */
+.gradual-blur-fixed {
+    position: fixed !important;
+    
+    /* MUDANÇA 1: Tiramos o 'top: 0' e colocamos 'auto' */
+    top: auto; 
+    
+    /* Mantemos colado embaixo */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    /* MUDANÇA 2: Definimos uma altura fixa. 
+       25% significa que o blur só vai ocupar o 1/4 inferior da tela.
+       Se quiser mais baixo, diminua para 15% ou 20%. */
+    height: 10%; 
+    
+    pointer-events: none;
+    z-index: 1000;
 }

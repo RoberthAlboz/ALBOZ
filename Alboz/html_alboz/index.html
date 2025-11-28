@@ -4,73 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALBOZ</title>
+    
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="java.js">
-   
-    <style>
-        /* Container fixo no fundo */
-        .background-carousel {
-            position: fixed;    
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Fica atrás de tudo */
-            background-color: #000;
-        }
-
-        /* Imagens com SRC */
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Cobre a tela sem distorcer */
-            object-position: center;
-            opacity: 0;
-            animation: fadeLoop 15s infinite;
-        }
-
-        /* Tempos da animação (3 imagens = 5s cada intervalo) */
-        .slide:nth-child(1) { animation-delay: 0s; }
-        .slide:nth-child(2) { animation-delay: 5s; }
-        .slide:nth-child(3) { animation-delay: 10s; }
-
-        /* A Animação */
-        @keyframes fadeLoop {
-            0% { opacity: 0; transform: scale(1); }
-            10% { opacity: 1; }
-            33% { opacity: 1; }
-            43% { opacity: 0; transform: scale(1.05); }
-            100% { opacity: 0; }
-        }
-
-        /* Overlay Escuro Opcional (Para o texto branco ficar legível) */
-        .overlay-escuro {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* 50% de preto */
-            z-index: 1; /* Fica acima da img, abaixo do site */
-        }
-    </style>
+    
+    <script src="java.js" defer></script> 
 </head>
 <body class="body">
 
-
+    <div class="gradual-blur-fixed">
+        <div class="gradual-blur-inner">
+            <div style="-webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%); mask-image: linear-gradient(to top, black 0%, transparent 100%);"></div>
+            <div style="-webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); -webkit-mask-image: linear-gradient(to top, black 0%, transparent 80%); mask-image: linear-gradient(to top, black 0%, transparent 80%);"></div>
+            <div style="-webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); -webkit-mask-image: linear-gradient(to top, black 0%, transparent 60%); mask-image: linear-gradient(to top, black 0%, transparent 60%);"></div>
+            <div style="-webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); -webkit-mask-image: linear-gradient(to top, black 0%, transparent 40%); mask-image: linear-gradient(to top, black 0%, transparent 40%);"></div>
+            <div style="-webkit-backdrop-filter: blur(32px); backdrop-filter: blur(32px); -webkit-mask-image: linear-gradient(to top, black 0%, transparent 20%); mask-image: linear-gradient(to top, black 0%, transparent 20%);"></div>
+            <div style="-webkit-backdrop-filter: blur(64px); backdrop-filter: blur(64px); -webkit-mask-image: linear-gradient(to top, black 0%, transparent 10%); mask-image: linear-gradient(to top, black 0%, transparent 10%);"></div>
+        </div>
+    </div>
     <div class="background-carousel">
         <img class="slide" src="../img.alboz/eugene-lim-J9yPHHc0Fe4-unsplash.jpg" alt="Fundo 1">
         <img class="slide" src="../img.alboz/maarten-duineveld-pmfJcN7RGiw-unsplash (2).jpg" alt="Fundo 2">
         <img class="slide" src="../img.alboz/spencer-davis-vdg14E8KsVM-unsplash.jpg" alt="Fundo 3">
-       
+        
         <div class="overlay-escuro"></div>
     </div>
 
     <div class="header">
-       
+        
         <div class="card-nav-container">
             <div class="card-nav" id="cardNav">
                 <div class="card-nav-top">
@@ -122,9 +82,9 @@
         <div class="subtitulo">Ligne Sportive</div>
     </div>
 
-<div class="galeria-categorias">
+    <div class="galeria-categorias">
         <div class="limitador galeria-flex">
-           
+            
             <a href="LINK_DA_PAGINA_CAMISETAS" class="categoria-item">
                 <div class="img-container">
                     <img src="../img.alboz/camisetas.jpg" alt="Camisetas">
@@ -151,8 +111,7 @@
 
     <div class="sect1 limitador">
         <h1>Supere seus limites com o estilo Alboz.</h1>
-       
-
+        
         <table class="tabela_ferramentas">
             <tr>
                 <td>Comparação de preço automática entre distribuidores</td>
@@ -240,16 +199,14 @@
     </div>
 
     <script>
-        // Script do Menu Hamburguer
         const hamburger = document.getElementById('hamburgerBtn');
         const nav = document.getElementById('cardNav');
-       
+        
         if(hamburger && nav){
             hamburger.addEventListener('click', () => {
                 nav.classList.toggle('open');
                 hamburger.classList.toggle('open');
-               
-                // Animação da altura
+                
                 const content = nav.querySelector('.card-nav-content');
                 if (nav.classList.contains('open')) {
                     nav.style.height = (content.scrollHeight + 60) + 'px';
@@ -257,7 +214,6 @@
                     nav.style.height = '60px';
                 }
             });
-            // Altura inicial
             nav.style.height = '60px';
         }
     </script>
